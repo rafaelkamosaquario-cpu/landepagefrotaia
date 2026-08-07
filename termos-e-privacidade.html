@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frota IA — Termos de Uso e Política de Privacidade</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="frota-ia-logo-icon.png">
+<style>
+  :root {
+    --bg: #f5f6f8;
+    --paper: #ffffff;
+    --text: #1c2230;
+    --text-muted: #565f70;
+    --border: #dfe2e8;
+    --accent: #3b5a78;
+    --accent-soft: #e7edf2;
+    --fill-bg: #fff4e0;
+    --fill-border: #e8c47a;
+    --fill-text: #6b4c14;
+    --note-bg: #eef2f5;
+    --serif: Georgia, "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171d;
+      --paper: #1b1f27;
+      --text: #dfe3ea;
+      --text-muted: #97a1b3;
+      --border: #2c313c;
+      --accent: #8fb3d4;
+      --accent-soft: #232a35;
+      --fill-bg: #3a2f14;
+      --fill-border: #7a5b1e;
+      --fill-text: #f0cf85;
+      --note-bg: #1f2530;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--serif);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .shell {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+  }
+  .back-link {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-family: var(--sans); font-size: 13px; text-decoration: none;
+    color: var(--text-muted); margin-bottom: 24px;
+  }
+  .back-link:hover { color: var(--accent); }
+  .masthead {
+    font-family: var(--sans);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+  h1.doctitle {
+    font-family: var(--sans);
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 4px;
+    text-wrap: balance;
+  }
+  .updated {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+  }
+
+  .disclaimer {
+    background: var(--note-bg);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 6px;
+    padding: 16px 18px;
+    font-family: var(--sans);
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+  .disclaimer strong { color: var(--accent); }
+
+  .toc {
+    font-family: var(--sans);
+    font-size: 14px;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 40px;
+  }
+  .toc-title {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+  .toc a {
+    color: var(--text);
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 14px;
+    padding: 4px 0;
+  }
+  .toc a:hover { color: var(--accent); text-decoration: underline; }
+
+  section.doc {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 40px 44px;
+    margin-bottom: 40px;
+    scroll-margin-top: 20px;
+  }
+  @media (max-width: 640px) {
+    section.doc { padding: 28px 20px; }
+  }
+
+  h2.doc-heading {
+    font-family: var(--sans);
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0 0 4px;
+    color: var(--accent);
+  }
+  .doc-sub {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+  }
+
+  h3 {
+    font-family: var(--sans);
+    font-size: 17px;
+    font-weight: 700;
+    margin: 32px 0 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+  h4 {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 700;
+    margin: 18px 0 6px;
+  }
+  p { margin: 0 0 12px; }
+  ul, ol { margin: 0 0 12px; padding-left: 22px; }
+  li { margin-bottom: 6px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--sans);
+    font-size: 13px;
+    margin: 12px 0 20px;
+  }
+  th, td {
+    text-align: left;
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    vertical-align: top;
+  }
+  th { background: var(--accent-soft); font-weight: 700; }
+
+  mark.fill {
+    background: var(--fill-bg);
+    color: var(--fill-text);
+    border: 1px solid var(--fill-border);
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-family: var(--sans);
+    font-size: 0.9em;
+    font-weight: 600;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 44px 0;
+  }
+
+  footer.note {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 8px;
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <a class="back-link" href="index.html">← Voltar para o site</a>
+  <div class="masthead">Frota IA — documentos legais</div>
+  <h1 class="doctitle">Termos de Uso e Política de Privacidade</h1>
+  <div class="updated">Rascunho gerado em 2026-08-06 · versão 0.3 · todos os dados preenchidos, pendente de revisão jurídica</div>
+
+  <div class="disclaimer">
+    <strong>Isto é um rascunho técnico, não uma peça jurídica pronta.</strong>
+    Montei o conteúdo com base exata no que o Frota IA processa e com quem compartilha dado hoje (auditei o código, não estou generalizando de um modelo genérico). Mas eu não sou advogado, e Termos de Uso/Política de Privacidade têm implicação legal real (LGPD, Código de Defesa do Consumidor). Todos os campos já estão preenchidos — falta só a revisão de um advogado antes de publicar, principalmente a parte de responsabilidade, cancelamento/reembolso e direitos do titular de dado (a cláusula de foro, por exemplo, tem eficácia limitada em relação de consumo — veja a nota logo antes da Seção 12).
+  </div>
+
+  <div class="toc">
+    <div class="toc-title">Nesta página</div>
+    <a href="#termos">Termos de Uso</a>
+    <a href="#privacidade">Política de Privacidade</a>
+  </div>
+
+  <section class="doc" id="termos">
+    <h2 class="doc-heading">Termos de Uso do Frota IA</h2>
+    <div class="doc-sub">Última atualização: 06-08-2026</div>
+
+    <p>Bem-vindo ao Frota IA! Estes Termos de Uso ("Termos") regem o seu acesso e uso do assistente virtual inteligente Frota IA ("Serviço"), oferecido por Rafael Rocha Scheffer, portador do CPF nº 070.784.249-79 ("Nós", "Prestador"). Ao utilizar o Serviço, você ("Usuário") concorda integralmente com estes Termos. Leia com atenção.</p>
+
+    <h3>1. Aceitação dos Termos</h3>
+    <p>Ao iniciar uma conversa, interagir ou continuar utilizando o Frota IA via WhatsApp após a apresentação destes Termos (ou de um link para eles) durante o onboarding, você manifesta concordância inequívoca com todas as cláusulas aqui estabelecidas e com nossa Política de Privacidade. Se não concordar, não utilize o Serviço.</p>
+
+    <h3>2. Descrição do Serviço</h3>
+    <p>O Frota IA é um assistente virtual inteligente, acessível via WhatsApp, voltado ao transporte rodoviário de cargas — motorista autônomo e pequenas/médias transportadoras. Os principais serviços incluem, mas não se limitam a:</p>
+    <ul>
+      <li>Cálculos de custo, frete, combustível, CPK (custo por quilômetro), margem, valor mínimo de frete, comparação de pneus, jornada de viagem e custo de veículo parado.</li>
+      <li>Análise e comparação de propostas de frete.</li>
+      <li>Consulta de rota (distância/duração estimada) e, quando solicitado, imagem do mapa da rota.</li>
+      <li>Leitura de foto/PDF enviados por você (nota fiscal, comprovante de despesa, CRLV, CT-e/DACTE, planilha, condição física do veículo) para extrair dado e, com sua confirmação, registrar ou usar em um cálculo.</li>
+      <li>Transcrição de mensagem de áudio em texto, unicamente para processar seu pedido.</li>
+      <li>Consulta a fontes públicas oficiais em tempo real (ANTT, ANP, legislação federal, PRF, DNIT/DER, INMET, portal de CT-e/MDF-e, site de fabricante, entidade técnica do setor e imprensa especializada) para responder pergunta sobre piso mínimo de frete, preço de referência de combustível, legislação, pedágio, restrição de trânsito, clima na rota, especificação de produto e notícia do setor.</li>
+      <li>Geração de documento em PDF (relatório de uma análise feita, ou documento com conteúdo que você forneceu).</li>
+      <li>Lembretes e alertas agendados por você, enviados de volta pelo WhatsApp.</li>
+      <li>Integração opcional com sua conta Google Calendar (você autoriza explicitamente; nunca pedimos sua senha do Google).</li>
+      <li>Envio diário, opcional (você precisa ativar), de um resumo curto de notícias do setor.</li>
+      <li>Histórico das suas análises e documentos gerados, consultável por você a qualquer momento.</li>
+      <li>Painel web complementar — nesta versão, de uso interno/administrativo, não voltado ao usuário final.</li>
+    </ul>
+
+    <h3>3. Uso do Serviço e Conduta do Usuário</h3>
+    <h4>a. Conduta aceitável</h4>
+    <p>Você concorda em utilizar o Serviço para fins lícitos e relacionados ao transporte rodoviário de cargas, conforme o escopo acima, e a fornecer informações verídicas nas suas interações — especialmente dado que alimenta um cálculo (custo, consumo, valor de frete) ou é salvo no seu perfil/veículo.</p>
+    <h4>b. Conduta proibida</h4>
+    <ul>
+      <li>Tentar subverter as instruções do Frota IA ou induzi-lo a agir fora do seu escopo.</li>
+      <li>Usar o Serviço para spam, discurso de ódio, conteúdo ilegal, difamatório ou que viole direito de terceiro.</li>
+      <li>Engenharia reversa, acesso não autorizado a API, ou sobrecarga intencional do sistema.</li>
+      <li>Fornecer informação falsa ou se passar por outra pessoa.</li>
+      <li>Qualquer uso que possa prejudicar o Prestador, seus fornecedores de infraestrutura ou outros usuários.</li>
+    </ul>
+
+    <h3>4. Propriedade Intelectual</h3>
+    <p><strong>a. Nossa:</strong> detemos os direitos sobre o software, a lógica de funcionamento, a persona "Frota IA", os prompts de sistema e qualquer conteúdo original do Serviço.</p>
+    <p><strong>b. Serviços de terceiros:</strong> o Frota IA integra e usa API de terceiros — WhatsApp (via Z-API), Anthropic (Claude), OpenAI, Google (Calendar e Maps, quando você conecta/solicita), Supabase e Railway. O uso desses serviços está sujeito aos termos das respectivas plataformas; nossa Política de Privacidade detalha os principais.</p>
+    <p><strong>c. Conteúdo gerado para você:</strong> respostas, cálculos, relatórios em PDF e mapas gerados pra você recebem licença limitada, não exclusiva e intransferível, para seu uso pessoal/profissional no transporte. É proibida revenda direta ou redistribuição em massa sem autorização. O prompt de sistema e a lógica interna do Frota IA são confidenciais.</p>
+
+    <h3>5. Responsabilidades do Usuário</h3>
+    <p>Você é o único responsável por:</p>
+    <ul>
+      <li>A veracidade dos dados que fornece (do seu veículo, custo, frete, foto enviada).</li>
+      <li>Avaliar a precisão e adequação de qualquer cálculo, informação regulatória ou recomendação antes de tomar decisão com implicação financeira, legal ou de segurança.</li>
+      <li>Confirmar informação legal/regulatória (ex.: piso mínimo ANTT, prazo de pagamento, legislação de trânsito) junto ao órgão oficial ou a um profissional habilitado antes de uma decisão relevante — o Frota IA busca a fonte oficial em tempo real, mas isso não substitui aconselhamento contábil, jurídico ou de engenharia/mecânica.</li>
+    </ul>
+
+    <h3>6. Isenção de Responsabilidade por Ações do Usuário</h3>
+    <p>Não nos responsabilizamos por ação, omissão ou conteúdo gerado/compartilhado por você através do Serviço. Reservamo-nos o direito, mas não a obrigação, de suspender o acesso de quem violar estes Termos. Você concorda em nos indenizar por reivindicação decorrente da sua violação destes Termos ou uso indevido do Serviço.</p>
+
+    <h3>7. Assinatura, Pagamento e Rescisão de Acesso</h3>
+    <h4>a. Teste gratuito</h4>
+    <p>Novos usuários têm direito a 7 (sete) dias de teste gratuito, sem necessidade de cartão de crédito, contados a partir do início do onboarding. O teste gratuito é limitado a 1 (um) por número de WhatsApp — um número que já usou o teste antes não tem direito a um novo período gratuito, mesmo com um cadastro novo. Durante o teste você tem acesso às funções principais do Serviço, sujeito à nossa política de uso justo (impedindo volume de uso incompatível com um único usuário/veículo). Você receberá um aviso no 5º dia e um aviso no último dia do teste.</p>
+    <h4>b. Planos disponíveis</h4>
+    <ul>
+      <li><strong>Frota IA Mensal</strong> — R$ 79,90/mês, cobrança recorrente (cartão de crédito ou Pix Automático, quando disponível), sem fidelidade.</li>
+      <li><strong>Frota IA Anual</strong> — 12x de R$ 59,90 (total R$ 718,80), cobrança parcelada única — não é assinatura recorrente, o acesso vale pelos 12 meses contratados.</li>
+      <li><strong>Frota IA Anual no Pix</strong> — R$ 647,00 à vista, cobrança única — acesso por 12 meses, sem renovação automática.</li>
+      <li><strong>Frota IA Empresa</strong> — condição personalizada conforme número de usuários, veículos e volume de uso, sob consulta direta com o Prestador.</li>
+    </ul>
+    <p>Os planos Mensal e Anual entregam exatamente as mesmas funcionalidades do Serviço — a diferença entre eles é só o preço, a forma de pagamento e o compromisso de permanência, nunca o conjunto de ferramentas disponível.</p>
+    <h4>c. Processamento de pagamento</h4>
+    <p>Os pagamentos são processados pelo Mercado Pago, empresa terceira especializada em meios de pagamento. Não armazenamos dado de cartão de crédito em nossos servidores — isso fica exclusivamente com o Mercado Pago, sujeito aos termos e à política de privacidade dele.</p>
+    <h4>d. Renovação</h4>
+    <p>O plano Mensal renova automaticamente a cada ciclo, no mesmo valor vigente, até que você cancele. Os planos Anuais (parcelado ou Pix) <strong>não</strong> renovam automaticamente — você será avisado antes do fim do período contratado e decide se contrata de novo.</p>
+    <h4>e. Cancelamento e reembolso</h4>
+    <p>Você pode cancelar a qualquer momento pelo WhatsApp. No plano Mensal, o cancelamento impede a próxima cobrança, mas não gera reembolso do ciclo já pago — o acesso continua até o fim do período corrente. Nos planos Anuais, não há reembolso proporcional após o início do uso. Isso não prejudica seu <strong>direito de arrependimento</strong> previsto no Art. 49 do Código de Defesa do Consumidor (7 dias corridos a partir da contratação) — nosso teste gratuito de 7 dias, que antecede qualquer cobrança, já cobre e estende esse direito na prática, já que você só paga depois de já ter experimentado o Serviço.</p>
+    <h4>f. Inadimplência</h4>
+    <p>Se um pagamento recorrente (Mensal) falhar ou for estornado, seu acesso pode ser suspenso até a regularização.</p>
+    <h4>g. Rescisão pelo Prestador</h4>
+    <p>Podemos suspender ou encerrar seu acesso, a nosso critério, em caso de violação destes Termos, suspeita de fraude, ou uso que cause dano ao sistema ou a terceiros — buscaremos avisar via WhatsApp antes, exceto em casos graves.</p>
+
+    <h3>8. Links e Fontes de Terceiros</h3>
+    <p>O Serviço pode indicar links de páginas oficiais (governo, fabricante, entidade técnica, imprensa) encontradas em busca em tempo real. Não controlamos nem nos responsabilizamos pelo conteúdo, precisão ou política de privacidade desses sites de terceiros. Acesso a esses links é por sua conta e risco.</p>
+
+    <h3>9. Limitação de Responsabilidade e Garantias</h3>
+    <p><strong>a.</strong> O Serviço é fornecido "como está" e "conforme disponível", sem garantia de disponibilidade ininterrupta ou ausência de erro.</p>
+    <p><strong>b.</strong> O envio/recebimento de mensagem depende do WhatsApp e de uma integração não-oficial (Z-API) com a plataforma — não garantimos disponibilidade contínua desse canal, que pode sofrer instabilidade ou bloqueio fora do nosso controle.</p>
+    <p><strong>c.</strong> Cálculo, dado buscado em fonte oficial e leitura de imagem/documento são gerados por inteligência artificial e fonte externa, podendo conter imprecisão ou estar desatualizados — não substituem aconselhamento profissional qualificado. Você assume o risco de validar antes de decidir.</p>
+    <p><strong>d.</strong> Em nenhuma hipótese seremos responsáveis por dano indireto, incidental ou consequencial decorrente do uso do Serviço, dentro do limite máximo permitido por lei.</p>
+
+    <h3>10. Alterações nos Termos</h3>
+    <p>Podemos modificar estes Termos a qualquer momento. Alterações relevantes serão comunicadas via WhatsApp antes de entrarem em vigor. O uso continuado após a comunicação implica aceitação dos novos Termos.</p>
+
+    <h3>11. Contato</h3>
+    <p>Dúvidas, sugestões ou reclamações sobre estes Termos: WhatsApp (41) 99729-5836 ou e-mail frotaiaassistente@gmail.com.</p>
+
+    <h3>12. Lei Aplicável e Foro</h3>
+    <p>Estes Termos são regidos pelas leis da República Federativa do Brasil. Fica eleito o foro da comarca de São José dos Pinhais/PR para dirimir controvérsias decorrentes destes Termos, com renúncia a qualquer outro, por mais privilegiado que seja.</p>
+    <p style="font-size: 13px; color: var(--text-muted);"><em>Nota (revisar com advogado): em relação de consumo, o CDC (art. 51, IV e art. 6º, VIII) costuma permitir que o usuário acione a Justiça no domicílio dele mesmo, independente desta cláusula — a eleição de foro aqui organiza o padrão, mas não é garantia absoluta contra ação em outra comarca.</em></p>
+  </section>
+
+  <section class="doc" id="privacidade">
+    <h2 class="doc-heading">Política de Privacidade do Frota IA</h2>
+    <div class="doc-sub">Última atualização: 06-08-2026</div>
+
+    <p>Rafael Rocha Scheffer, CPF 070.784.249-79 ("Nós"), responsável pelo Frota IA ("Serviço"), contatável via WhatsApp (41) 99729-5836 ou e-mail frotaiaassistente@gmail.com, está comprometido em proteger sua privacidade, em conformidade com a LGPD (Lei nº 13.709/2018). Ao utilizar o Frota IA, você ("Usuário") concorda com as práticas descritas aqui.</p>
+
+    <h3>1. Informações que Coletamos</h3>
+    <h4>a. Fornecidas diretamente por você</h4>
+    <ul>
+      <li>Número de WhatsApp e nome do perfil.</li>
+      <li>Nome, cidade/região e (quando informado) rota fixa, coletados no onboarding.</li>
+      <li>Dados do seu veículo, quando você informa: tipo, placa, marca/modelo/ano, combustível, consumo médio, número de eixos, vencimento de seguro/licenciamento, perfil de pneu, custo fixo/variável.</li>
+      <li>Conteúdo das suas mensagens: texto, áudio (transcrito em texto), e foto/PDF que você envia (nota fiscal, comprovante de despesa, CRLV, CT-e, planilha, foto de condição do veículo).</li>
+      <li>Dado financeiro que você informa em uma análise (valor de frete, custo, despesa registrada) — usado para calcular, nunca compartilhado fora do necessário para gerar sua resposta.</li>
+      <li>Endereço de e-mail da sua conta Google — apenas se e quando você optar por conectar sua Agenda Google; a autorização é feita direto com o Google (OAuth), nunca coletamos sua senha.</li>
+      <li>Se você assinar um plano pago: nome, e-mail e CPF/CNPJ, coletados pelo Mercado Pago no momento do pagamento (ver "c" abaixo).</li>
+    </ul>
+    <h4>b. Coletadas automaticamente ou inferidas</h4>
+    <ul>
+      <li>Metadados de mensagem (data/hora, identificador).</li>
+      <li>Transcrição de áudio e leitura de imagem/documento geradas por IA a partir do que você envia.</li>
+      <li>Histórico das suas análises, ferramentas usadas e documentos gerados, para você poder consultar depois e para diagnóstico técnico.</li>
+    </ul>
+    <h4>c. Dados de pagamento</h4>
+    <p>Os pagamentos das assinaturas (Mensal, Anual parcelado ou Anual Pix) são processados pelo <strong>Mercado Pago</strong>. O dado de cartão de crédito ou da chave/QR Code Pix é inserido direto na plataforma do Mercado Pago — nós nunca recebemos nem armazenamos número de cartão. Recebemos de volta apenas a confirmação do pagamento (valor, plano, status, identificador da transação) para liberar seu acesso.</p>
+    <h4>d. Menores de idade</h4>
+    <p>O Frota IA não se destina a menores de 18 anos. Não coletamos idade no onboarding hoje; se identificarmos uso por menor de idade, interromperemos o atendimento.</p>
+
+    <h3>2. Como Coletamos</h3>
+    <ul>
+      <li>Interação direta no WhatsApp.</li>
+      <li>Webhook da Z-API, que nos entrega o conteúdo das mensagens recebidas.</li>
+      <li>Autorização OAuth direta com o Google, apenas se você optar por conectar a Agenda.</li>
+      <li>Upload de foto/PDF/planilha feito por você mesmo, dentro da conversa.</li>
+    </ul>
+
+    <h3>3. Como Usamos Suas Informações</h3>
+    <ul>
+      <li><strong>Prestação do Serviço:</strong> identificar você, manter contexto da conversa, processar cálculo/consulta/geração de documento, ler foto/PDF que você envia.</li>
+      <li><strong>Personalização:</strong> usar seu nome, região e dado de veículo salvo para não pedir a mesma informação de novo.</li>
+      <li><strong>Lembretes:</strong> enviar alerta que você mesmo agendou, e evento da sua Agenda Google, se conectada.</li>
+      <li><strong>Notícias do setor:</strong> enviar o resumo diário apenas se você ativar essa opção — nunca por padrão.</li>
+      <li><strong>Melhoria do Serviço:</strong> analisar padrão de uso, de forma agregada quando possível, pra corrigir erro e melhorar a qualidade da resposta.</li>
+      <li><strong>Suporte:</strong> responder dúvida e resolver problema relatado por você.</li>
+      <li><strong>Cumprimento legal:</strong> atender requisição judicial/administrativa quando exigido por lei.</li>
+    </ul>
+
+    <h3>4. Compartilhamento de Informações com Terceiros</h3>
+    <p>Compartilhamos dado com os seguintes operadores (nos termos da LGPD), estritamente para viabilizar o Serviço:</p>
+    <table>
+      <tr><th>Terceiro</th><th>Dado compartilhado</th><th>Finalidade</th></tr>
+      <tr><td>Z-API (integração com WhatsApp)</td><td>Seu número e o conteúdo da mensagem</td><td>Receber e enviar mensagem pelo WhatsApp</td></tr>
+      <tr><td>Anthropic (Claude API)</td><td>Conteúdo da conversa, texto/imagem/PDF que você envia</td><td>É o modelo que entende seu pedido, decide qual cálculo/ferramenta usar e gera a resposta</td></tr>
+      <tr><td>OpenAI</td><td>Somente o áudio da sua mensagem</td><td>Exclusivamente transcrever o áudio em texto</td></tr>
+      <tr><td>Google (Calendar API, Maps API)</td><td>Dado de evento de agenda (se você conectar) e endereço em texto (se pedir cálculo de rota)</td><td>Integração opcional de Agenda; cálculo de distância/rota e mapa</td></tr>
+      <tr><td>Supabase</td><td>Todo o dado de perfil, veículo, histórico e mensagem, armazenado em banco</td><td>Armazenamento seguro do seu histórico e perfil (servidor nos EUA — região us-east-1)</td></tr>
+      <tr><td>Railway</td><td>Infraestrutura de execução da aplicação</td><td>Hospedagem do Serviço</td></tr>
+      <tr><td>Mercado Pago</td><td>Nome, e-mail, CPF/CNPJ e valor da transação (se você assinar um plano pago)</td><td>Processar o pagamento da assinatura — nunca recebemos o dado do seu cartão</td></tr>
+      <tr><td>Fontes públicas oficiais (ANTT, ANP, Planalto, DNIT/DER, INMET, fabricante, entidade técnica, imprensa)</td><td>Nenhum dado seu — só consultamos o conteúdo público dessas fontes</td><td>Responder pergunta sobre legislação, preço de referência, piso mínimo, clima, pedágio etc.</td></tr>
+    </table>
+    <p>Exigimos que esses operadores usem o dado só para a finalidade acima, em conformidade com a LGPD.</p>
+
+    <h3>5. Consentimento e Seus Direitos como Titular</h3>
+    <p>O tratamento do seu dado é baseado no seu consentimento (ao usar o Serviço) e na execução do próprio Serviço que você solicitou. Você pode, a qualquer momento:</p>
+    <ul>
+      <li>Confirmar a existência e acessar seu dado.</li>
+      <li>Corrigir dado incompleto, inexato ou desatualizado.</li>
+      <li>Solicitar anonimização, bloqueio ou eliminação de dado desnecessário ou tratado fora da LGPD.</li>
+      <li>Solicitar portabilidade do seu dado.</li>
+      <li>Eliminar dado tratado com base no seu consentimento.</li>
+      <li>Revogar seu consentimento — o que implica não conseguir mais usar o Serviço, já que o dado é o que permite o Frota IA te atender.</li>
+    </ul>
+    <p>Para exercer esses direitos, use o contato da Seção 11 abaixo.</p>
+
+    <h3>6. Segurança de Dados</h3>
+    <ul>
+      <li>Comunicação criptografada (HTTPS) com toda API usada.</li>
+      <li>Link de conexão (ex.: Agenda Google) é assinado digitalmente e expira em minutos — nunca pedimos sua senha do Google dentro da conversa.</li>
+      <li>Controle de acesso por linha (Row Level Security) no banco de dados, restringindo o que cada parte do sistema pode ler/escrever.</li>
+      <li>Minimização: coletamos só o dado necessário pra cada funcionalidade que você usa.</li>
+    </ul>
+    <p>Em caso de incidente de segurança com risco relevante, comunicaremos a você e, quando exigido, à Autoridade Nacional de Proteção de Dados (ANPD).</p>
+
+    <h3>7. Cookies</h3>
+    <p>O Serviço, operado via WhatsApp, não usa cookies no seu aparelho. O painel web complementar (hoje de uso interno/administrativo) usa cookie de sessão de autenticação; se e quando esse painel passar a ser usado por clientes, um aviso de cookies será adicionado.</p>
+
+    <h3>8. Transferência Internacional de Dados</h3>
+    <p>Para operar o Serviço, seu dado pode ser processado em servidor fora do Brasil — hoje, nos Estados Unidos (banco de dados Supabase, região <em>us-east-1</em>, e os provedores de IA Anthropic e OpenAI). Essa transferência é necessária ao funcionamento do Serviço, e ao usá-lo você consente com ela.</p>
+
+    <h3>9. Retenção de Dados</h3>
+    <p>Mantemos seu dado enquanto sua conta estiver ativa e pelo tempo necessário ao cumprimento de obrigação legal. Você pode solicitar eliminação a qualquer momento (Seção 5). Alguns registros de memória têm validade controlada internamente e podem expirar automaticamente.</p>
+
+    <h3>10. Alterações nesta Política</h3>
+    <p>Podemos atualizar esta Política periodicamente. Mudança relevante será comunicada via WhatsApp, com a "Data da Última Atualização" revisada. Uso continuado após o aviso implica aceitação.</p>
+
+    <h3>11. Contato e Encarregado de Proteção de Dados</h3>
+    <p>Para exercer seus direitos ou tirar dúvida sobre esta Política: WhatsApp (41) 99729-5836 ou e-mail frotaiaassistente@gmail.com.</p>
+
+    <h3>12. Limitações</h3>
+    <p>Não nos responsabilizamos por instabilidade do WhatsApp ou da integração não-oficial (Z-API) usada para operar o Serviço, nem por incidente de segurança decorrente de ameaça cibernética fora do nosso controle razoável, apesar dos esforços de proteção descritos acima.</p>
+  </section>
+
+  <hr class="divider" />
+  <footer class="note">Frota IA · rascunho gerado a partir da auditoria técnica real do código em 2026-08-06 · revisar com advogado antes de publicar como definitivo</footer>
+</div>
+
+</body>
+</html>
