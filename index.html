@@ -270,13 +270,22 @@
   .planos-head { text-align: center; }
   .planos-head h2 { font-size: clamp(1.9rem, 3.4vw, 2.6rem); }
   .planos-head h2 em { font-style: italic; color: var(--accent); }
-  .plano-card { max-width: 28rem; margin: 2.5rem auto 0; border-radius: 18px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 0 60px -18px rgba(0,250,10,0.3); }
+  .planos-trial {
+    max-width: 42rem; margin: 2rem auto 0; text-align: center;
+    background: rgba(0,250,10,0.06); border: 1px solid var(--line); border-radius: 16px;
+    padding: 1.5rem 2rem;
+  }
+  .planos-trial h3 { font-size: 1.15rem; color: var(--accent); }
+  .planos-trial p { color: var(--text-soft); margin-top: 0.6rem; font-size: 0.96rem; }
+  .planos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem; max-width: 68rem; margin-inline: auto; align-items: start; }
+  .plano-card { border-radius: 18px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 0 60px -18px rgba(0,250,10,0.3); display: flex; flex-direction: column; }
   .plano-ribbon {
     background: var(--void-deep); color: var(--text); font-family: var(--display); font-weight: 700; text-transform: uppercase;
     font-size: 0.85rem; letter-spacing: 0.03em; padding: 0.8rem 1.5rem; text-align: center;
   }
   .plano-ribbon em { font-style: normal; color: var(--accent); }
-  .plano-body { background: linear-gradient(160deg, var(--card-soft), var(--card)); padding: 2rem 1.8rem; text-align: center; }
+  .plano-body { background: linear-gradient(160deg, var(--card-soft), var(--card)); padding: 2rem 1.8rem; text-align: center; flex: 1; display: flex; flex-direction: column; }
+  .plano-body .btn { margin-top: auto; }
   .plano-eyebrow { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-soft); }
   .plano-nome { font-size: 1.7rem; font-style: italic; margin-top: 0.2rem; color: var(--accent); }
   .plano-list { list-style: none; margin: 1.6rem 0; padding: 1.4rem; background: rgba(0,250,10,0.06); border-radius: 12px; text-align: left; display: flex; flex-direction: column; gap: 0.65rem; font-size: 0.94rem; }
@@ -463,21 +472,60 @@
       <p class="eyebrow">Planos</p>
       <h2>Escolha o <em>seu plano:</em></h2>
     </div>
-    <div class="plano-card">
-      <div class="plano-ribbon">Comece a usar agora <em>sem pagar nada</em></div>
-      <div class="plano-body">
-        <p class="plano-eyebrow">Plano</p>
-        <div class="plano-nome">Frota IA</div>
-        <ul class="plano-list">
-          <li>Acesso total e imediato aos recursos da V1, gratuitamente nos primeiros 7 dias.</li>
-          <li>1 veículo principal por cadastro</li>
-          <li>Atualizações inclusas sem custo adicional</li>
-          <li>Suporte humano no WhatsApp</li>
-          <li>Acesso a tudo isso sem precisar baixar nada</li>
-        </ul>
-        <p class="plano-price-cap">Depois, apenas</p>
-        <p class="plano-price"><span class="num">R$59,90</span><span class="per">/mês</span></p>
-        <a class="btn btn-accent" href="https://wa.me/5542998582489?text=Quero+testar+o+Frota+IA+gr%C3%A1tis" target="_blank" rel="noopener" style="width:100%; justify-content:center;">Teste gratuitamente agora</a>
+    <div class="planos-trial">
+      <h3>Teste grátis por 7 dias</h3>
+      <p>Acesso completo e imediato a todas as funções. Use diretamente pelo WhatsApp, sem precisar baixar aplicativo.</p>
+    </div>
+    <div class="planos-grid">
+      <div class="plano-card">
+        <div class="plano-ribbon">Mensal <em>mais flexível</em></div>
+        <div class="plano-body">
+          <p class="plano-eyebrow">Plano</p>
+          <div class="plano-nome">Mensal</div>
+          <ul class="plano-list">
+            <li>Acesso completo pelo WhatsApp</li>
+            <li>Todas as ferramentas e atualizações incluídas</li>
+            <li>Suporte técnico humano pelo WhatsApp</li>
+            <li>Sem fidelidade: cancele quando quiser</li>
+          </ul>
+          <p class="plano-price"><span class="num">R$79,90</span><span class="per">/mês</span></p>
+          <a class="btn btn-accent" href="https://wa.me/5542998582489?text=Quero+assinar+o+plano+mensal+do+Frota+IA" target="_blank" rel="noopener" style="width:100%; justify-content:center;">Assinar mensal</a>
+        </div>
+      </div>
+
+      <div class="plano-card">
+        <div class="plano-ribbon">Anual <em>mais escolhido</em></div>
+        <div class="plano-body">
+          <p class="plano-eyebrow">Plano</p>
+          <div class="plano-nome">Anual</div>
+          <ul class="plano-list">
+            <li>Acesso completo por 12 meses</li>
+            <li>Todas as ferramentas e atualizações incluídas</li>
+            <li>Suporte técnico humano pelo WhatsApp</li>
+            <li>Economize R$240 em relação ao mensal</li>
+          </ul>
+          <p class="plano-price-cap">12x sem juros</p>
+          <p class="plano-price"><span class="num">R$59,90</span><span class="per">/mês</span></p>
+          <p class="plano-price-cap">Total de R$718,80</p>
+          <a class="btn btn-accent" href="https://wa.me/5542998582489?text=Quero+assinar+o+plano+anual+do+Frota+IA" target="_blank" rel="noopener" style="width:100%; justify-content:center;">Assinar plano anual</a>
+        </div>
+      </div>
+
+      <div class="plano-card">
+        <div class="plano-ribbon">Anual no Pix <em>maior desconto</em></div>
+        <div class="plano-body">
+          <p class="plano-eyebrow">Plano</p>
+          <div class="plano-nome">Anual no Pix</div>
+          <ul class="plano-list">
+            <li>Acesso completo por 12 meses</li>
+            <li>Todas as ferramentas e atualizações incluídas</li>
+            <li>Suporte técnico humano pelo WhatsApp</li>
+            <li>Economize R$311,80 em relação ao mensal</li>
+          </ul>
+          <p class="plano-price-cap">À vista no Pix</p>
+          <p class="plano-price"><span class="num">R$647,00</span></p>
+          <a class="btn btn-accent" href="https://wa.me/5542998582489?text=Quero+pagar+o+plano+anual+do+Frota+IA+no+Pix" target="_blank" rel="noopener" style="width:100%; justify-content:center;">Pagar com Pix</a>
+        </div>
       </div>
     </div>
   </section>
