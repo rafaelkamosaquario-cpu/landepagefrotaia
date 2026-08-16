@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Frota IA | Inteligência para gestão de frota no WhatsApp e painel</title>
-<meta name="description" content="Analise fretes, custos, CPK, manutenção, documentos, rotas e sua operação com uma IA especializada em transporte no WhatsApp e painel.">
-<meta property="og:title" content="Frota IA | Inteligência para gestão de frota no WhatsApp e painel">
-<meta property="og:description" content="Analise fretes, custos, CPK, manutenção, documentos, rotas e sua operação com uma IA especializada em transporte no WhatsApp e painel.">
+<title>Frota IA | A IA do transporte direto no seu WhatsApp</title>
+<meta name="description" content="Pergunte sobre fretes, custos, pneus, manutenção, documentos e rotas pelo WhatsApp. Tudo fica organizado no painel Frota IA.">
+<meta property="og:title" content="Frota IA | A IA do transporte direto no seu WhatsApp">
+<meta property="og:description" content="Pergunte sobre fretes, custos, pneus, manutenção, documentos e rotas pelo WhatsApp. Tudo fica organizado no painel Frota IA.">
 <meta property="og:type" content="website">
 <link rel="icon" href="frota-ia-logo-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -125,17 +125,20 @@
   .hero h1 em { font-style: normal; color: var(--accent); }
   .hero-sub { margin-top: 1.4rem; max-width: 33rem; color: var(--text-soft); font-size: 1.1rem; }
   .hero-sub strong { color: var(--text); }
-  .hero-ctas { margin-top: 2.2rem; }
+  .hero-panel-line { margin-top: 0.9rem; max-width: 33rem; color: var(--frota-cyan); font-size: 0.92rem; font-weight: 600; }
+  .hero-panel-line strong { color: var(--text); }
+  .hero-ctas { margin-top: 2.2rem; display: flex; flex-wrap: wrap; gap: 0.9rem; align-items: center; }
+  .hero-micro { margin-top: 1.1rem; font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.04em; color: var(--text-soft); }
 
-  /* ---------- Hero phone + floating feature cards ---------- */
-  .hero-phone-stage { position: relative; display: flex; justify-content: center; padding-inline: 78px; }
+  /* ---------- Hero phone + panel peek ---------- */
+  .hero-phone-stage { position: relative; display: flex; justify-content: center; padding-inline: 24px; }
   .hero-phone-stage::before {
     content: ""; position: absolute; inset: -8% -4%; z-index: -1; pointer-events: none;
     background: radial-gradient(ellipse 55% 55% at 55% 45%, rgba(15,163,207,0.12), transparent 70%);
   }
   .hero-phone-wrap { position: relative; display: inline-block; line-height: 0; }
   .hero-phone-img {
-    height: clamp(520px, 44vw, 580px); width: auto; max-width: 100%; object-fit: contain; display: block;
+    height: clamp(540px, 46vw, 600px); width: auto; max-width: 100%; object-fit: contain; display: block;
     -webkit-mask-image: radial-gradient(ellipse 62% 58% at 50% 48%, black 58%, transparent 100%);
     mask-image: radial-gradient(ellipse 62% 58% at 50% 48%, black 58%, transparent 100%);
   }
@@ -183,59 +186,16 @@
     .hps-result { font-size: 0.78rem; }
   }
 
-  .float-card {
-    position: absolute;
-    transition: transform 0.25s ease;
-    animation-duration: var(--dur, 4.5s); animation-timing-function: ease-in-out; animation-iteration-count: infinite;
-    animation-delay: var(--delay, 0s);
-  }
-  .float-card img { display: block; object-fit: contain; height: auto; }
-  .card-sm img { width: clamp(64px, 5vw, 76px); }
-  .card-md img { width: clamp(74px, 6vw, 90px); }
-  .card-lg img { width: clamp(82px, 6.8vw, 102px); }
-  .float-card.anim-a { animation-name: floatA; }
-  .float-card.anim-b { animation-name: floatB; }
-  .float-card.anim-c { animation-name: floatC; }
-  .float-card:hover, .float-card:focus-visible {
-    transform: scale(1.08) translateY(-4px); animation-play-state: paused;
-  }
-
-  .float-card::after {
-    content: attr(data-tip); position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%) translateY(4px);
-    background: var(--void-deep); color: var(--text); font-family: var(--body); font-size: 0.72rem; font-weight: 600;
-    padding: 0.35rem 0.7rem; border-radius: 8px; white-space: nowrap; border: 1px solid var(--line);
-    opacity: 0; pointer-events: none; transition: opacity 0.18s ease, transform 0.18s ease; z-index: 5;
-  }
-  .float-card:hover::after, .float-card:focus-visible::after { opacity: 1; transform: translateX(-50%) translateY(0); }
-
-  /* Coluna esquerda (rota, calculadora, frete, combustível) e direita (foto, alertas, manutenção, pneus) */
-  .fc-col-left { left: 8px; }
-  .fc-col-right { right: 8px; }
-  .fc-1 { top: 3%; }
-  .fc-2 { top: 27%; }
-  .fc-3 { top: 51%; }
-  .fc-4 { top: 75%; }
-  .fc-5 { top: 3%; }
-  .fc-6 { top: 27%; }
-  .fc-7 { top: 51%; }
-  .fc-8 { top: 75%; }
-
-  @keyframes floatA { 0%, 100% { transform: translate3d(0,0,0); } 50% { transform: translate3d(0,-14px,0); } }
   @keyframes floatB { 0%, 100% { transform: translate3d(0,-4px,0); } 50% { transform: translate3d(5px,10px,0); } }
-  @keyframes floatC { 0%, 100% { transform: translate3d(0,5px,0) rotate(-1deg); } 50% { transform: translate3d(-5px,-10px,0) rotate(1deg); } }
-  @media (prefers-reduced-motion: reduce) { .float-card, .hero-panel-peek { animation: none; } }
+  @media (prefers-reduced-motion: reduce) { .hero-panel-peek { animation: none; } }
 
   @media (max-width: 900px) {
     .hero-phone-img { height: 460px; }
-    .hero-phone-stage { padding-inline: 58px; }
+    .hero-phone-stage { padding-inline: 16px; }
   }
   @media (max-width: 480px) {
     .hero-phone-img { height: auto; width: min(78vw, 340px); }
-    .hero-phone-stage { padding-inline: 36px; flex-direction: column; align-items: center; gap: 0.9rem; }
-    .card-sm img { width: clamp(54px, 12vw, 62px); }
-    .card-md img { width: clamp(60px, 13vw, 70px); }
-    .card-lg img { width: clamp(66px, 14vw, 76px); }
-    .float-card::after { display: none; }
+    .hero-phone-stage { padding-inline: 0; flex-direction: column; align-items: center; gap: 0.9rem; }
   }
 
   /* No mobile o peek sobreposto ao celular vira um card próprio abaixo dele — mantém "celular → painel" na ordem visual */
@@ -247,7 +207,7 @@
     }
   }
 
-  /* ---------- Hero panel peek — dá peso real ao painel dentro do hero, sincronizado com o celular ---------- */
+  /* ---------- Hero panel peek — imagem única e discreta do painel, sem disputar atenção com o WhatsApp ---------- */
   .hero-panel-peek {
     position: absolute; left: -6px; bottom: 5%; width: 172px; z-index: 3;
     background: var(--card); border: 1px solid rgba(15,163,207,0.35); border-radius: 14px; padding: 0.65rem 0.75rem;
@@ -294,114 +254,30 @@
   @media (max-width: 900px) { .hero-connector { left: 34px; height: 50px; } }
   @media (max-width: 480px) { .hero-connector { display: none; } }
 
-  /* ---------- Barra de estatísticas ---------- */
-  .stats-strip { padding-block: 1.7rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--void-deep); }
-  .stats-grid { display: flex; flex-wrap: wrap; justify-content: center; }
-  .stat { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; padding: 0.4rem 2.4rem; border-left: 1px solid var(--line); }
-  .stat:first-child { border-left: none; }
-  .stat-num { font-family: var(--heading); font-weight: 900; font-size: 1.6rem; color: var(--frota-cyan); line-height: 1; }
-  .stat-label { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-soft); text-align: center; }
-  .stat-primary .stat-num { font-size: 2.6rem; color: var(--accent); text-shadow: 0 0 22px var(--accent-glow); }
-  .stat-primary .stat-label { color: var(--text); }
-  @media (max-width: 640px) {
-    .stat { padding: 0.4rem 1.1rem; }
-    .stat-num { font-size: 1.3rem; }
-    .stat-primary .stat-num { font-size: 2rem; }
-  }
-
   /* ---------- Seção genérica de cabeçalho (reaproveitada por várias seções) ---------- */
   .funcoes-head { text-align: center; max-width: 46rem; margin: 0 auto; }
   .funcoes-head h2 { font-size: clamp(1.9rem, 3.6vw, 2.7rem); margin-top: 0.6rem; }
   .funcoes-head h2 em { font-style: normal; color: var(--accent); }
   .funcoes-head p { color: var(--text-soft); margin-top: 1rem; font-size: 1.05rem; }
 
-  /* ---------- Dois canais. Uma operação. ---------- */
-  .channels-section { background: var(--card-soft); }
-  .channels-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: clamp(1.6rem, 4vw, 3rem); align-items: center; margin-top: 2.8rem; }
-  @media (max-width: 860px) { .channels-grid { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 0; } }
-  .channel-col h3 { font-size: 1.1rem; }
-  .channel-col ul { list-style: none; margin: 1rem 0 0; padding: 0; display: flex; flex-direction: column; gap: 0.6rem; }
-  .channel-col li { font-size: 0.94rem; color: var(--text-soft); padding-left: 1.2rem; position: relative; }
-  .channel-whatsapp li::before { content: ""; position: absolute; left: 0; top: 0.5em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
-  .channel-painel { text-align: right; }
-  .channel-painel li { padding-left: 0; padding-right: 1.2rem; }
-  .channel-painel li::before { content: ""; position: absolute; right: 0; top: 0.5em; width: 6px; height: 6px; border-radius: 50%; background: var(--frota-cyan); }
-  @media (max-width: 860px) { .channel-painel { text-align: center; } .channel-painel li { padding-left: 1.2rem; padding-right: 0; } .channel-painel li::before { left: 0; right: auto; } }
-  .channel-snippet { margin-bottom: 1.1rem; display: flex; }
-  .channel-whatsapp .channel-snippet { justify-content: flex-end; }
-  .channel-painel .channel-snippet { justify-content: flex-start; }
-  .channel-snippet .hps-msg, .channel-snippet .pm-kpi { font-size: 0.78rem; }
-  .channel-snippet .pm-kpi { display: inline-block; min-width: 168px; text-align: left; }
-  @media (max-width: 860px) { .channel-whatsapp .channel-snippet, .channel-painel .channel-snippet { justify-content: center; } }
-  .channel-center { position: relative; display: flex; justify-content: center; }
-  .channel-badge {
-    width: 172px; height: 172px; border-radius: 50%; background: var(--void-deep); border: 2px solid var(--accent);
-    box-shadow: 0 0 30px rgba(10,239,18,0.2); display: flex; flex-direction: column; align-items: center; justify-content: center;
-    gap: 0.3rem; text-align: center; padding: 1rem;
-  }
-  .channel-badge-name { font-family: var(--heading); font-weight: 900; text-transform: uppercase; font-size: 1.05rem; }
-  .channel-badge-name em { font-style: normal; color: var(--accent); }
-  .channel-badge span:not(.channel-badge-name) { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-soft); }
+  /* ---------- Como funciona — fluxo 3 passos ---------- */
+  .flow-label { text-align: center; font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--frota-cyan); margin-top: 0.9rem; }
+  .flow-grid { display: flex; align-items: flex-start; justify-content: center; gap: 0.6rem; margin-top: 2.6rem; flex-wrap: wrap; }
+  .flow-step { display: flex; flex-direction: column; align-items: center; text-align: center; width: 210px; gap: 0.7rem; }
+  .flow-num { width: 44px; height: 44px; border-radius: 50%; background: var(--void-deep); border: 1px solid var(--accent); color: var(--accent); font-family: var(--heading); font-weight: 800; font-size: 1.05rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .flow-step h3 { font-size: 1rem; }
+  .flow-step p { color: var(--text-soft); font-size: 0.88rem; margin: 0; }
+  .flow-arrow { color: var(--accent); font-size: 1.4rem; align-self: center; margin-top: 14px; flex-shrink: 0; }
+  @media (max-width: 760px) { .flow-grid { flex-direction: column; } .flow-arrow { transform: rotate(90deg); margin-block: 0.2rem; } .flow-step { width: 100%; } }
 
-  /* dado atravessa os canais — conector discreto, não organograma */
-  .channel-connector { position: absolute; top: 50%; height: 2px; width: clamp(1.6rem, 4vw, 3rem); background: var(--line); transform: translateY(-50%); }
-  .channel-connector-left { right: 100%; }
-  .channel-connector-right { left: 100%; }
-  .channel-connector-dot { position: absolute; top: 50%; left: 0; width: 6px; height: 6px; margin-top: -3px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px var(--accent); animation: channelDotMove 2.6s ease-in-out infinite; }
-  .channel-connector-right .channel-connector-dot { background: var(--frota-cyan); box-shadow: 0 0 8px var(--frota-cyan); animation-direction: reverse; }
-  @keyframes channelDotMove { 0% { left: 0; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { left: calc(100% - 6px); opacity: 0; } }
-  @media (prefers-reduced-motion: reduce) { .channel-connector-dot { animation: none; opacity: 0.7; } }
-  @media (max-width: 860px) {
-    .channel-connector { width: 2px; height: clamp(1.1rem, 5vw, 1.8rem); top: auto; left: 50%; right: auto; transform: translateX(-50%); }
-    .channel-connector-left { bottom: 100%; }
-    .channel-connector-right { top: 100%; left: 50%; }
-    .channel-connector-dot { left: 50%; top: 0; margin-left: -3px; margin-top: 0; animation-name: channelDotMoveVertical; }
-    @keyframes channelDotMoveVertical { 0% { top: 0; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { top: calc(100% - 6px); opacity: 0; } }
-  }
+  /* ---------- O que você pode resolver ---------- */
+  .situations-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; margin-top: 2.6rem; }
+  .situation-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: 1.4rem 1.5rem; display: flex; align-items: center; gap: 0.9rem; }
+  .situation-emoji { font-size: 1.6rem; flex-shrink: 0; }
+  .situation-card p { margin: 0; font-weight: 600; font-size: 0.98rem; }
+  .situations-more { text-align: center; color: var(--text-soft); margin-top: 1.8rem; font-size: 0.92rem; }
 
-  /* ---------- Tabs "Veja o Frota IA trabalhando" ---------- */
-  .tabs-radio { position: absolute; opacity: 0; width: 1px; height: 1px; }
-  .tabs-nav { display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.4rem; margin-top: 2.4rem; scrollbar-width: none; }
-  .tabs-nav::-webkit-scrollbar { display: none; }
-  .tabs-nav label {
-    flex-shrink: 0; cursor: pointer; font-family: var(--heading); font-weight: 700; text-transform: uppercase;
-    font-size: 0.76rem; letter-spacing: 0.03em; padding: 0.65rem 1.15rem; border-radius: 999px; border: 1px solid var(--line);
-    color: var(--text-soft); transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
-  }
-  .tabs-nav label:hover { color: var(--text); }
-  .tabs-panels { position: relative; display: grid; }
-  .tab-panel {
-    grid-column: 1; grid-row: 1; padding-top: 2.2rem;
-    opacity: 0; visibility: hidden; transform: translateY(10px); pointer-events: none;
-    transition: opacity 0.35s ease, transform 0.35s ease, visibility 0s linear 0.35s;
-  }
-  #tab-fretes:checked ~ .tabs-nav label[for="tab-fretes"],
-  #tab-custos:checked ~ .tabs-nav label[for="tab-custos"],
-  #tab-manutencao:checked ~ .tabs-nav label[for="tab-manutencao"],
-  #tab-documentos:checked ~ .tabs-nav label[for="tab-documentos"],
-  #tab-rotas:checked ~ .tabs-nav label[for="tab-rotas"],
-  #tab-operacao:checked ~ .tabs-nav label[for="tab-operacao"] { background: var(--accent); color: var(--frota-black); border-color: transparent; }
-  #tab-fretes:checked ~ .tabs-panels #panel-fretes,
-  #tab-custos:checked ~ .tabs-panels #panel-custos,
-  #tab-manutencao:checked ~ .tabs-panels #panel-manutencao,
-  #tab-documentos:checked ~ .tabs-panels #panel-documentos,
-  #tab-rotas:checked ~ .tabs-panels #panel-rotas,
-  #tab-operacao:checked ~ .tabs-panels #panel-operacao {
-    opacity: 1; visibility: visible; transform: translateY(0); pointer-events: auto;
-    transition: opacity 0.35s ease, transform 0.35s ease, visibility 0s linear 0s;
-  }
-  .tab-panel h3 { font-size: 1.25rem; }
-  .tab-panel-desc { color: var(--text-soft); margin-top: 0.6rem; max-width: 40rem; font-size: 0.94rem; }
-  .tab-demo { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; margin-top: 1.6rem; }
-  @media (max-width: 760px) { .tab-demo { grid-template-columns: 1fr; } }
-  .tab-chat { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: 1.2rem; display: flex; flex-direction: column; gap: 0.6rem; }
-  .tab-chat .hps-msg, .tab-chat .hps-reply { font-size: 0.82rem; }
-  .tab-chat .hps-result { font-size: 0.9rem; }
-  .tab-chat-label { font-family: var(--mono); font-size: 0.62rem; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.08em; }
-  .tab-panel-mini { background: var(--card-soft); border: 1px solid rgba(15,163,207,0.3); border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: 1.2rem; display: flex; flex-direction: column; gap: 0.8rem; justify-content: center; }
-  .tab-panel-mini-note { color: var(--text-soft); font-size: 0.85rem; }
-
-  /* ---------- Painel mockup (usado na seção Dashboard) ---------- */
+  /* ---------- Painel mockup (usado na seção Painel) ---------- */
   .browser-mock {
     position: relative; border-radius: 16px; overflow: hidden; border: 1px solid rgba(15,163,207,0.3); background: var(--card);
     box-shadow: 0 0 0 1px rgba(15,163,207,0.06), 0 34px 70px -28px rgba(0,0,0,0.75); max-width: 62rem; margin-inline: auto;
@@ -410,16 +286,9 @@
   .browser-mock-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--frota-cyan); box-shadow: 0 0 6px var(--frota-cyan); }
   .browser-mock-url { font-family: var(--mono); font-size: 0.68rem; color: var(--text-soft); }
   .browser-mock-body { display: flex; min-height: 260px; }
-  .pm-callout {
-    position: absolute; font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.03em; text-transform: uppercase;
-    color: var(--frota-cyan); background: var(--void-deep); border: 1px solid rgba(15,163,207,0.4); border-radius: 999px;
-    padding: 0.3rem 0.7rem; pointer-events: none; white-space: nowrap;
-  }
-  @media (max-width: 900px) { .pm-callout { display: none; } }
   .pm-sidebar { width: 152px; flex-shrink: 0; background: var(--void-deep); border-right: 1px solid var(--line); padding: 0.9rem 0.6rem; display: flex; flex-direction: column; gap: 0.35rem; }
   .pm-nav-item { font-family: var(--body); font-size: 0.72rem; color: var(--text-soft); padding: 0.4rem 0.55rem; border-radius: 7px; }
   .pm-nav-item.active { background: rgba(10,239,18,0.12); color: var(--accent); font-weight: 700; }
-  .pm-nav-more { color: var(--frota-cyan); font-family: var(--mono); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.04em; margin-top: 0.3rem; }
   .pm-main { flex: 1; padding: 1.2rem; }
   .pm-kpi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.7rem; }
   @media (min-width: 560px) { .pm-kpi-grid { grid-template-columns: repeat(3, 1fr); } }
@@ -428,16 +297,7 @@
   .pm-kpi-num { display: block; font-family: var(--heading); font-weight: 800; font-size: 1.3rem; color: var(--accent); }
   .pm-kpi-label { font-family: var(--mono); font-size: 0.6rem; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.03em; }
   @media (max-width: 640px) { .pm-sidebar { display: none; } }
-
-  /* ---------- Documentos — fluxo visual ---------- */
-  .doc-flow { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.9rem; margin-top: 2.4rem; }
-  .doc-flow-step { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; width: 104px; text-align: center; }
-  .doc-flow-step img { width: 52px; height: 52px; object-fit: contain; }
-  .doc-flow-icon { font-size: 1.8rem; line-height: 1; }
-  .doc-flow-step span:last-child { font-size: 0.75rem; color: var(--text-soft); }
-  .doc-flow-arrow { color: var(--accent); font-size: 1.3rem; }
-  @media (max-width: 640px) { .doc-flow { flex-direction: column; } .doc-flow-arrow { transform: rotate(90deg); } }
-  .doc-flow-note { text-align: center; color: var(--text-soft); font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.03em; margin-top: 1.8rem; }
+  .panel-note { text-align: center; color: var(--text-soft); max-width: 38rem; margin: 1.6rem auto 0; font-size: 0.96rem; }
 
   /* ---------- Trabalha antes de você pedir ---------- */
   .proactive-section { background: var(--card-soft); }
@@ -447,42 +307,18 @@
   .proactive-card p { color: var(--text-soft); margin-top: 0.6rem; font-size: 0.92rem; }
   .proactive-chip { margin-top: 1rem; background: rgba(10,239,18,0.08); border-left: 2px solid var(--accent); border-radius: 0 8px 8px 0; padding: 0.5rem 0.7rem; font-family: var(--mono); font-size: 0.7rem; color: var(--text); }
 
-  /* ---------- IA especializada ---------- */
-  .ia-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.9rem; margin-top: 2.6rem; }
-  .ia-bubble { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: 0.8rem 1.1rem; font-size: 0.9rem; color: var(--text); max-width: 19rem; }
-
-  /* ---------- Mesmo cérebro ---------- */
-  .brain-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.6rem; align-items: center; margin-top: 2.6rem; }
-  @media (max-width: 900px) { .brain-grid { grid-template-columns: 1fr; } }
-  .brain-side { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: 1.2rem; display: flex; flex-direction: column; gap: 0.6rem; }
-  .brain-side .hps-msg, .brain-side .hps-reply { font-size: 0.82rem; align-self: flex-start; }
-  .brain-side .hps-msg { align-self: flex-end; }
-  .brain-center { position: relative; text-align: center; padding: 1rem; }
-  @media (max-width: 900px) { .brain-center .channel-connector { display: none; } }
-  .brain-center .eyebrow { display: block; margin-bottom: 0.6rem; }
-  .brain-center p { color: var(--text-soft); font-size: 0.92rem; }
-
   /* ---------- Fontes oficiais ---------- */
   .sources-section { padding-block: 2.4rem; }
   .sources-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.7rem; margin-top: 1.4rem; }
   .sources-row span { border: 1px solid var(--line); border-radius: 999px; padding: 0.45rem 1rem; font-family: var(--mono); font-size: 0.7rem; color: var(--text-soft); letter-spacing: 0.02em; }
+  .sources-row-sub { margin-top: 0.8rem; }
+  .sources-row-sub span { border-color: transparent; background: rgba(15,163,207,0.06); font-size: 0.66rem; }
 
-  /* ---------- Para quem é ---------- */
-  .personas-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.3rem; margin-top: 2.6rem; }
-  .persona-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: 1.6rem; text-align: center; }
-  .persona-card img { width: 56px; height: 56px; object-fit: contain; margin-bottom: 0.8rem; }
-  .persona-card h4 { font-size: 0.95rem; }
-  .persona-card p { color: var(--text-soft); margin-top: 0.5rem; font-size: 0.85rem; }
+  /* ---------- IA especializada (bolhas reaproveitadas em "Por que ele é diferente") ---------- */
+  .ia-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.9rem; margin-top: 2.6rem; }
+  .ia-bubble { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: 0.8rem 1.1rem; font-size: 0.9rem; color: var(--text); max-width: 19rem; }
 
-  /* ---------- Onboarding ---------- */
-  .onboarding-steps { list-style: none; margin: 2.6rem 0 0; padding: 0; display: flex; overflow-x: auto; gap: 0; scrollbar-width: none; }
-  .onboarding-steps::-webkit-scrollbar { display: none; }
-  .onboarding-steps li { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; width: 112px; text-align: center; font-size: 0.78rem; color: var(--text-soft); position: relative; padding-top: 0.2rem; }
-  .onboarding-steps li:not(:last-child)::after { content: ""; position: absolute; top: 17px; left: 56%; width: 100%; height: 1px; background: var(--line); }
-  .onb-num { width: 32px; height: 32px; border-radius: 50%; background: var(--void-deep); border: 1px solid var(--accent); color: var(--accent); font-family: var(--heading); font-weight: 800; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; z-index: 1; }
-  .onboarding-result { margin-top: 1.8rem; text-align: center; color: var(--text-soft); font-size: 0.92rem; max-width: 34rem; margin-inline: auto; }
-
-  /* ---------- Quem somos — light band (Autoridade) ---------- */
+  /* ---------- Quem somos — light band (Por que ele é diferente / Autoridade) ---------- */
   .quem-somos { background: var(--paper); color: var(--paper-text); }
   .quem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
   @media (max-width: 860px) { .quem-grid { grid-template-columns: 1fr; } }
@@ -493,33 +329,7 @@
   .quem-somos p strong { color: var(--paper-text); }
   .quem-photo { display: flex; align-items: center; justify-content: center; padding: 1.5rem; }
   .quem-photo img { width: 180px; height: auto; object-fit: contain; }
-
-  /* ---------- Garantia / selo ---------- */
-  .selo-section { position: relative; overflow: hidden; }
-  .selo-bg { position: absolute; inset: 0; z-index: -1; }
-  .selo-bg::before {
-    content: ""; position: absolute; inset: 0;
-    background-image:
-      linear-gradient(180deg, rgba(10,10,11,0.88), rgba(10,10,11,0.82) 60%, rgba(10,10,11,0.92)),
-      radial-gradient(ellipse 60% 60% at 15% 30%, rgba(10,239,18,0.10), transparent 65%),
-      url("bg-highway.png");
-    background-size: cover;
-    background-position: center 45%;
-  }
-  .selo-grid { display: grid; grid-template-columns: auto 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
-  @media (max-width: 760px) { .selo-grid { grid-template-columns: 1fr; justify-items: center; text-align: center; } }
-  .selo-svg { flex-shrink: 0; }
-  .dias-badge {
-    width: 150px; height: 150px; border-radius: 50%; background: var(--frota-bg-card);
-    border: 2px solid var(--frota-cyan); box-shadow: 0 0 24px rgba(15,163,207,0.22);
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-  }
-  .dias-num { font-family: var(--heading); font-weight: 900; font-size: 3rem; color: var(--accent); line-height: 1; }
-  .dias-label { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-soft); text-align: center; margin-top: 0.3rem; }
-  .selo-text h2 { font-size: clamp(1.9rem, 3.4vw, 2.6rem); }
-  .selo-text h2 em { font-style: italic; color: var(--accent); }
-  .selo-text p { color: var(--text-soft); margin-top: 1.1rem; font-size: 1.02rem; max-width: 36rem; }
-  .selo-text .btn { margin-top: 1.8rem; }
+  .quem-somos .ia-bubble { background: rgba(20,23,30,0.04); border-color: rgba(20,23,30,0.12); color: var(--paper-text); }
 
   /* ---------- Pricing ---------- */
   .planos-head { text-align: center; }
@@ -591,7 +401,7 @@
     </div>
     <nav>
       <ul class="nav-links">
-        <li><a href="#funcionalidades">Recursos</a></li>
+        <li><a href="#resolve">Recursos</a></li>
         <li><a href="#planos">Planos</a></li>
         <li><a href="#faq">Dúvidas</a></li>
       </ul>
@@ -606,13 +416,13 @@
     <div class="wrap hero-grid">
       <div>
         <p class="eyebrow">Frota IA · WhatsApp + Painel</p>
-        <h1>A inteligência que entende sua frota. <em>No WhatsApp e no painel.</em></h1>
-        <p class="hero-sub">Fretes, custos, CPK, manutenção, pneus, documentos, jornada, rotas e gestão da frota trabalhando com a mesma inteligência.</p>
-        <div class="hero-ctas" style="display:flex; flex-wrap:wrap; gap:0.9rem; align-items:center;">
+        <h1>A IA do transporte <em>direto no seu WhatsApp.</em></h1>
+        <p class="hero-sub">Pergunte sobre fretes, custos, pneus, manutenção, documentos, rotas e sua operação. Por texto, áudio ou foto.</p>
+        <p class="hero-panel-line">E tudo que importa fica organizado no <strong>painel Frota IA</strong>.</p>
+        <div class="hero-ctas">
           <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+testar+o+Frota+IA+gr%C3%A1tis+por+7+dias" target="_blank" rel="noopener">Testar grátis por 7 dias</a>
-          <a class="btn btn-ghost" href="#funcionalidades">Ver como funciona</a>
         </div>
-        <p style="margin-top:1.1rem; font-family:var(--mono); font-size:0.75rem; letter-spacing:0.04em; color:var(--text-soft);">7 dias grátis &nbsp;•&nbsp; Sem cartão &nbsp;•&nbsp; Sem instalar aplicativo</p>
+        <p class="hero-micro">7 dias grátis &nbsp;•&nbsp; Sem cartão &nbsp;•&nbsp; Sem instalar aplicativo</p>
       </div>
       <div class="hero-phone-stage">
         <div class="hero-phone-wrap">
@@ -655,275 +465,57 @@
           <span class="hero-panel-peek-kpi">18% margem</span>
           <span class="hero-panel-peek-label">Análise de frete salva no histórico</span>
         </div>
-
-        <div class="float-card fc-1 fc-col-left card-md anim-a" style="--delay:0s;" role="img" aria-label="Planejamento de rotas" data-tip="Planejamento de rotas">
-          <img src="card-rota.png" alt="">
-        </div>
-
-        <div class="float-card fc-2 fc-col-left card-sm anim-b" style="--delay:.5s; --dur:5s;" role="img" aria-label="Cálculos automáticos" data-tip="Cálculos automáticos">
-          <img src="card-calculadora.png" alt="">
-        </div>
-
-        <div class="float-card fc-3 fc-col-left card-lg anim-c" style="--delay:1.1s; --dur:6s;" role="img" aria-label="Análise de frete" data-tip="Análise de frete">
-          <img src="card-frete.png" alt="">
-        </div>
-
-        <div class="float-card fc-4 fc-col-left card-md anim-a" style="--delay:1.6s; --dur:4s;" role="img" aria-label="Controle de combustível" data-tip="Controle de combustível">
-          <img src="card-combustivel.png" alt="">
-        </div>
-
-        <div class="float-card fc-5 fc-col-right card-md anim-b" style="--delay:.3s; --dur:4.8s;" role="img" aria-label="Análise por foto" data-tip="Análise por foto">
-          <img src="card-documento.png" alt="">
-        </div>
-
-        <div class="float-card fc-6 fc-col-right card-sm anim-c" style="--delay:.9s; --dur:5.5s;" role="img" aria-label="Alertas automáticos" data-tip="Alertas automáticos">
-          <img src="card-calendario.png" alt="">
-        </div>
-
-        <div class="float-card fc-7 fc-col-right card-md anim-a" style="--delay:1.3s; --dur:4.3s;" role="img" aria-label="Controle de manutenção" data-tip="Controle de manutenção">
-          <img src="card-manutencao.png" alt="">
-        </div>
-
-        <div class="float-card fc-8 fc-col-right card-md anim-b" style="--delay:.2s; --dur:5.2s;" role="img" aria-label="Gestão de pneus" data-tip="Gestão de pneus">
-          <img src="card-pneus.png" alt="">
-        </div>
       </div>
     </div>
   </section>
 
-  <section class="stats-strip">
-    <div class="wrap stats-grid">
-      <div class="stat"><span class="stat-num">28</span><span class="stat-label">ferramentas de IA</span></div>
-      <div class="stat"><span class="stat-num">15</span><span class="stat-label">áreas no painel</span></div>
-      <div class="stat stat-primary"><span class="stat-num">2</span><span class="stat-label">canais</span></div>
-      <div class="stat stat-primary"><span class="stat-num">1</span><span class="stat-label">sistema</span></div>
-    </div>
-  </section>
-
-  <section class="channels-section">
-    <div class="wrap">
-      <div class="funcoes-head">
-        <p class="eyebrow">Como funciona</p>
-        <h2>Dois canais. <em>Uma operação.</em></h2>
-        <p>O WhatsApp é a interface rápida e conversacional. O painel é a interface visual e gerencial. Os dois trabalham sobre a mesma operação e, quando a função é compartilhada, usam os mesmos dados.</p>
-      </div>
-      <div class="channels-grid">
-        <div class="channel-col channel-whatsapp">
-          <h3>WhatsApp</h3>
-          <div class="channel-snippet"><div class="hps-msg">🎤 "Esse frete compensa?"</div></div>
-          <ul>
-            <li>Perguntar</li>
-            <li>Enviar áudio</li>
-            <li>Mandar foto</li>
-            <li>Consultar</li>
-            <li>Registrar</li>
-            <li>Criar alerta</li>
-            <li>Analisar</li>
-          </ul>
-        </div>
-        <div class="channel-center">
-          <div class="channel-connector channel-connector-left" aria-hidden="true"><span class="channel-connector-dot"></span></div>
-          <div class="channel-badge">
-            <span class="channel-badge-name">Frota <em>IA</em></span>
-            <span>mesmos dados</span>
-            <span>mesma inteligência</span>
-            <span>mesma operação</span>
-          </div>
-          <div class="channel-connector channel-connector-right" aria-hidden="true"><span class="channel-connector-dot"></span></div>
-        </div>
-        <div class="channel-col channel-painel">
-          <h3>Painel</h3>
-          <div class="channel-snippet"><div class="pm-kpi"><span class="pm-kpi-num">18%</span><span class="pm-kpi-label">Margem no histórico</span></div></div>
-          <ul>
-            <li>Acompanhar</li>
-            <li>Editar</li>
-            <li>Visualizar</li>
-            <li>Comparar</li>
-            <li>Gerenciar</li>
-            <li>Consultar históricos</li>
-            <li>Acompanhar vencimentos</li>
-            <li>Ver frota</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="wrap" id="funcionalidades">
+  <section class="wrap" id="como-funciona">
     <div class="funcoes-head">
-      <p class="eyebrow">O que o Frota IA faz</p>
-      <h2>Veja o Frota IA <em>trabalhando</em></h2>
-      <p>Seis frentes, uma mesma inteligência — pelo WhatsApp e pelo painel.</p>
+      <p class="eyebrow">Como funciona</p>
+      <h2>Simples assim.</h2>
     </div>
-
-    <input type="radio" name="ffgroup" id="tab-fretes" class="tabs-radio" checked>
-    <input type="radio" name="ffgroup" id="tab-custos" class="tabs-radio">
-    <input type="radio" name="ffgroup" id="tab-manutencao" class="tabs-radio">
-    <input type="radio" name="ffgroup" id="tab-documentos" class="tabs-radio">
-    <input type="radio" name="ffgroup" id="tab-rotas" class="tabs-radio">
-    <input type="radio" name="ffgroup" id="tab-operacao" class="tabs-radio">
-
-    <div class="tabs-nav" role="tablist">
-      <label for="tab-fretes" role="tab" aria-controls="panel-fretes">Fretes</label>
-      <label for="tab-custos" role="tab" aria-controls="panel-custos">Custos &amp; CPK</label>
-      <label for="tab-manutencao" role="tab" aria-controls="panel-manutencao">Manutenção &amp; Pneus</label>
-      <label for="tab-documentos" role="tab" aria-controls="panel-documentos">Documentos &amp; Alertas</label>
-      <label for="tab-rotas" role="tab" aria-controls="panel-rotas">Rotas &amp; Jornada</label>
-      <label for="tab-operacao" role="tab" aria-controls="panel-operacao">Operação</label>
-    </div>
-
-    <div class="tabs-panels">
-      <section class="tab-panel" id="panel-fretes" role="tabpanel">
-        <h3>Fretes</h3>
-        <p class="tab-panel-desc">Receita, custo, margem, retorno vazio, prazo, capital de giro, risco e comparação entre propostas — antes de aceitar.</p>
-        <div class="tab-demo">
-          <div class="tab-chat">
-            <span class="tab-chat-label">WhatsApp</span>
-            <div class="hps-msg">🎤 "Esse frete de Curitiba pra SP por R$4.800 compensa?"</div>
-            <div class="hps-reply">Receita <b>R$4.800</b> · Custo <b>R$3.200</b> · Margem <b>18%</b> · Retorno vazio: risco baixo</div>
-            <div class="hps-result">✅ Frete viável</div>
-          </div>
-          <div class="tab-panel-mini">
-            <span class="tab-chat-label">Painel</span>
-            <div class="pm-kpi"><span class="pm-kpi-num">18%</span><span class="pm-kpi-label">Margem salva no histórico</span></div>
-            <p class="tab-panel-mini-note">Curitiba → São Paulo, registrado automaticamente na tela de análises.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="tab-panel" id="panel-custos" role="tabpanel">
-        <h3>Custos &amp; CPK</h3>
-        <p class="tab-panel-desc">Combustível, CPK, custo da viagem, custo do dia, custo parado, margem e receita por km.</p>
-        <div class="tab-demo">
-          <div class="tab-chat">
-            <span class="tab-chat-label">WhatsApp</span>
-            <div class="hps-msg">"Meu caminhão faz 2,8 km/l. Quanto vou gastar de diesel até Foz? E qual meu CPK?"</div>
-            <div class="hps-reply">Consumo estimado <b>145,7 L</b> · Custo diesel <b>R$890</b> · CPK <b>R$2,14/km</b></div>
-            <div class="hps-result">✅ Dentro da média da categoria</div>
-          </div>
-          <div class="tab-panel-mini">
-            <span class="tab-chat-label">Painel</span>
-            <div class="pm-kpi"><span class="pm-kpi-num">R$2,08</span><span class="pm-kpi-label">CPK médio da frota</span></div>
-            <p class="tab-panel-mini-note">Atualizado a cada novo cálculo registrado.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="tab-panel" id="panel-manutencao" role="tabpanel">
-        <h3>Manutenção &amp; Pneus</h3>
-        <p class="tab-panel-desc">Agenda, status, histórico, pneu novo x recapado e custo total do ciclo.</p>
-        <div class="tab-demo">
-          <div class="tab-chat">
-            <span class="tab-chat-label">WhatsApp</span>
-            <div class="hps-msg">"Troquei o óleo hoje, 85.000 km rodados."</div>
-            <div class="hps-reply">Manutenção registrada · Próxima troca prevista aos <b>95.000 km</b></div>
-            <div class="hps-result">✅ Alerta de manutenção criado</div>
-          </div>
-          <div class="tab-panel-mini">
-            <span class="tab-chat-label">Painel</span>
-            <div class="pm-kpi"><span class="pm-kpi-num">2</span><span class="pm-kpi-label">Manutenções pendentes</span></div>
-            <p class="tab-panel-mini-note">Custo do ciclo de cada pneu calculado automaticamente.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="tab-panel" id="panel-documentos" role="tabpanel">
-        <h3>Documentos &amp; Alertas</h3>
-        <p class="tab-panel-desc">CRLV, tacógrafo, RNTRC, CNH, toxicológico, seguro e licenciamento — lidos por foto.</p>
-        <div class="tab-demo">
-          <div class="tab-chat">
-            <span class="tab-chat-label">WhatsApp</span>
-            <div class="hps-msg">📎 [foto do CRLV]</div>
-            <div class="hps-reply">CRLV lido · Vencimento <b>15/09/2026</b> · Documento registrado</div>
-            <div class="hps-result">⏰ Alerta programado</div>
-          </div>
-          <div class="tab-panel-mini">
-            <span class="tab-chat-label">Painel</span>
-            <div class="pm-kpi"><span class="pm-kpi-num">3</span><span class="pm-kpi-label">Documentos vencendo em 30 dias</span></div>
-            <p class="tab-panel-mini-note">Todos os documentos da frota, com vencimento visível.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="tab-panel" id="panel-rotas" role="tabpanel">
-        <h3>Rotas &amp; Jornada</h3>
-        <p class="tab-panel-desc">Origem, destino, distância, duração, paradas e jornada — planejadas e salvas.</p>
-        <div class="tab-demo">
-          <div class="tab-chat">
-            <span class="tab-chat-label">WhatsApp</span>
-            <div class="hps-msg">"Organiza minha jornada de Curitiba até Foz do Iguaçu, com parada em Cascavel."</div>
-            <div class="hps-reply">Rota calculada · <b>630 km</b> · 2 paradas</div>
-            <div class="hps-result">🧭 Jornada salva</div>
-          </div>
-          <div class="tab-panel-mini">
-            <span class="tab-chat-label">Painel</span>
-            <div class="pm-kpi"><span class="pm-kpi-num">12</span><span class="pm-kpi-label">Rotas salvas</span></div>
-            <p class="tab-panel-mini-note">Histórico completo de jornadas, com saída, paradas e chegada.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="tab-panel" id="panel-operacao" role="tabpanel">
-        <h3>Operação</h3>
-        <p class="tab-panel-desc">Despesas, checklist, notícias, histórico e legislação — reunidos num só lugar.</p>
-        <div class="tab-demo">
-          <div class="tab-chat">
-            <span class="tab-chat-label">WhatsApp</span>
-            <div class="hps-msg">"Cria um lembrete pra cobrar esse frete dia 20. E registra o pedágio de hoje, R$38."</div>
-            <div class="hps-reply">Lembrete criado para <b>20/08</b> · Despesa de pedágio registrada</div>
-            <div class="hps-result">📋 Checklist e notícias também por aqui</div>
-          </div>
-          <div class="tab-panel-mini">
-            <span class="tab-chat-label">Painel</span>
-            <div class="pm-kpi"><span class="pm-kpi-num">Despesas · Checklist · Notícias</span><span class="pm-kpi-label">Tudo reunido no painel</span></div>
-            <p class="tab-panel-mini-note">Filtre despesas por veículo, tipo e período.</p>
-          </div>
-        </div>
-      </section>
+    <p class="flow-label">WhatsApp → Frota IA → Painel</p>
+    <div class="flow-grid">
+      <div class="flow-step">
+        <span class="flow-num">1</span>
+        <h3>Você chama no WhatsApp</h3>
+        <p>Mande texto, áudio, foto ou documento.</p>
+      </div>
+      <span class="flow-arrow" aria-hidden="true">→</span>
+      <div class="flow-step">
+        <span class="flow-num">2</span>
+        <h3>O Frota IA resolve</h3>
+        <p>Calcula, analisa, pesquisa, registra ou orienta.</p>
+      </div>
+      <span class="flow-arrow" aria-hidden="true">→</span>
+      <div class="flow-step">
+        <span class="flow-num">3</span>
+        <h3>Sua operação fica organizada</h3>
+        <p>Veículos, documentos, manutenção, custos e históricos ficam disponíveis no painel.</p>
+      </div>
     </div>
   </section>
 
-  <section class="wrap">
+  <section class="wrap" id="resolve">
     <div class="funcoes-head">
-      <p class="eyebrow">Antes de aceitar</p>
-      <h2>Antes de dizer sim para o frete, <em>pergunte ao Frota IA</em></h2>
-      <p>Envie um áudio, uma foto do CT-e ou os dados da viagem. O Frota IA calcula na hora.</p>
+      <p class="eyebrow">O que você pode resolver</p>
+      <h2>Pergunte. <em>O Frota IA resolve.</em></h2>
     </div>
-    <div class="funcoes-grid" style="display:grid; grid-template-columns: minmax(0,46%) minmax(0,54%); gap:20px; align-items:start; margin-top:3rem;">
-      <div class="funcoes-visual" style="width:100%; min-height:580px; display:flex; align-items:flex-start; justify-content:center; padding-top:clamp(45px,5vw,75px); overflow:visible;">
-        <div class="funcoes-phone-wrap" style="position:relative; width:100%; display:flex; align-items:flex-start; justify-content:center; overflow:visible;">
-          <canvas id="funcoesCanvas" width="1254" height="1254" role="img" aria-label="Capturas do Frota IA mostrando cálculo de rota, análise de frete pela leitura do CT-e, alerta de manutenção e comparação de custo de pneus" style="display:block; width:clamp(470px,38vw,600px); max-width:none; height:auto; object-fit:contain; object-position:center top; margin:0; border-radius:18px;"></canvas>
-        </div>
-      </div>
-      <div class="funcoes-blocks" style="display:flex; flex-direction:column; gap:1.4rem;">
-        <div class="funcoes-block">
-          <h4>Descubra se compensa</h4>
-          <p class="funcoes-block-desc">Receita, custo, margem, retorno vazio e risco calculados antes de você aceitar.</p>
-        </div>
-        <div class="funcoes-block">
-          <h4>Calcule antes de sair</h4>
-          <p class="funcoes-block-desc">Diesel, pedágio, distância e tempo de viagem — na hora, pelo WhatsApp.</p>
-        </div>
-        <div class="funcoes-block">
-          <h4>Compare propostas</h4>
-          <p class="funcoes-block-desc">Dois fretes lado a lado, pra decidir mais rápido qual vale a pena.</p>
-        </div>
-        <div class="funcoes-block" style="border-bottom:none; padding-bottom:0;">
-          <h4>Fique com o histórico</h4>
-          <p class="funcoes-block-desc">Cada análise fica salva e pode ser consultada a qualquer momento.</p>
-        </div>
-      </div>
+    <div class="situations-grid">
+      <div class="situation-card"><span class="situation-emoji" aria-hidden="true">🚛</span><p>"Esse frete compensa?"</p></div>
+      <div class="situation-card"><span class="situation-emoji" aria-hidden="true">⛽</span><p>"Quanto vou gastar nessa viagem?"</p></div>
+      <div class="situation-card"><span class="situation-emoji" aria-hidden="true">📊</span><p>"Quanto meu caminhão custa por km?"</p></div>
+      <div class="situation-card"><span class="situation-emoji" aria-hidden="true">🛞</span><p>"Vale recapar ou comprar pneu novo?"</p></div>
+      <div class="situation-card"><span class="situation-emoji" aria-hidden="true">🔧</span><p>"Quando tenho manutenção?"</p></div>
+      <div class="situation-card"><span class="situation-emoji" aria-hidden="true">📄</span><p>"Quando esse documento vence?"</p></div>
     </div>
-    <div class="funcoes-cta" style="margin-top:2.5rem; text-align:center;">
-      <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+analisar+meu+primeiro+frete+gr%C3%A1tis+com+o+Frota+IA" target="_blank" rel="noopener">Analisar meu primeiro frete grátis</a>
-    </div>
+    <p class="situations-more">Também ajuda com rotas, jornada, despesas, alertas, checklist e muito mais.</p>
   </section>
 
-  <section class="wrap">
+  <section class="wrap" id="painel">
     <div class="funcoes-head">
       <p class="eyebrow">Painel</p>
-      <h2>Sua operação inteira, <em>visível</em></h2>
-      <p>O mesmo painel que a sua frota usa hoje: veículos, motoristas, manutenção, documentos e custo, num só lugar.</p>
+      <h2>Falou no WhatsApp. <em>Ficou organizado no painel.</em></h2>
     </div>
     <div style="margin-top:2.6rem;">
       <div class="browser-mock">
@@ -933,15 +525,9 @@
             <span class="pm-nav-item active">Dashboard</span>
             <span class="pm-nav-item">Veículos</span>
             <span class="pm-nav-item">Motoristas</span>
+            <span class="pm-nav-item">Custos</span>
             <span class="pm-nav-item">Manutenção</span>
             <span class="pm-nav-item">Documentos</span>
-            <span class="pm-nav-item">Despesas</span>
-            <span class="pm-nav-item">Alertas</span>
-            <span class="pm-nav-item">Jornadas</span>
-            <span class="pm-nav-item">Rotas</span>
-            <span class="pm-nav-item">Checklists</span>
-            <span class="pm-nav-item">Notícias</span>
-            <span class="pm-nav-more">+ 4 áreas</span>
           </nav>
           <div class="pm-main">
             <div class="pm-kpi-grid">
@@ -953,185 +539,82 @@
             </div>
           </div>
         </div>
-        <span class="pm-callout" style="top: 52px; right: 18px;">Frota</span>
-        <span class="pm-callout" style="bottom: 18px; right: 18px;">Custos</span>
       </div>
     </div>
-  </section>
-
-  <section class="wrap">
-    <div class="funcoes-head">
-      <p class="eyebrow">Documentos</p>
-      <h2>Tire uma foto. <em>O Frota IA organiza o resto.</em></h2>
-    </div>
-    <div class="doc-flow">
-      <div class="doc-flow-step"><img src="card-documento.png" alt=""><span>Foto do documento</span></div>
-      <div class="doc-flow-arrow" aria-hidden="true">→</div>
-      <div class="doc-flow-step"><span class="doc-flow-icon" aria-hidden="true">🔎</span><span>Leitura automática</span></div>
-      <div class="doc-flow-arrow" aria-hidden="true">→</div>
-      <div class="doc-flow-step"><span class="doc-flow-icon" aria-hidden="true">📅</span><span>Vencimento identificado</span></div>
-      <div class="doc-flow-arrow" aria-hidden="true">→</div>
-      <div class="doc-flow-step"><img src="card-calendario.png" alt=""><span>Registrado no painel</span></div>
-      <div class="doc-flow-arrow" aria-hidden="true">→</div>
-      <div class="doc-flow-step"><span class="doc-flow-icon" aria-hidden="true">⏰</span><span>Alerta automático</span></div>
-    </div>
-    <p class="doc-flow-note">CRLV · TACÓGRAFO · RNTRC · CNH · TOXICOLÓGICO · SEGURO · LICENCIAMENTO</p>
+    <p class="panel-note">Para quem administra mais de um veículo, o painel mostra a operação sem depender de planilha, papel ou memória.</p>
   </section>
 
   <section class="proactive-section">
     <div class="wrap">
       <div class="funcoes-head">
-        <p class="eyebrow">Além das respostas</p>
-        <h2>O Frota IA também trabalha <em>antes de você pedir</em></h2>
-        <p>Não é só responder perguntas. Ele acompanha sua operação.</p>
+        <p class="eyebrow">Ele também acompanha</p>
+        <h2>O Frota IA não espera <em>você lembrar de tudo</em></h2>
       </div>
       <div class="proactive-grid">
         <div class="proactive-card">
-          <h4>Checklist automático</h4>
-          <p>O motorista recebe o checklist diário automaticamente. Pode responder OK ou descrever um problema — o histórico vai direto para o painel.</p>
-          <div class="proactive-chip">06:00 enviado → 06:04 respondido: OK</div>
-        </div>
-        <div class="proactive-card">
-          <h4>Alertas automáticos</h4>
-          <p>O Frota IA identifica documentos e manutenções vencendo e pode avisar antes que virem problema.</p>
+          <h4>Documentos e manutenção</h4>
+          <p>Acompanha vencimentos e avisa quando algo precisa de atenção.</p>
           <div class="proactive-chip">CRLV vence em 3 dias</div>
         </div>
         <div class="proactive-card">
-          <h4>Notícias</h4>
-          <p>Resumo diário opcional com informações do setor de transporte, direto no WhatsApp.</p>
+          <h4>Checklist</h4>
+          <p>O motorista responde pelo WhatsApp e o gestor acompanha pelo painel.</p>
+          <div class="proactive-chip">06:00 enviado → 06:04 respondido: OK</div>
+        </div>
+        <div class="proactive-card">
+          <h4>Notícias do transporte</h4>
+          <p>Receba um resumo das principais informações do setor direto no WhatsApp.</p>
           <div class="proactive-chip">Resumo de hoje: 4 notícias do setor</div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="wrap">
-    <div class="funcoes-head">
-      <p class="eyebrow">Inteligência</p>
-      <h2>IA que entende <em>transporte</em></h2>
-    </div>
-    <div class="ia-grid">
-      <div class="ia-bubble">"Meu caminhão faz 2,8 km/l. Está bom?"</div>
-      <div class="ia-bubble">"Vale recapar ou comprar pneu novo?"</div>
-      <div class="ia-bubble">"Esse frete compensa?"</div>
-      <div class="ia-bubble">"Meu documento vence quando?"</div>
-      <div class="ia-bubble">"Organize minha jornada."</div>
-    </div>
-  </section>
-
-  <section class="wrap">
-    <div class="funcoes-head">
-      <p class="eyebrow">Mesmo cérebro</p>
-      <h2>WhatsApp e painel, <em>a mesma inteligência</em></h2>
-      <p>O widget Pergunte ao Frota IA, dentro do painel, usa as mesmas ferramentas e os mesmos dados do WhatsApp.</p>
-    </div>
-    <div class="brain-grid">
-      <div class="brain-side">
-        <span class="tab-chat-label">WhatsApp</span>
-        <div class="hps-msg">"Quais veículos precisam de atenção?"</div>
-        <div class="hps-reply">2 veículos com manutenção pendente e 1 com documento vencendo.</div>
-      </div>
-      <div class="brain-center">
-        <div class="channel-connector channel-connector-left" aria-hidden="true"><span class="channel-connector-dot"></span></div>
-        <span class="eyebrow">Mesmo cérebro</span>
-        <p>Pergunte ao Frota IA está sempre disponível no painel, com a mesma inteligência que responde no WhatsApp.</p>
-        <div class="channel-connector channel-connector-right" aria-hidden="true"><span class="channel-connector-dot"></span></div>
-      </div>
-      <div class="brain-side">
-        <span class="tab-chat-label">Painel · Pergunte ao Frota IA</span>
-        <div class="hps-msg">"Quais veículos precisam de atenção?"</div>
-        <div class="hps-reply">2 veículos com manutenção pendente e 1 com documento vencendo.</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sources-section">
+  <section class="sources-section" id="fontes">
     <div class="wrap">
-      <p class="eyebrow" style="text-align:center; display:block;">Fontes consultadas</p>
+      <div class="funcoes-head">
+        <p class="eyebrow">Fontes</p>
+        <h2>Informação de transporte <em>precisa ter fonte</em></h2>
+        <p>Quando precisa buscar informação atual, o Frota IA pesquisa fontes oficiais e especializadas do setor.</p>
+      </div>
       <div class="sources-row">
-        <span>ANTT — piso mínimo</span>
-        <span>ANP — preço de combustível</span>
-        <span>Legislação de transporte</span>
+        <span>ANTT</span>
+        <span>ANP</span>
         <span>DNIT / DER</span>
-        <span>Fabricantes e notícias do setor</span>
+        <span>Legislação</span>
+        <span>Fabricantes</span>
+        <span>Notícias do setor</span>
+      </div>
+      <div class="sources-row sources-row-sub">
+        <span>Piso mínimo ANTT</span>
+        <span>Preço de combustível</span>
+        <span>Legislação</span>
+        <span>Informações rodoviárias</span>
+        <span>Atualizações do transporte</span>
       </div>
     </div>
   </section>
 
-  <section class="wrap">
-    <div class="funcoes-head">
-      <p class="eyebrow">Para quem é</p>
-      <h2>Do caminhão <em>à gestão da frota</em></h2>
-    </div>
-    <div class="personas-grid">
-      <div class="persona-card">
-        <img src="card-rota.png" alt="">
-        <h4>Motorista autônomo</h4>
-        <p>Frete, custo, combustível, rota e jornada — direto no WhatsApp.</p>
+  <section class="quem-somos" id="diferente">
+    <div class="wrap">
+      <div class="funcoes-head">
+        <p class="eyebrow">Por que ele é diferente</p>
+        <h2>Não é uma IA genérica. <em>É uma IA criada para transporte.</em></h2>
       </div>
-      <div class="persona-card">
-        <img src="card-combustivel.png" alt="">
-        <h4>Transportador</h4>
-        <p>Veículos, custos, manutenção, documentos e rotas.</p>
+      <div class="ia-grid">
+        <div class="ia-bubble">"Esse frete compensa?"</div>
+        <div class="ia-bubble">"Meu caminhão está gastando demais?"</div>
+        <div class="ia-bubble">"Esse pneu vale o custo?"</div>
+        <div class="ia-bubble">"Tenho algum documento vencendo?"</div>
       </div>
-      <div class="persona-card">
-        <img src="card-manutencao.png" alt="">
-        <h4>Gestor de frota</h4>
-        <p>Painel, alertas, checklists, motoristas, despesas e histórico.</p>
-      </div>
-      <div class="persona-card">
-        <img src="card-calculadora.png" alt="">
-        <h4>Dono de empresa</h4>
-        <p>Custo, risco, visão geral e operação.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="wrap">
-    <div class="funcoes-head">
-      <p class="eyebrow">Como começa</p>
-      <h2>Comece pelo <em>WhatsApp</em></h2>
-      <p>Sem formulário enorme. Uma pergunta por vez.</p>
-    </div>
-    <ol class="onboarding-steps">
-      <li><span class="onb-num">1</span>Nome</li>
-      <li><span class="onb-num">2</span>Perfil</li>
-      <li><span class="onb-num">3</span>O que quer resolver</li>
-      <li><span class="onb-num">4</span>Cidade/região</li>
-      <li><span class="onb-num">5</span>Rota fixa</li>
-      <li><span class="onb-num">6</span>Veículo</li>
-      <li><span class="onb-num">7</span>Configuração</li>
-      <li><span class="onb-num">8</span>Pronto</li>
-    </ol>
-    <p class="onboarding-result">Ao final: empresa cadastrada, veículo registrado, teste grátis ativo e sugestões iniciais.</p>
-  </section>
-
-  <section class="quem-somos">
-    <div class="wrap quem-grid">
-      <div>
-        <p class="eyebrow">Autoridade</p>
-        <h2>Treinado, desenvolvido e validado<br><em>por quem conhece a operação</em></h2>
-        <p>O Frota IA reúne inteligência artificial, conhecimento especializado, ferramentas próprias e fontes oficiais. Foi <strong>desenvolvido e validado por especialista com mais de 17 anos de experiência no transporte</strong>, incluindo mais de 14 anos em gestão de frotas, combustível, manutenção, pneus e gestão de pessoas.</p>
-      </div>
-      <div class="quem-photo">
-        <img src="frota-ia-logo-novo.png" alt="Logo Frota IA">
-      </div>
-    </div>
-  </section>
-
-  <section class="selo-section" id="teste-gratis">
-    <div class="selo-bg"></div>
-    <div class="wrap selo-grid">
-      <div class="selo-svg">
-        <div class="dias-badge">
-          <span class="dias-num">7</span>
-          <span class="dias-label">dias<br>grátis</span>
+      <div class="quem-grid" style="margin-top:3rem;">
+        <div>
+          <p><strong>Desenvolvido e validado com experiência real em transporte e gestão de frota.</strong></p>
+          <p>O Frota IA reúne inteligência artificial, conhecimento especializado, ferramentas próprias e fontes oficiais — construído por especialista com mais de 17 anos de experiência no transporte, incluindo mais de 14 anos em gestão de frotas, combustível, manutenção, pneus e gestão de pessoas.</p>
         </div>
-      </div>
-      <div class="selo-text">
-        <h2>Teste todas as funções <em>por 7 dias</em></h2>
-        <p>Comece diretamente pelo WhatsApp, sem cartão e sem instalar aplicativo. Ao final do período, você decide se deseja continuar.</p>
-        <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+testar+o+Frota+IA+gr%C3%A1tis" target="_blank" rel="noopener">Começar meu teste grátis</a>
+        <div class="quem-photo">
+          <img src="frota-ia-logo-novo.png" alt="Logo Frota IA">
+        </div>
       </div>
     </div>
   </section>
@@ -1208,48 +691,36 @@
     <div class="faq-list">
       <details class="faq-item">
         <summary>O Frota IA funciona só no WhatsApp?</summary>
-        <p>Não. O WhatsApp é um dos canais. O Frota IA também possui painel web.</p>
-      </details>
-      <details class="faq-item">
-        <summary>WhatsApp e painel usam os mesmos dados?</summary>
-        <p>Quando a função é compartilhada pelos dois canais, trabalham com os mesmos dados.</p>
+        <p>Não. O WhatsApp é o canal principal. Tudo que você registra também fica organizado no painel.</p>
       </details>
       <details class="faq-item">
         <summary>Preciso baixar aplicativo?</summary>
-        <p>Não. O onboarding pode começar direto pelo WhatsApp.</p>
+        <p>Não. Você começa direto pelo WhatsApp, sem instalar nada.</p>
       </details>
       <details class="faq-item">
-        <summary>Serve para motorista autônomo?</summary>
-        <p>Sim.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Serve para empresas com mais de um veículo?</summary>
-        <p>Sim.</p>
+        <summary>Serve para motorista autônomo ou só para empresas?</summary>
+        <p>Serve para os dois: motorista autônomo e empresas com mais de um veículo.</p>
       </details>
       <details class="faq-item">
         <summary>Ele lê documentos por foto?</summary>
-        <p>Sim, dentro dos tipos suportados.</p>
+        <p>Sim, dentro dos tipos suportados — CRLV, CNH, tacógrafo e outros.</p>
       </details>
       <details class="faq-item">
-        <summary>Ele calcula frete?</summary>
-        <p>Ele analisa custo, receita, margem e outros fatores suportados.</p>
+        <summary>Ele calcula se um frete compensa?</summary>
+        <p>Sim. Ele analisa receita, custo e margem antes de você aceitar.</p>
       </details>
       <details class="faq-item">
-        <summary>Ele acompanha manutenção e vencimentos?</summary>
-        <p>Sim.</p>
-      </details>
-      <details class="faq-item">
-        <summary>O painel substitui o WhatsApp?</summary>
-        <p>Não. São duas interfaces do mesmo produto.</p>
+        <summary>Tem fidelidade?</summary>
+        <p>Não. Você pode cancelar quando quiser.</p>
       </details>
     </div>
   </section>
 
   <section class="cta-final-section">
     <div class="wrap">
-      <h2>Sua frota já gera dados <em>todos os dias</em></h2>
-      <p class="cta-final-sub">Agora transforme esses dados em decisões.<br>WhatsApp e painel trabalhando com a mesma inteligência especializada em transporte.</p>
-      <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+testar+o+Frota+IA+gr%C3%A1tis+por+7+dias" target="_blank" rel="noopener">Testar Frota IA grátis por 7 dias</a>
+      <h2>Quer testar? <em>É só chamar no WhatsApp.</em></h2>
+      <p class="cta-final-sub">7 dias grátis · sem cartão · sem instalar aplicativo</p>
+      <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+testar+o+Frota+IA+gr%C3%A1tis+por+7+dias" target="_blank" rel="noopener">Testar grátis por 7 dias</a>
     </div>
   </section>
 </main>
@@ -1263,48 +734,5 @@
   </div>
 </footer>
 
-<script>
-(function () {
-  var canvas = document.getElementById('funcoesCanvas');
-  if (!canvas || !canvas.getContext) return;
-  var ctx = canvas.getContext('2d');
-  var img = new Image();
-  img.onload = function () {
-    canvas.width = img.naturalWidth;
-    canvas.height = img.naturalHeight;
-    ctx.drawImage(img, 0, 0);
-    try {
-      var frame = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      var d = frame.data;
-      for (var i = 0; i < d.length; i += 4) {
-        var r = d[i], g = d[i + 1], b = d[i + 2];
-        var magentaScore = Math.min(r, b) - g;
-        if (r > 140 && b > 100 && magentaScore > 35) {
-          var alpha = Math.max(0, 1 - (magentaScore - 35) / 55);
-          d[i + 3] = Math.round(d[i + 3] * alpha);
-        }
-      }
-      ctx.putImageData(frame, 0, 0);
-    } catch (e) { /* chroma-key skipped, original image stays as drawn */ }
-  };
-  img.src = 'funcoes-showcase-2.png';
-})();
-
-(function () {
-  var radios = document.querySelectorAll('.tabs-radio');
-  if (!radios.length) return;
-  function sync() {
-    radios.forEach(function (input) {
-      var label = document.querySelector('.tabs-nav label[for="' + input.id + '"]');
-      if (label) label.setAttribute('aria-selected', input.checked ? 'true' : 'false');
-      var panelId = label ? label.getAttribute('aria-controls') : null;
-      var panel = panelId ? document.getElementById(panelId) : null;
-      if (panel) panel.setAttribute('aria-hidden', input.checked ? 'false' : 'true');
-    });
-  }
-  radios.forEach(function (input) { input.addEventListener('change', sync); });
-  sync();
-})();
-</script>
 </body>
 </html>
