@@ -75,11 +75,16 @@
   .plate { background: rgba(5,5,6,0.75); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 10; }
   .plate-bar { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding-block: 0.9rem; }
   .brand { display: flex; align-items: center; gap: 0.7rem; line-height: 1.05; }
-  .brand-logo { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 1px rgba(10,239,18,0.35); }
   .header-brand-logo { width: clamp(60px, 5.5vw, 80px); height: auto; object-fit: contain; display: block; }
   .hero-brand-logo { width: clamp(66px, 6vw, 88px); height: auto; object-fit: contain; display: block; margin-bottom: 1rem; }
   .brand-text { display: flex; flex-direction: column; }
-  .brand-name { font-family: var(--display); font-stretch: condensed; text-transform: uppercase; font-weight: 700; font-size: 1.25rem; letter-spacing: 0.04em; }
+  .brand-name { position: relative; display: inline-block; font-family: var(--display); font-stretch: condensed; text-transform: uppercase; font-weight: 700; font-size: 1.25rem; letter-spacing: 0.04em; padding-bottom: 0.3rem; }
+  .brand-name::after {
+    content: ""; position: absolute; left: 1px; right: 1px; bottom: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent) 45%, var(--accent) 55%, transparent);
+    box-shadow: 0 0 6px 1px var(--accent-glow);
+    border-radius: 999px;
+  }
   .brand-ia { color: var(--frota-blue-support); }
   .brand-tag { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em; color: var(--text-soft); margin-top: 0.2rem; text-transform: uppercase; }
   .nav-links { display: flex; gap: 1.75rem; list-style: none; margin: 0; padding: 0; font-family: var(--display); font-stretch: condensed; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.06em; }
@@ -203,8 +208,8 @@
   .quem-somos h2 em { font-style: normal; color: var(--accent-deep); }
   .quem-somos p { color: var(--paper-text-soft); margin-top: 1.1rem; font-size: 1.02rem; }
   .quem-somos p strong { color: var(--paper-text); }
-  .quem-photo { display: flex; align-items: center; justify-content: center; padding: 1.5rem; }
-  .quem-photo img { width: 180px; height: auto; object-fit: contain; }
+  .quem-photo { display: flex; align-items: center; justify-content: center; padding: 0.75rem; }
+  .quem-photo img { width: clamp(260px, 34vw, 460px); max-width: 100%; height: auto; object-fit: contain; display: block; }
   .quem-somos .ia-bubble { background: rgba(20,23,30,0.04); border-color: rgba(20,23,30,0.12); color: var(--paper-text); }
 
   /* ---------- Pricing ---------- */
@@ -269,7 +274,6 @@
 <header class="plate">
   <div class="wrap plate-bar">
     <div class="brand">
-      <img class="brand-logo" src="frota-ia-logo-icon.png" alt="Logo Frota IA">
       <div class="brand-text">
         <span class="brand-name">Frota <span class="brand-ia">IA</span></span>
         <span class="brand-tag">Uma solução RodoCore</span>
@@ -447,7 +451,7 @@
           <p>O Frota IA reúne inteligência artificial, conhecimento especializado, ferramentas próprias e fontes oficiais — construído por especialista com mais de 17 anos de experiência no transporte, incluindo mais de 14 anos em gestão de frotas, combustível, manutenção, pneus e gestão de pessoas.</p>
         </div>
         <div class="quem-photo">
-          <img src="frota-ia-logo-novo.png" alt="Logo Frota IA">
+          <img src="frota-ia-phone-cards.png" alt="Frota IA no celular, com ferramentas de rotas, pneus, manutenção, combustível, documentos e alertas ao redor">
         </div>
       </div>
     </div>
