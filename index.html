@@ -135,6 +135,130 @@
   .hero-ctas { margin-top: 2.2rem; display: flex; flex-wrap: wrap; gap: 0.9rem; align-items: center; }
   .hero-micro { margin-top: 1.1rem; font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.04em; color: var(--text-soft); }
 
+  /* ---------- Hero phone — protagonista, painel como apoio secundário ---------- */
+  .hero-phone-stage { position: relative; display: flex; justify-content: center; padding-inline: 24px; }
+  .hero-phone-stage::before {
+    content: ""; position: absolute; inset: -8% -4%; z-index: -1; pointer-events: none;
+    background: radial-gradient(ellipse 55% 55% at 55% 45%, rgba(15,163,207,0.12), transparent 70%);
+  }
+  .hero-phone-wrap { position: relative; display: inline-block; line-height: 0; }
+  .hero-phone-img {
+    height: clamp(540px, 46vw, 600px); width: auto; max-width: 100%; object-fit: contain; display: block;
+    -webkit-mask-image: radial-gradient(ellipse 62% 58% at 50% 48%, black 58%, transparent 100%);
+    mask-image: radial-gradient(ellipse 62% 58% at 50% 48%, black 58%, transparent 100%);
+  }
+  .hero-phone-screen {
+    position: absolute; left: 21%; right: 21%; top: 7%; bottom: 12%;
+    border-radius: 20px; overflow: hidden; background: rgba(11,13,13,0.94);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05), 0 24px 44px -22px rgba(0,0,0,0.75);
+    display: flex; flex-direction: column; font-family: var(--body);
+  }
+  .hps-head {
+    display: flex; align-items: center; gap: 0.4rem; padding: 0.55rem 0.6rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08); flex-shrink: 0;
+  }
+  .hps-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 6px var(--accent); }
+  .hps-head span { font-size: 0.6rem; font-weight: 700; color: var(--text-soft); letter-spacing: 0.02em; }
+  .hps-body { flex: 1; position: relative; padding: 0.7rem 0.6rem; }
+  .hps-story {
+    position: absolute; inset: 0.7rem 0.6rem; display: flex; flex-direction: column; justify-content: center; gap: 0.5rem;
+    opacity: 0; animation: heroStoryCycle 9s ease-in-out infinite;
+  }
+  .hps-story.story-b { animation-delay: -4.5s; }
+  .hps-msg {
+    align-self: flex-end; max-width: 90%; background: var(--accent); color: var(--frota-black);
+    font-weight: 600; font-size: 0.66rem; line-height: 1.4; padding: 0.5rem 0.65rem; border-radius: 11px 11px 2px 11px;
+  }
+  .hps-reply {
+    align-self: flex-start; max-width: 94%; background: rgba(255,255,255,0.05); border: 1px solid rgba(15,163,207,0.4);
+    color: var(--frota-white); font-size: 0.62rem; line-height: 1.55; padding: 0.55rem 0.7rem; border-radius: 2px 11px 11px 11px;
+  }
+  .hps-reply b { color: var(--frota-cyan); font-weight: 700; }
+  .hps-result { align-self: flex-start; font-size: 0.7rem; font-weight: 800; color: var(--accent); margin-top: 0.1rem; }
+  @keyframes heroStoryCycle {
+    0% { opacity: 0; transform: translateY(5px); }
+    5% { opacity: 1; transform: translateY(0); }
+    45% { opacity: 1; transform: translateY(0); }
+    50% { opacity: 0; transform: translateY(-5px); }
+    100% { opacity: 0; transform: translateY(-5px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hps-story { animation: none; opacity: 0; }
+    .hps-story.story-a { opacity: 1; }
+  }
+  @media (max-width: 480px) {
+    .hps-msg, .hps-reply { font-size: 0.72rem; }
+    .hps-result { font-size: 0.78rem; }
+  }
+
+  @keyframes floatB { 0%, 100% { transform: translate3d(0,-4px,0); } 50% { transform: translate3d(5px,10px,0); } }
+  @media (prefers-reduced-motion: reduce) { .hero-panel-peek { animation: none; } }
+
+  @media (max-width: 900px) {
+    .hero-phone-img { height: 460px; }
+    .hero-phone-stage { padding-inline: 16px; }
+  }
+  @media (max-width: 480px) {
+    .hero-phone-img { height: auto; width: min(78vw, 340px); }
+    .hero-phone-stage { padding-inline: 0; flex-direction: column; align-items: center; gap: 0.9rem; }
+  }
+
+  /* No mobile o peek sobreposto ao celular vira um card próprio abaixo dele — mantém "celular → painel" na ordem visual */
+  .hero-panel-mobile { display: none; }
+  @media (max-width: 480px) {
+    .hero-panel-mobile {
+      display: block; width: 100%; max-width: 260px; background: var(--card); border: 1px solid rgba(15,163,207,0.35);
+      border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: 0.75rem 0.9rem; text-align: left; line-height: 1.3;
+    }
+  }
+
+  /* ---------- Hero panel peek — imagem única e discreta do painel, sem disputar atenção com o WhatsApp ---------- */
+  .hero-panel-peek {
+    position: absolute; left: -6px; bottom: 5%; width: 172px; z-index: 3;
+    background: var(--card); border: 1px solid rgba(15,163,207,0.35); border-radius: 14px; padding: 0.65rem 0.75rem;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04), 0 18px 40px -14px rgba(0,0,0,0.7); transform: rotate(-3deg);
+    animation: floatB 5.5s ease-in-out infinite;
+    line-height: 1.3;
+  }
+  .hero-panel-peek-bar { display: flex; align-items: center; gap: 4px; margin-bottom: 0.5rem; }
+  .hero-panel-peek-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--frota-cyan); box-shadow: 0 0 6px var(--frota-cyan); }
+  .hero-panel-peek-bar span:last-child { font-family: var(--mono); font-size: 0.5rem; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.04em; }
+  .hero-panel-peek-body { position: relative; min-height: 38px; }
+  .hero-panel-peek-story {
+    position: absolute; inset: 0; display: flex; flex-direction: column; gap: 2px;
+    opacity: 0; animation: heroStoryCycle 9s ease-in-out infinite;
+  }
+  .hero-panel-peek-story.story-b { animation-delay: -4.5s; }
+  .hero-panel-peek-kpi { display: block; font-family: var(--heading); font-weight: 800; font-size: 1rem; color: var(--frota-cyan); line-height: 1.1; }
+  .hero-panel-peek-label { font-family: var(--mono); font-size: 0.55rem; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.03em; }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-panel-peek-story { animation: none; opacity: 0; }
+    .hero-panel-peek-story.story-a { opacity: 1; }
+  }
+  @media (max-width: 900px) { .hero-panel-peek { width: 130px; padding: 0.55rem 0.65rem; } .hero-panel-peek-kpi { font-size: 0.85rem; } }
+  @media (max-width: 480px) { .hero-panel-peek { display: none; } }
+
+  /* ---------- Conector WhatsApp → Painel (o dado atravessa os canais) ---------- */
+  .hero-connector { position: absolute; left: 46px; bottom: 16%; width: 2px; height: 64px; z-index: 2; pointer-events: none; }
+  .hero-connector::before {
+    content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, var(--frota-cyan), transparent);
+    opacity: 0.4;
+  }
+  .hero-connector::after {
+    content: ""; position: absolute; left: 50%; top: 0; width: 6px; height: 6px; margin-left: -3px; border-radius: 50%;
+    background: var(--frota-cyan); box-shadow: 0 0 10px var(--frota-cyan);
+    animation: connectorPulse 3s ease-in-out infinite;
+  }
+  @keyframes connectorPulse {
+    0% { top: 0%; opacity: 0; }
+    12% { opacity: 1; }
+    85% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) { .hero-connector::after { animation: none; opacity: 0; } }
+  @media (max-width: 900px) { .hero-connector { left: 34px; height: 50px; } }
+  @media (max-width: 480px) { .hero-connector { display: none; } }
+
   /* ---------- Seção genérica de cabeçalho (reaproveitada por várias seções) ---------- */
   .funcoes-head { text-align: center; max-width: 46rem; margin: 0 auto; }
   .funcoes-head h2 { font-size: clamp(1.9rem, 3.6vw, 2.7rem); margin-top: 0.6rem; }
@@ -152,11 +276,13 @@
   @media (max-width: 760px) { .flow-grid { flex-direction: column; } .flow-arrow { transform: rotate(90deg); margin-block: 0.2rem; } .flow-step { width: 100%; } }
 
   /* ---------- O que você pode resolver ---------- */
-  .situations-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; margin-top: 2.6rem; }
-  .situation-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: 1.4rem 1.5rem; display: flex; align-items: center; gap: 0.9rem; }
-  .situation-emoji { font-size: 1.6rem; flex-shrink: 0; }
-  .situation-card p { margin: 0; font-weight: 600; font-size: 0.98rem; }
-  .situations-more { text-align: center; color: var(--text-soft); margin-top: 1.8rem; font-size: 0.92rem; }
+  .situations-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; margin-top: 2.8rem; }
+  @media (max-width: 900px) { .situations-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .situations-grid { grid-template-columns: 1fr; } }
+  .situation-card { background: var(--card); border: 1px solid var(--line); border-radius: 20px; box-shadow: var(--shadow-card); padding: 2rem 1.6rem; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1rem; }
+  .situation-card img { width: 72px; height: 72px; object-fit: contain; flex-shrink: 0; }
+  .situation-card p { margin: 0; font-weight: 700; font-size: 1.08rem; line-height: 1.35; }
+  .situations-more { text-align: center; color: var(--text-soft); margin-top: 2rem; font-size: 0.92rem; }
 
   /* ---------- Painel mockup (usado na seção Painel) ---------- */
   .browser-mock {
@@ -172,9 +298,8 @@
   .pm-nav-item.active { background: rgba(10,239,18,0.12); color: var(--accent); font-weight: 700; }
   .pm-main { flex: 1; padding: 1.2rem; }
   .pm-kpi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.7rem; }
-  @media (min-width: 560px) { .pm-kpi-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 560px) { .pm-kpi-grid { grid-template-columns: repeat(4, 1fr); } }
   .pm-kpi { background: rgba(15,163,207,0.06); border: 1px solid var(--line); border-radius: 10px; padding: 0.7rem 0.8rem; }
-  .pm-kpi-wide { grid-column: 1 / -1; }
   .pm-kpi-num { display: block; font-family: var(--heading); font-weight: 800; font-size: 1.3rem; color: var(--accent); }
   .pm-kpi-label { font-family: var(--mono); font-size: 0.6rem; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.03em; }
   @media (max-width: 640px) { .pm-sidebar { display: none; } }
@@ -183,10 +308,13 @@
   /* ---------- Trabalha antes de você pedir ---------- */
   .proactive-section { background: var(--card-soft); }
   .proactive-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.4rem; margin-top: 2.6rem; }
-  .proactive-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: 1.6rem; }
-  .proactive-card h4 { font-size: 1rem; }
+  .proactive-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: 1.8rem; }
+  .proactive-card img { width: 48px; height: 48px; object-fit: contain; margin-bottom: 0.9rem; }
+  .proactive-card h4 { font-size: 1.05rem; }
   .proactive-card p { color: var(--text-soft); margin-top: 0.6rem; font-size: 0.92rem; }
-  .proactive-chip { margin-top: 1rem; background: rgba(10,239,18,0.08); border-left: 2px solid var(--accent); border-radius: 0 8px 8px 0; padding: 0.5rem 0.7rem; font-family: var(--mono); font-size: 0.7rem; color: var(--text); }
+  .proactive-chip { margin-top: 1rem; background: rgba(10,239,18,0.08); border-left: 2px solid var(--accent); border-radius: 0 8px 8px 0; padding: 0.5rem 0.7rem; font-family: var(--mono); font-size: 0.7rem; color: var(--text); animation: chipPulse 3.4s ease-in-out infinite; }
+  @keyframes chipPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(10,239,18,0); } 50% { box-shadow: 0 0 0 5px rgba(10,239,18,0.06); } }
+  @media (prefers-reduced-motion: reduce) { .proactive-chip { animation: none; } }
 
   /* ---------- Fontes oficiais ---------- */
   .sources-section { padding-block: 2.4rem; }
@@ -195,11 +323,7 @@
   .sources-row-sub { margin-top: 0.8rem; }
   .sources-row-sub span { border-color: transparent; background: rgba(15,163,207,0.06); font-size: 0.66rem; }
 
-  /* ---------- IA especializada (bolhas reaproveitadas em "Por que ele é diferente") ---------- */
-  .ia-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.9rem; margin-top: 2.6rem; }
-  .ia-bubble { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: 0.8rem 1.1rem; font-size: 0.9rem; color: var(--text); max-width: 19rem; }
-
-  /* ---------- Quem somos — light band (Por que ele é diferente / Autoridade) ---------- */
+  /* ---------- Quem somos — light band (Autoridade) ---------- */
   .quem-somos { background: var(--paper); color: var(--paper-text); }
   .quem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
   @media (max-width: 860px) { .quem-grid { grid-template-columns: 1fr; } }
@@ -210,7 +334,6 @@
   .quem-somos p strong { color: var(--paper-text); }
   .quem-photo { display: flex; align-items: center; justify-content: center; padding: 0.75rem; }
   .quem-photo img { width: clamp(260px, 34vw, 460px); max-width: 100%; height: auto; object-fit: contain; display: block; }
-  .quem-somos .ia-bubble { background: rgba(20,23,30,0.04); border-color: rgba(20,23,30,0.12); color: var(--paper-text); }
 
   /* ---------- Pricing ---------- */
   .planos-head { text-align: center; }
@@ -223,14 +346,19 @@
   }
   .planos-trial h3 { font-size: 1.15rem; color: var(--accent); }
   .planos-trial p { color: var(--text-soft); margin-top: 0.6rem; font-size: 0.96rem; }
-  .planos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem; max-width: 68rem; margin-inline: auto; align-items: start; }
-  .plano-card { border-radius: 18px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 8px 30px -14px rgba(0,0,0,0.6); display: flex; flex-direction: column; }
+  .planos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 2.4rem; max-width: 68rem; margin-inline: auto; align-items: start; }
+  .plano-card { border-radius: 20px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 8px 30px -14px rgba(0,0,0,0.6); display: flex; flex-direction: column; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .plano-card:not(.plano-card--featured):hover { transform: translateY(-4px); }
+  .plano-card--featured { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 24px 50px -18px rgba(10,239,18,0.35); transform: scale(1.03); }
+  @media (max-width: 760px) { .plano-card--featured { transform: none; } }
   .plano-ribbon {
     background: var(--void-deep); color: var(--text); font-family: var(--display); font-weight: 700; text-transform: uppercase;
-    font-size: 0.85rem; letter-spacing: 0.03em; padding: 0.8rem 1.5rem; text-align: center;
+    font-size: 0.85rem; letter-spacing: 0.03em; padding: 0.9rem 1.5rem; text-align: center;
   }
   .plano-ribbon em { font-style: normal; color: var(--accent); }
-  .plano-body { background: linear-gradient(160deg, var(--card-soft), var(--card)); padding: 2rem 1.8rem; text-align: center; flex: 1; display: flex; flex-direction: column; }
+  .plano-card--featured .plano-ribbon { background: var(--accent); }
+  .plano-card--featured .plano-ribbon, .plano-card--featured .plano-ribbon em { color: var(--frota-black); }
+  .plano-body { background: linear-gradient(160deg, var(--card-soft), var(--card)); padding: 2.2rem 1.8rem; text-align: center; flex: 1; display: flex; flex-direction: column; }
   .plano-body .btn { margin-top: auto; }
   .plano-eyebrow { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-soft); }
   .plano-nome { font-size: 1.7rem; font-style: italic; margin-top: 0.2rem; color: var(--accent); }
@@ -239,7 +367,7 @@
   .plano-list li::before { content: "✓"; color: var(--accent); flex-shrink: 0; }
   .plano-price-cap { color: var(--text-soft); font-size: 0.95rem; }
   .plano-price { font-family: var(--mono); font-variant-numeric: tabular-nums; margin: 0.4rem 0 1.6rem; }
-  .plano-price .num { font-size: 3rem; font-weight: 800; color: var(--accent); }
+  .plano-price .num { font-size: 3.3rem; font-weight: 800; color: var(--accent); }
   .plano-price .per { font-size: 1rem; color: var(--text-soft); }
 
   /* ---------- FAQ ---------- */
@@ -304,6 +432,48 @@
         </div>
         <p class="hero-micro">7 dias grátis &nbsp;•&nbsp; Sem cartão &nbsp;•&nbsp; Sem instalar aplicativo</p>
       </div>
+      <div class="hero-phone-stage">
+        <div class="hero-phone-wrap">
+          <img class="hero-phone-img" src="celular-frota-ia-hero.png" alt="Celular exibindo uma conversa real do Frota IA no WhatsApp" width="1024" height="1536" fetchpriority="high" decoding="async">
+          <div class="hero-phone-screen">
+            <div class="hps-head"><span class="hps-dot"></span><span>FROTA IA · ONLINE</span></div>
+            <div class="hps-body">
+              <div class="hps-story story-a">
+                <div class="hps-msg">🎤 "Recebi um frete de Curitiba pra SP por R$4.800, compensa?"</div>
+                <div class="hps-reply">📎 CT-e recebido<br>Distância: <b>408 km</b> · Custo est.: <b>R$3.200</b><br>Margem: <b>18%</b></div>
+                <div class="hps-result">✅ FRETE VIÁVEL</div>
+              </div>
+              <div class="hps-story story-b">
+                <div class="hps-msg">📎 [foto do CRLV]</div>
+                <div class="hps-reply">CRLV lido · Vencimento <b>15/09/2026</b><br>Documento registrado no painel</div>
+                <div class="hps-result">⏰ ALERTA PROGRAMADO</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-connector" aria-hidden="true"></div>
+
+          <div class="hero-panel-peek" aria-hidden="true">
+            <div class="hero-panel-peek-bar"><span class="hero-panel-peek-dot"></span><span>PAINEL FROTA IA</span></div>
+            <div class="hero-panel-peek-body">
+              <div class="hero-panel-peek-story story-a">
+                <span class="hero-panel-peek-kpi">18% margem</span>
+                <span class="hero-panel-peek-label">Análise de frete salva</span>
+              </div>
+              <div class="hero-panel-peek-story story-b">
+                <span class="hero-panel-peek-kpi">CRLV · 15/09</span>
+                <span class="hero-panel-peek-label">Alerta programado</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-panel-mobile" aria-hidden="true">
+          <div class="hero-panel-peek-bar"><span class="hero-panel-peek-dot"></span><span>PAINEL FROTA IA</span></div>
+          <span class="hero-panel-peek-kpi">18% margem</span>
+          <span class="hero-panel-peek-label">Análise de frete salva no histórico</span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -340,15 +510,15 @@
       <h2>Pergunte. <em>O Frota IA resolve.</em></h2>
     </div>
     <div class="situations-grid">
-      <div class="situation-card"><span class="situation-emoji" aria-hidden="true">🚛</span><p>"Esse frete compensa?"</p></div>
-      <div class="situation-card"><span class="situation-emoji" aria-hidden="true">⛽</span><p>"Quanto vou gastar nessa viagem?"</p></div>
-      <div class="situation-card"><span class="situation-emoji" aria-hidden="true">📊</span><p>"Quanto meu caminhão custa por km?"</p></div>
-      <div class="situation-card"><span class="situation-emoji" aria-hidden="true">🛞</span><p>"Vale recapar ou comprar pneu novo?"</p></div>
-      <div class="situation-card"><span class="situation-emoji" aria-hidden="true">🔧</span><p>"Quando tenho manutenção?"</p></div>
-      <div class="situation-card"><span class="situation-emoji" aria-hidden="true">📄</span><p>"Quando esse documento vence?"</p></div>
-      <div class="situation-card"><span class="situation-emoji" aria-hidden="true">🎯</span><p>"Tem carga voltando pra Curitiba?"</p></div>
+      <div class="situation-card"><img src="card-frete.png" alt=""><p>"Esse frete compensa?"</p></div>
+      <div class="situation-card"><img src="card-combustivel.png" alt=""><p>"Quanto vou gastar nessa viagem?"</p></div>
+      <div class="situation-card"><img src="card-calculadora.png" alt=""><p>"Quanto meu caminhão custa por km?"</p></div>
+      <div class="situation-card"><img src="card-pneus.png" alt=""><p>"Vale recapar ou comprar pneu novo?"</p></div>
+      <div class="situation-card"><img src="card-manutencao.png" alt=""><p>"Quando tenho manutenção?"</p></div>
+      <div class="situation-card"><img src="card-documento.png" alt=""><p>"Quando esse documento vence?"</p></div>
+      <div class="situation-card"><img src="card-rota.png" alt=""><p>"Tem carga voltando pra Curitiba?"</p></div>
     </div>
-    <p class="situations-more">Também ajuda com rotas, jornada, despesas, alertas, checklist, Radar de Fretes e muito mais.</p>
+    <p class="situations-more">Também ajuda com jornada, despesas, alertas, checklist e muito mais.</p>
   </section>
 
   <section class="wrap" id="painel">
@@ -361,20 +531,17 @@
         <div class="browser-mock-bar"><span class="browser-mock-dot"></span><span class="browser-mock-url">painel.frotaia.app.br/frota</span></div>
         <div class="browser-mock-body">
           <nav class="pm-sidebar" aria-hidden="true">
-            <span class="pm-nav-item active">Dashboard</span>
-            <span class="pm-nav-item">Veículos</span>
+            <span class="pm-nav-item active">Veículos</span>
             <span class="pm-nav-item">Motoristas</span>
             <span class="pm-nav-item">Custos</span>
-            <span class="pm-nav-item">Manutenção</span>
-            <span class="pm-nav-item">Documentos</span>
+            <span class="pm-nav-item">Documentos e alertas</span>
           </nav>
           <div class="pm-main">
             <div class="pm-kpi-grid">
               <div class="pm-kpi"><span class="pm-kpi-num">7</span><span class="pm-kpi-label">Veículos ativos</span></div>
               <div class="pm-kpi"><span class="pm-kpi-num">9</span><span class="pm-kpi-label">Motoristas ativos</span></div>
-              <div class="pm-kpi"><span class="pm-kpi-num">2</span><span class="pm-kpi-label">Manutenções pendentes</span></div>
-              <div class="pm-kpi"><span class="pm-kpi-num">3</span><span class="pm-kpi-label">Documentos vencendo</span></div>
-              <div class="pm-kpi pm-kpi-wide"><span class="pm-kpi-num">R$ 14.320</span><span class="pm-kpi-label">Custo dos últimos 30 dias</span></div>
+              <div class="pm-kpi"><span class="pm-kpi-num">R$ 14.320</span><span class="pm-kpi-label">Custos do mês</span></div>
+              <div class="pm-kpi"><span class="pm-kpi-num">3</span><span class="pm-kpi-label">Documentos e alertas</span></div>
             </div>
           </div>
         </div>
@@ -391,21 +558,25 @@
       </div>
       <div class="proactive-grid">
         <div class="proactive-card">
+          <img src="card-documento.png" alt="">
           <h4>Documentos e manutenção</h4>
           <p>Acompanha vencimentos e avisa quando algo precisa de atenção.</p>
           <div class="proactive-chip">CRLV vence em 3 dias</div>
         </div>
         <div class="proactive-card">
+          <img src="card-calendario.png" alt="">
           <h4>Checklist</h4>
           <p>O motorista responde pelo WhatsApp e o gestor acompanha pelo painel.</p>
           <div class="proactive-chip">06:00 enviado → 06:04 respondido: OK</div>
         </div>
         <div class="proactive-card">
+          <img src="card-noticias.png" alt="">
           <h4>Notícias do transporte</h4>
           <p>Receba um resumo das principais informações do setor direto no WhatsApp.</p>
           <div class="proactive-chip">Resumo de hoje: 4 notícias do setor</div>
         </div>
         <div class="proactive-card">
+          <img src="card-rota.png" alt="">
           <h4>Radar de Fretes</h4>
           <p>Avisa automaticamente quando aparece uma carga compatível com o seu caminhão e a sua rota.</p>
           <div class="proactive-chip">⚡ Goiânia → Curitiba, compatível com o seu veículo</div>
@@ -440,25 +611,14 @@
   </section>
 
   <section class="quem-somos" id="diferente">
-    <div class="wrap">
-      <div class="funcoes-head">
-        <p class="eyebrow">Por que ele é diferente</p>
-        <h2>Não é uma IA genérica. <em>É uma IA criada para transporte.</em></h2>
+    <div class="wrap quem-grid">
+      <div>
+        <p class="eyebrow">Autoridade</p>
+        <h2>Desenvolvido e validado com <em>experiência real</em> em transporte.</h2>
+        <p>O Frota IA reúne inteligência artificial, conhecimento especializado, ferramentas próprias e fontes oficiais — construído por especialista com mais de 17 anos de experiência no transporte, incluindo mais de 14 anos em gestão de frotas, combustível, manutenção, pneus e gestão de pessoas.</p>
       </div>
-      <div class="ia-grid">
-        <div class="ia-bubble">"Esse frete compensa?"</div>
-        <div class="ia-bubble">"Meu caminhão está gastando demais?"</div>
-        <div class="ia-bubble">"Esse pneu vale o custo?"</div>
-        <div class="ia-bubble">"Tenho algum documento vencendo?"</div>
-      </div>
-      <div class="quem-grid" style="margin-top:3rem;">
-        <div>
-          <p><strong>Desenvolvido e validado com experiência real em transporte e gestão de frota.</strong></p>
-          <p>O Frota IA reúne inteligência artificial, conhecimento especializado, ferramentas próprias e fontes oficiais — construído por especialista com mais de 17 anos de experiência no transporte, incluindo mais de 14 anos em gestão de frotas, combustível, manutenção, pneus e gestão de pessoas.</p>
-        </div>
-        <div class="quem-photo">
-          <img src="frota-ia-phone-cards.png" alt="Frota IA no celular, com ferramentas de rotas, pneus, manutenção, combustível, documentos e alertas ao redor">
-        </div>
+      <div class="quem-photo">
+        <img src="frota-ia-phone-cards.png" alt="Frota IA no celular, com ferramentas de rotas, pneus, manutenção, combustível, documentos e alertas ao redor">
       </div>
     </div>
   </section>
@@ -489,7 +649,7 @@
         </div>
       </div>
 
-      <div class="plano-card">
+      <div class="plano-card plano-card--featured">
         <div class="plano-ribbon">Anual <em>mais escolhido</em></div>
         <div class="plano-body">
           <p class="plano-eyebrow">Plano</p>
