@@ -346,7 +346,9 @@
   }
   .planos-trial h3 { font-size: 1.15rem; color: var(--accent); }
   .planos-trial p { color: var(--text-soft); margin-top: 0.6rem; font-size: 0.96rem; }
-  .planos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 2.4rem; max-width: 68rem; margin-inline: auto; align-items: start; }
+  .planos-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 2.4rem; max-width: 72rem; margin-inline: auto; align-items: start; }
+  @media (min-width: 760px) { .planos-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 900px) { .planos-grid { grid-template-columns: 1fr 1.15fr 1fr; } }
   .plano-card { border-radius: 20px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 8px 30px -14px rgba(0,0,0,0.6); display: flex; flex-direction: column; transition: transform 0.2s ease, box-shadow 0.2s ease; }
   .plano-card:not(.plano-card--featured):hover { transform: translateY(-4px); }
   .plano-card--featured { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 24px 50px -18px rgba(10,239,18,0.35); transform: scale(1.03); }
@@ -362,6 +364,7 @@
   .plano-body .btn { margin-top: auto; }
   .plano-eyebrow { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-soft); }
   .plano-nome { font-size: 1.7rem; font-style: italic; margin-top: 0.2rem; color: var(--accent); }
+  .plano-subtitle { color: var(--text-soft); font-size: 0.92rem; margin-top: 0.5rem; }
   .plano-list { list-style: none; margin: 1.6rem 0; padding: 1.4rem; background: rgba(10,239,18,0.06); border-radius: 12px; text-align: left; display: flex; flex-direction: column; gap: 0.65rem; font-size: 0.94rem; }
   .plano-list li { display: flex; gap: 0.5rem; }
   .plano-list li::before { content: "✓"; color: var(--accent); flex-shrink: 0; }
@@ -369,6 +372,25 @@
   .plano-price { font-family: var(--mono); font-variant-numeric: tabular-nums; margin: 0.4rem 0 1.6rem; }
   .plano-price .num { font-size: 3.3rem; font-weight: 800; color: var(--accent); }
   .plano-price .per { font-size: 1rem; color: var(--text-soft); }
+  .plano-price--text { font-family: var(--heading); font-size: 1.6rem; font-weight: 800; color: var(--accent); text-transform: uppercase; margin: 0.6rem 0 1.6rem; }
+
+  /* ---------- Formas de pagamento dentro do card Gestão ---------- */
+  .pay-options { margin-top: 1.6rem; padding-top: 1.6rem; border-top: 1px solid var(--line); text-align: left; }
+  .pay-options-title { text-align: center; font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-soft); margin-bottom: 1rem; }
+  .pay-option { background: rgba(10,239,18,0.05); border: 1px solid var(--line); border-radius: 12px; padding: 0.9rem 1rem; margin-bottom: 0.7rem; }
+  .pay-option:last-child { margin-bottom: 0; }
+  .pay-option-row { display: flex; align-items: baseline; justify-content: space-between; gap: 0.6rem; flex-wrap: wrap; }
+  .pay-option-name { font-family: var(--heading); font-weight: 700; font-size: 0.92rem; }
+  .pay-option-price { font-family: var(--mono); font-weight: 800; color: var(--accent); font-size: 1rem; white-space: nowrap; }
+  .pay-option-note { color: var(--text-soft); font-size: 0.8rem; margin-top: 0.3rem; }
+  .pay-option .btn { margin-top: 0.7rem; width: 100%; justify-content: center; padding: 0.65rem 1rem; font-size: 0.74rem; }
+
+  /* ---------- Comparação curta dos 3 níveis ---------- */
+  .planos-compare { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.6rem; max-width: 56rem; margin-inline: auto; }
+  @media (max-width: 760px) { .planos-compare { grid-template-columns: 1fr; } }
+  .planos-compare-item { text-align: center; padding: 1.1rem 1rem; border: 1px solid var(--line); border-radius: 12px; }
+  .planos-compare-item strong { display: block; font-family: var(--heading); font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.02em; }
+  .planos-compare-item span { display: block; color: var(--text-soft); font-size: 0.82rem; margin-top: 0.35rem; }
 
   /* ---------- FAQ ---------- */
   .faq-list { max-width: 44rem; margin: 2.6rem auto 0; display: flex; flex-direction: column; gap: 0.7rem; }
@@ -626,7 +648,8 @@
   <section class="wrap" id="planos">
     <div class="planos-head">
       <p class="eyebrow">Planos</p>
-      <h2>Escolha o <em>seu plano:</em></h2>
+      <h2>Escolha o <em>Frota IA ideal</em> para sua operação</h2>
+      <p>De um único veículo a uma frota completa, escolha o plano que acompanha o tamanho da sua operação.</p>
     </div>
     <div class="planos-trial">
       <h3>Teste grátis por 7 dias</h3>
@@ -634,56 +657,103 @@
     </div>
     <div class="planos-grid">
       <div class="plano-card">
-        <div class="plano-ribbon">Mensal <em>mais flexível</em></div>
+        <div class="plano-ribbon">Individual</div>
         <div class="plano-body">
           <p class="plano-eyebrow">Plano</p>
-          <div class="plano-nome">Mensal</div>
-          <ul class="plano-list">
-            <li>Acesso completo pelo WhatsApp</li>
-            <li>Todas as ferramentas e atualizações incluídas</li>
-            <li>Suporte técnico humano pelo WhatsApp</li>
-            <li>Sem fidelidade: cancele quando quiser</li>
-          </ul>
+          <div class="plano-nome">Frota IA Individual</div>
+          <p class="plano-subtitle">Para quem trabalha com 1 veículo.</p>
           <p class="plano-price"><span class="num">R$79,90</span><span class="per">/mês</span></p>
-          <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+assinar+o+plano+mensal+do+Frota+IA" target="_blank" rel="noopener" style="width:100%; justify-content:center;">Assinar mensal</a>
+          <p class="plano-price-cap">Sem fidelidade. Cancele quando quiser.</p>
+          <ul class="plano-list">
+            <li>Frota IA completo pelo WhatsApp</li>
+            <li>1 usuário</li>
+            <li>1 veículo</li>
+            <li>Análise de fretes e oportunidades</li>
+            <li>Radar de Fretes</li>
+            <li>Custos, combustível e CPK</li>
+            <li>Rotas e jornada</li>
+            <li>Manutenção e pneus</li>
+            <li>Documentos e vencimentos</li>
+            <li>Alertas e lembretes</li>
+            <li>Todas as funcionalidades do Frota IA Individual e atualizações incluídas</li>
+            <li>Suporte humano pelo WhatsApp</li>
+          </ul>
+          <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+assinar+o+Frota+IA+Individual+de+R%2479%2C90+por+m%C3%AAs" target="_blank" rel="noopener" style="width:100%; justify-content:center;">Começar com o Frota IA</a>
         </div>
       </div>
 
       <div class="plano-card plano-card--featured">
-        <div class="plano-ribbon">Anual <em>mais escolhido</em></div>
+        <div class="plano-ribbon">Gestão <em>mais completo</em></div>
         <div class="plano-body">
           <p class="plano-eyebrow">Plano</p>
-          <div class="plano-nome">Anual</div>
+          <div class="plano-nome">Frota IA Gestão</div>
+          <p class="plano-subtitle">WhatsApp + Painel de Gestão para até 10 veículos.</p>
+          <p class="plano-price"><span class="num">R$99,90</span><span class="per">/mês</span></p>
+          <p class="plano-price-cap">Sem fidelidade no plano mensal.</p>
           <ul class="plano-list">
-            <li>Acesso completo por 12 meses</li>
-            <li>Todas as ferramentas e atualizações incluídas</li>
-            <li>Suporte técnico humano pelo WhatsApp</li>
-            <li>Economize R$240 em relação ao mensal</li>
+            <li>Tudo do Frota IA Individual + Painel de Gestão</li>
+            <li>WhatsApp + Painel Web</li>
+            <li>Até 10 veículos</li>
+            <li>Gestão de motoristas</li>
+            <li>Gestão de manutenções</li>
+            <li>Documentos e vencimentos</li>
+            <li>Controle de despesas</li>
+            <li>Checklists dos motoristas</li>
+            <li>Dashboard de gestão</li>
+            <li>Relatórios</li>
+            <li>Radar de Fretes</li>
+            <li>Alertas</li>
+            <li>Google Agenda integrada</li>
+            <li>Mesma IA no WhatsApp e no painel, com os mesmos dados</li>
           </ul>
-          <p class="plano-price-cap">Cobrança parcelada, sem juros</p>
-          <p class="plano-price"><span class="num">12x</span><span class="per">de R$59,90</span></p>
-          <p class="plano-price-cap">Total de R$718,80 por 12 meses de acesso</p>
-          <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+assinar+o+plano+anual+do+Frota+IA" target="_blank" rel="noopener" style="width:100%; justify-content:center;">Escolher plano anual</a>
+          <div class="pay-options">
+            <p class="pay-options-title">Escolha como pagar</p>
+            <div class="pay-option">
+              <div class="pay-option-row"><span class="pay-option-name">Mensal</span><span class="pay-option-price">R$99,90/mês</span></div>
+              <p class="pay-option-note">Sem fidelidade.</p>
+              <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+assinar+o+Frota+IA+Gest%C3%A3o+mensal+de+R%2499%2C90+por+m%C3%AAs" target="_blank" rel="noopener">Assinar mensal</a>
+            </div>
+            <div class="pay-option">
+              <div class="pay-option-row"><span class="pay-option-name">Anual</span><span class="pay-option-price">12x R$69,90</span></div>
+              <p class="pay-option-note">Total de R$838,80 · 12 meses de acesso ao Frota IA Gestão.</p>
+              <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+assinar+o+Frota+IA+Gest%C3%A3o+anual+em+12x+de+R%2469%2C90" target="_blank" rel="noopener">Escolher plano anual</a>
+            </div>
+            <div class="pay-option">
+              <div class="pay-option-row"><span class="pay-option-name">Pix anual</span><span class="pay-option-price">R$799,00</span></div>
+              <p class="pay-option-note">À vista · 12 meses de Frota IA Gestão.</p>
+              <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+contratar+o+Frota+IA+Gest%C3%A3o+anual+no+Pix+por+R%24799%2C00" target="_blank" rel="noopener">Pagar anual no Pix</a>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="plano-card">
-        <div class="plano-ribbon">Anual no Pix <em>maior economia</em></div>
+        <div class="plano-ribbon">Empresas</div>
         <div class="plano-body">
           <p class="plano-eyebrow">Plano</p>
-          <div class="plano-nome">Anual no Pix</div>
+          <div class="plano-nome">Frota IA Empresas</div>
+          <p class="plano-subtitle">Para operações com mais de 10 veículos.</p>
+          <p class="plano-price plano-price--text">Preço personalizado</p>
           <ul class="plano-list">
-            <li>Acesso completo por 12 meses</li>
-            <li>Todas as ferramentas e atualizações incluídas</li>
-            <li>Suporte técnico humano pelo WhatsApp</li>
-            <li>Economize R$311,80 em relação ao mensal</li>
+            <li>Tudo do Frota IA Gestão</li>
+            <li>Para frotas com 11 veículos ou mais</li>
+            <li>Implantação assistida</li>
+            <li>Configuração personalizada</li>
+            <li>Cadastro inicial da operação</li>
+            <li>Apoio na configuração de veículos e motoristas</li>
+            <li>Documentos e alertas</li>
+            <li>Checklists</li>
+            <li>Atendimento comercial direto</li>
           </ul>
-          <p class="plano-price-cap">À vista no Pix</p>
-          <p class="plano-price"><span class="num">R$647,00</span></p>
-          <p class="plano-price-cap">Equivalente a R$53,92/mês</p>
-          <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+pagar+o+plano+anual+do+Frota+IA+no+Pix" target="_blank" rel="noopener" style="width:100%; justify-content:center;">Pagar anual no Pix</a>
+          <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+conhecer+o+Frota+IA+Empresas+para+uma+frota+com+mais+de+10+ve%C3%ADculos" target="_blank" rel="noopener" style="width:100%; justify-content:center;">Falar sobre o plano Empresas</a>
         </div>
       </div>
+    </div>
+
+    <div class="planos-compare">
+      <div class="planos-compare-item"><strong>Individual</strong><span>1 veículo</span><span>WhatsApp</span></div>
+      <div class="planos-compare-item"><strong>Gestão</strong><span>Até 10 veículos</span><span>WhatsApp + Painel</span></div>
+      <div class="planos-compare-item"><strong>Empresas</strong><span>11+ veículos</span><span>WhatsApp + Painel + implantação assistida</span></div>
     </div>
   </section>
 
