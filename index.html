@@ -389,23 +389,6 @@
   .pay-option-price { font-family: var(--mono); font-weight: 800; color: var(--accent); font-size: 0.94rem; }
   .pay-option-note { color: var(--text-soft); font-size: 0.66rem; }
 
-  /* ---------- Comparação curta dos 3 níveis ---------- */
-  .compare-wrap { max-width: 52rem; margin: 2.6rem auto 0; overflow-x: auto; }
-  .compare-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
-  .compare-table th, .compare-table td { padding: 0.65rem 0.8rem; border-bottom: 1px solid var(--line); text-align: center; }
-  .compare-table th[scope="row"] { text-align: left; font-family: var(--heading); font-weight: 700; font-size: 0.85rem; }
-  .compare-table thead th { font-family: var(--mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-soft); font-weight: 700; border-bottom: 2px solid var(--line); }
-  .compare-table td.yes { color: var(--accent); font-weight: 700; }
-  .compare-table td.no { color: var(--text-soft); }
-  @media (max-width: 640px) {
-    .compare-table thead { display: none; }
-    .compare-table, .compare-table tbody, .compare-table tr, .compare-table td, .compare-table th { display: block; width: 100%; }
-    .compare-table tr { border: 1px solid var(--line); border-radius: 12px; margin-bottom: 0.7rem; padding: 0.7rem 1rem; }
-    .compare-table th[scope="row"] { border: none; padding: 0 0 0.4rem; }
-    .compare-table td { display: flex; justify-content: space-between; align-items: center; border: none; padding: 0.3rem 0; text-align: right; }
-    .compare-table td::before { content: attr(data-label); color: var(--text-soft); font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.02em; }
-  }
-
   /* ---------- FAQ ---------- */
   .faq-list { max-width: 44rem; margin: 2.6rem auto 0; display: flex; flex-direction: column; gap: 0.7rem; }
   .faq-item { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 1rem 1.2rem; }
@@ -745,23 +728,6 @@
           <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+conhecer+o+Frota+IA+Empresas+para+uma+frota+com+mais+de+10+ve%C3%ADculos" target="_blank" rel="noopener" style="width:100%; justify-content:center;">Falar sobre o plano Empresas</a>
         </div>
       </div>
-    </div>
-
-    <div class="compare-wrap">
-      <table class="compare-table">
-        <thead>
-          <tr><th scope="col">Recurso</th><th scope="col">Individual</th><th scope="col">Gestão</th><th scope="col">Empresas</th></tr>
-        </thead>
-        <tbody>
-          <tr><th scope="row">Veículos</th><td data-label="Individual">1</td><td data-label="Gestão">Até 10</td><td data-label="Empresas">11+</td></tr>
-          <tr><th scope="row">WhatsApp</th><td class="yes" data-label="Individual">✓</td><td class="yes" data-label="Gestão">✓</td><td class="yes" data-label="Empresas">✓</td></tr>
-          <tr><th scope="row">Painel</th><td class="no" data-label="Individual">—</td><td class="yes" data-label="Gestão">✓</td><td class="yes" data-label="Empresas">✓</td></tr>
-          <tr><th scope="row">Motoristas</th><td class="no" data-label="Individual">—</td><td class="yes" data-label="Gestão">✓</td><td class="yes" data-label="Empresas">✓</td></tr>
-          <tr><th scope="row">Checklist</th><td class="no" data-label="Individual">—</td><td class="yes" data-label="Gestão">✓</td><td class="yes" data-label="Empresas">✓</td></tr>
-          <tr><th scope="row">Dashboard</th><td class="no" data-label="Individual">—</td><td class="yes" data-label="Gestão">✓</td><td class="yes" data-label="Empresas">✓</td></tr>
-          <tr><th scope="row">Implantação assistida</th><td class="no" data-label="Individual">—</td><td class="no" data-label="Gestão">—</td><td class="yes" data-label="Empresas">✓</td></tr>
-        </tbody>
-      </table>
     </div>
   </section>
 
