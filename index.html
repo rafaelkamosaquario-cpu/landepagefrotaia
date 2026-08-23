@@ -365,6 +365,7 @@
   .plano-list li { display: flex; gap: 0.5rem; }
   .plano-list li::before { content: "✓"; color: var(--accent); flex-shrink: 0; }
   .plano-price-cap { color: var(--text-soft); font-size: 0.95rem; margin: 0.25rem 0; }
+  .plano-price-label { font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--frota-cyan); margin: 0.4rem 0 0; }
   .plano-price { font-family: var(--mono); font-variant-numeric: tabular-nums; margin: 0.4rem 0 0.3rem; }
   .plano-price .num { font-size: 3.3rem; font-weight: 800; color: var(--accent); }
   .plano-price .per { font-size: 1rem; color: var(--text-soft); }
@@ -426,7 +427,7 @@
         <p class="eyebrow">Frota IA · WhatsApp + Painel</p>
         <h1>A IA do transporte <em>direto no seu WhatsApp.</em></h1>
         <p class="hero-sub">Pergunte sobre fretes, custos, pneus, manutenção, documentos, rotas e sua operação. Por texto, áudio ou foto.</p>
-        <p class="hero-panel-line">E tudo que importa fica organizado no <strong>painel Frota IA</strong>.</p>
+        <p class="hero-panel-line">E no plano Gestão, tudo que importa fica organizado no <strong>painel Frota IA</strong>.</p>
         <div class="hero-ctas">
           <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+testar+o+Frota+IA+gr%C3%A1tis+por+7+dias" target="_blank" rel="noopener">Testar grátis por 7 dias</a>
         </div>
@@ -512,7 +513,7 @@
     <div class="situations-grid">
       <div class="situation-card"><img src="card-frete.png" alt=""><p>"Esse frete compensa?"</p></div>
       <div class="situation-card"><img src="card-combustivel.png" alt=""><p>"Quanto vou gastar nessa viagem?"</p></div>
-      <div class="situation-card"><img src="card-calculadora.png" alt=""><p>"Quanto meu caminhão custa por km?"</p></div>
+      <div class="situation-card"><img src="card-calculadora.png" alt=""><p>"Quanto custa deixar meu caminhão parado?"</p></div>
       <div class="situation-card"><img src="card-pneus.png" alt=""><p>"Vale recapar ou comprar pneu novo?"</p></div>
       <div class="situation-card"><img src="card-manutencao.png" alt=""><p>"Quando tenho manutenção?"</p></div>
       <div class="situation-card"><img src="card-documento.png" alt=""><p>"Quando esse documento vence?"</p></div>
@@ -616,7 +617,7 @@
       <div>
         <p class="eyebrow">Autoridade</p>
         <h2>Desenvolvido e validado com <em>experiência real</em> em transporte.</h2>
-        <p>O Frota IA reúne inteligência artificial, conhecimento especializado, ferramentas próprias e fontes oficiais — construído por especialista com mais de 17 anos de experiência no transporte, incluindo mais de 14 anos em gestão de frotas, combustível, manutenção, pneus e gestão de pessoas.</p>
+        <p>Construído por especialista com mais de 17 anos de experiência no transporte, incluindo mais de 14 anos em gestão de frotas, combustível, manutenção, pneus e gestão de pessoas. O Frota IA reúne esse conhecimento com inteligência artificial, ferramentas próprias e fontes oficiais.</p>
       </div>
       <div class="quem-photo">
         <img src="frota-ia-phone-cards.png" alt="Frota IA no celular, com ferramentas de rotas, pneus, manutenção, combustível, documentos e alertas ao redor">
@@ -660,9 +661,8 @@
           <p class="plano-eyebrow">Plano</p>
           <div class="plano-nome">Frota IA Gestão</div>
           <p class="plano-subtitle">WhatsApp + Painel de Gestão para até 10 veículos.</p>
-          <p class="plano-price"><span class="num">R$69,90</span></p>
-          <p class="plano-price-cap">12x no cartão</p>
-          <p class="plano-price-cap">Plano anual</p>
+          <p class="plano-price-label">Plano anual</p>
+          <p class="plano-price"><span class="per">12x de</span> <span class="num">R$69,90</span></p>
           <p class="plano-price-cap">Total de R$838,80</p>
           <p class="plano-price-cap">ou R$799 à vista no Pix</p>
           <ul class="plano-list">
@@ -727,7 +727,7 @@
       </details>
       <details class="faq-item">
         <summary>Tem fidelidade?</summary>
-        <p>Não. Você pode cancelar quando quiser.</p>
+        <p>No Individual e no Gestão Mensal, você pode cancelar a renovação quando quiser. No Gestão Anual, o acesso é contratado por 12 meses.</p>
       </details>
     </div>
   </section>
