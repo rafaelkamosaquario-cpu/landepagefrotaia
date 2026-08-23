@@ -360,37 +360,51 @@
   .plano-ribbon em { font-style: normal; color: var(--accent); }
   .plano-card--featured .plano-ribbon { background: var(--accent); }
   .plano-card--featured .plano-ribbon, .plano-card--featured .plano-ribbon em { color: var(--frota-black); }
-  .plano-body { background: linear-gradient(160deg, var(--card-soft), var(--card)); padding: 2.2rem 1.8rem; text-align: center; flex: 1; display: flex; flex-direction: column; }
+  .plano-body { background: linear-gradient(160deg, var(--card-soft), var(--card)); padding: 1.8rem 1.6rem; text-align: center; flex: 1; display: flex; flex-direction: column; }
   .plano-body .btn { margin-top: auto; }
   .plano-eyebrow { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-soft); }
   .plano-nome { font-size: 1.7rem; font-style: italic; margin-top: 0.2rem; color: var(--accent); }
   .plano-subtitle { color: var(--text-soft); font-size: 0.92rem; margin-top: 0.5rem; }
-  .plano-list { list-style: none; margin: 1.6rem 0; padding: 1.4rem; background: rgba(10,239,18,0.06); border-radius: 12px; text-align: left; display: flex; flex-direction: column; gap: 0.65rem; font-size: 0.94rem; }
+  .plano-list { list-style: none; margin: 1.3rem 0; padding: 1.2rem 1.3rem; background: rgba(10,239,18,0.06); border-radius: 12px; text-align: left; display: flex; flex-direction: column; gap: 0.55rem; font-size: 0.92rem; }
   .plano-list li { display: flex; gap: 0.5rem; }
   .plano-list li::before { content: "✓"; color: var(--accent); flex-shrink: 0; }
   .plano-price-cap { color: var(--text-soft); font-size: 0.95rem; }
-  .plano-price { font-family: var(--mono); font-variant-numeric: tabular-nums; margin: 0.4rem 0 1.6rem; }
+  .plano-price { font-family: var(--mono); font-variant-numeric: tabular-nums; margin: 0.4rem 0 0.3rem; }
   .plano-price .num { font-size: 3.3rem; font-weight: 800; color: var(--accent); }
   .plano-price .per { font-size: 1rem; color: var(--text-soft); }
   .plano-price--text { font-family: var(--heading); font-size: 1.6rem; font-weight: 800; color: var(--accent); text-transform: uppercase; margin: 0.6rem 0 1.6rem; }
 
   /* ---------- Formas de pagamento dentro do card Gestão ---------- */
-  .pay-options { margin-top: 1.6rem; padding-top: 1.6rem; border-top: 1px solid var(--line); text-align: left; }
-  .pay-options-title { text-align: center; font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-soft); margin-bottom: 1rem; }
-  .pay-option { background: rgba(10,239,18,0.05); border: 1px solid var(--line); border-radius: 12px; padding: 0.9rem 1rem; margin-bottom: 0.7rem; }
-  .pay-option:last-child { margin-bottom: 0; }
-  .pay-option-row { display: flex; align-items: baseline; justify-content: space-between; gap: 0.6rem; flex-wrap: wrap; }
-  .pay-option-name { font-family: var(--heading); font-weight: 700; font-size: 0.92rem; }
-  .pay-option-price { font-family: var(--mono); font-weight: 800; color: var(--accent); font-size: 1rem; white-space: nowrap; }
-  .pay-option-note { color: var(--text-soft); font-size: 0.8rem; margin-top: 0.3rem; }
-  .pay-option .btn { margin-top: 0.7rem; width: 100%; justify-content: center; padding: 0.65rem 1rem; font-size: 0.74rem; }
+  .pay-options { margin-top: 1.3rem; padding-top: 1.3rem; border-top: 1px solid var(--line); }
+  .pay-options-title { text-align: center; font-family: var(--mono); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-soft); margin-bottom: 0.8rem; }
+  .pay-options-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+  @media (max-width: 420px) { .pay-options-grid { grid-template-columns: 1fr; } }
+  .pay-option {
+    display: flex; flex-direction: column; align-items: center; gap: 0.2rem; text-align: center; text-decoration: none;
+    background: rgba(10,239,18,0.05); border: 1px solid var(--line); border-radius: 10px; padding: 0.75rem 0.5rem;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .pay-option:hover, .pay-option:focus-visible { border-color: var(--accent); background: rgba(10,239,18,0.1); }
+  .pay-option-name { font-family: var(--heading); font-weight: 700; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.02em; color: var(--text-soft); }
+  .pay-option-price { font-family: var(--mono); font-weight: 800; color: var(--accent); font-size: 0.94rem; }
+  .pay-option-note { color: var(--text-soft); font-size: 0.66rem; }
 
   /* ---------- Comparação curta dos 3 níveis ---------- */
-  .planos-compare { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.6rem; max-width: 56rem; margin-inline: auto; }
-  @media (max-width: 760px) { .planos-compare { grid-template-columns: 1fr; } }
-  .planos-compare-item { text-align: center; padding: 1.1rem 1rem; border: 1px solid var(--line); border-radius: 12px; }
-  .planos-compare-item strong { display: block; font-family: var(--heading); font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.02em; }
-  .planos-compare-item span { display: block; color: var(--text-soft); font-size: 0.82rem; margin-top: 0.35rem; }
+  .compare-wrap { max-width: 52rem; margin: 2.6rem auto 0; overflow-x: auto; }
+  .compare-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  .compare-table th, .compare-table td { padding: 0.65rem 0.8rem; border-bottom: 1px solid var(--line); text-align: center; }
+  .compare-table th[scope="row"] { text-align: left; font-family: var(--heading); font-weight: 700; font-size: 0.85rem; }
+  .compare-table thead th { font-family: var(--mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-soft); font-weight: 700; border-bottom: 2px solid var(--line); }
+  .compare-table td.yes { color: var(--accent); font-weight: 700; }
+  .compare-table td.no { color: var(--text-soft); }
+  @media (max-width: 640px) {
+    .compare-table thead { display: none; }
+    .compare-table, .compare-table tbody, .compare-table tr, .compare-table td, .compare-table th { display: block; width: 100%; }
+    .compare-table tr { border: 1px solid var(--line); border-radius: 12px; margin-bottom: 0.7rem; padding: 0.7rem 1rem; }
+    .compare-table th[scope="row"] { border: none; padding: 0 0 0.4rem; }
+    .compare-table td { display: flex; justify-content: space-between; align-items: center; border: none; padding: 0.3rem 0; text-align: right; }
+    .compare-table td::before { content: attr(data-label); color: var(--text-soft); font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.02em; }
+  }
 
   /* ---------- FAQ ---------- */
   .faq-list { max-width: 44rem; margin: 2.6rem auto 0; display: flex; flex-direction: column; gap: 0.7rem; }
@@ -663,20 +677,13 @@
           <div class="plano-nome">Frota IA Individual</div>
           <p class="plano-subtitle">Para quem trabalha com 1 veículo.</p>
           <p class="plano-price"><span class="num">R$79,90</span><span class="per">/mês</span></p>
-          <p class="plano-price-cap">Sem fidelidade. Cancele quando quiser.</p>
+          <p class="plano-price-cap">Sem fidelidade.</p>
           <ul class="plano-list">
             <li>Frota IA completo pelo WhatsApp</li>
-            <li>1 usuário</li>
-            <li>1 veículo</li>
-            <li>Análise de fretes e oportunidades</li>
+            <li>1 usuário + 1 veículo</li>
+            <li>Fretes, custos, rotas e manutenção</li>
             <li>Radar de Fretes</li>
-            <li>Custos, combustível e CPK</li>
-            <li>Rotas e jornada</li>
-            <li>Manutenção e pneus</li>
-            <li>Documentos e vencimentos</li>
-            <li>Alertas e lembretes</li>
-            <li>Todas as funcionalidades do Frota IA Individual e atualizações incluídas</li>
-            <li>Suporte humano pelo WhatsApp</li>
+            <li>Alertas, documentos e lembretes</li>
           </ul>
           <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+assinar+o+Frota+IA+Individual+de+R%2479%2C90+por+m%C3%AAs" target="_blank" rel="noopener" style="width:100%; justify-content:center;">Começar com o Frota IA</a>
         </div>
@@ -687,41 +694,35 @@
         <div class="plano-body">
           <p class="plano-eyebrow">Plano</p>
           <div class="plano-nome">Frota IA Gestão</div>
-          <p class="plano-subtitle">WhatsApp + Painel de Gestão para até 10 veículos.</p>
+          <p class="plano-subtitle">Para quem precisa gerenciar até 10 veículos.</p>
           <p class="plano-price"><span class="num">R$99,90</span><span class="per">/mês</span></p>
-          <p class="plano-price-cap">Sem fidelidade no plano mensal.</p>
+          <p class="plano-price-cap"><strong>WhatsApp + Painel de Gestão</strong></p>
           <ul class="plano-list">
-            <li>Tudo do Frota IA Individual + Painel de Gestão</li>
-            <li>WhatsApp + Painel Web</li>
+            <li>Tudo do plano Individual</li>
             <li>Até 10 veículos</li>
-            <li>Gestão de motoristas</li>
-            <li>Gestão de manutenções</li>
-            <li>Documentos e vencimentos</li>
-            <li>Controle de despesas</li>
-            <li>Checklists dos motoristas</li>
-            <li>Dashboard de gestão</li>
-            <li>Relatórios</li>
-            <li>Radar de Fretes</li>
-            <li>Alertas</li>
-            <li>Google Agenda integrada</li>
-            <li>Mesma IA no WhatsApp e no painel, com os mesmos dados</li>
+            <li>Motoristas, despesas e manutenção</li>
+            <li>Checklists, alertas e relatórios</li>
+            <li>Dashboard + Google Agenda</li>
+            <li>Mesma IA no WhatsApp e no painel</li>
           </ul>
           <div class="pay-options">
             <p class="pay-options-title">Escolha como pagar</p>
-            <div class="pay-option">
-              <div class="pay-option-row"><span class="pay-option-name">Mensal</span><span class="pay-option-price">R$99,90/mês</span></div>
-              <p class="pay-option-note">Sem fidelidade.</p>
-              <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+assinar+o+Frota+IA+Gest%C3%A3o+mensal+de+R%2499%2C90+por+m%C3%AAs" target="_blank" rel="noopener">Assinar mensal</a>
-            </div>
-            <div class="pay-option">
-              <div class="pay-option-row"><span class="pay-option-name">Anual</span><span class="pay-option-price">12x R$69,90</span></div>
-              <p class="pay-option-note">Total de R$838,80 · 12 meses de acesso ao Frota IA Gestão.</p>
-              <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+assinar+o+Frota+IA+Gest%C3%A3o+anual+em+12x+de+R%2469%2C90" target="_blank" rel="noopener">Escolher plano anual</a>
-            </div>
-            <div class="pay-option">
-              <div class="pay-option-row"><span class="pay-option-name">Pix anual</span><span class="pay-option-price">R$799,00</span></div>
-              <p class="pay-option-note">À vista · 12 meses de Frota IA Gestão.</p>
-              <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+contratar+o+Frota+IA+Gest%C3%A3o+anual+no+Pix+por+R%24799%2C00" target="_blank" rel="noopener">Pagar anual no Pix</a>
+            <div class="pay-options-grid">
+              <a class="pay-option" href="https://wa.me/5541997454382?text=Quero+assinar+o+Frota+IA+Gest%C3%A3o+mensal+de+R%2499%2C90+por+m%C3%AAs" target="_blank" rel="noopener">
+                <span class="pay-option-name">Mensal</span>
+                <span class="pay-option-price">R$99,90/mês</span>
+                <span class="pay-option-note">Sem fidelidade</span>
+              </a>
+              <a class="pay-option" href="https://wa.me/5541997454382?text=Quero+assinar+o+Frota+IA+Gest%C3%A3o+anual+em+12x+de+R%2469%2C90" target="_blank" rel="noopener">
+                <span class="pay-option-name">Anual</span>
+                <span class="pay-option-price">12x R$69,90</span>
+                <span class="pay-option-note">Total R$838,80</span>
+              </a>
+              <a class="pay-option" href="https://wa.me/5541997454382?text=Quero+contratar+o+Frota+IA+Gest%C3%A3o+anual+no+Pix+por+R%24799%2C00" target="_blank" rel="noopener">
+                <span class="pay-option-name">Pix anual</span>
+                <span class="pay-option-price">R$799</span>
+                <span class="pay-option-note">À vista</span>
+              </a>
             </div>
           </div>
         </div>
@@ -732,17 +733,13 @@
         <div class="plano-body">
           <p class="plano-eyebrow">Plano</p>
           <div class="plano-nome">Frota IA Empresas</div>
-          <p class="plano-subtitle">Para operações com mais de 10 veículos.</p>
+          <p class="plano-subtitle">Para operações com 11 veículos ou mais.</p>
           <p class="plano-price plano-price--text">Preço personalizado</p>
           <ul class="plano-list">
             <li>Tudo do Frota IA Gestão</li>
-            <li>Para frotas com 11 veículos ou mais</li>
+            <li>Frota acima de 10 veículos</li>
             <li>Implantação assistida</li>
-            <li>Configuração personalizada</li>
-            <li>Cadastro inicial da operação</li>
-            <li>Apoio na configuração de veículos e motoristas</li>
-            <li>Documentos e alertas</li>
-            <li>Checklists</li>
+            <li>Configuração inicial da operação</li>
             <li>Atendimento comercial direto</li>
           </ul>
           <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+conhecer+o+Frota+IA+Empresas+para+uma+frota+com+mais+de+10+ve%C3%ADculos" target="_blank" rel="noopener" style="width:100%; justify-content:center;">Falar sobre o plano Empresas</a>
@@ -750,10 +747,21 @@
       </div>
     </div>
 
-    <div class="planos-compare">
-      <div class="planos-compare-item"><strong>Individual</strong><span>1 veículo</span><span>WhatsApp</span></div>
-      <div class="planos-compare-item"><strong>Gestão</strong><span>Até 10 veículos</span><span>WhatsApp + Painel</span></div>
-      <div class="planos-compare-item"><strong>Empresas</strong><span>11+ veículos</span><span>WhatsApp + Painel + implantação assistida</span></div>
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr><th scope="col">Recurso</th><th scope="col">Individual</th><th scope="col">Gestão</th><th scope="col">Empresas</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Veículos</th><td data-label="Individual">1</td><td data-label="Gestão">Até 10</td><td data-label="Empresas">11+</td></tr>
+          <tr><th scope="row">WhatsApp</th><td class="yes" data-label="Individual">✓</td><td class="yes" data-label="Gestão">✓</td><td class="yes" data-label="Empresas">✓</td></tr>
+          <tr><th scope="row">Painel</th><td class="no" data-label="Individual">—</td><td class="yes" data-label="Gestão">✓</td><td class="yes" data-label="Empresas">✓</td></tr>
+          <tr><th scope="row">Motoristas</th><td class="no" data-label="Individual">—</td><td class="yes" data-label="Gestão">✓</td><td class="yes" data-label="Empresas">✓</td></tr>
+          <tr><th scope="row">Checklist</th><td class="no" data-label="Individual">—</td><td class="yes" data-label="Gestão">✓</td><td class="yes" data-label="Empresas">✓</td></tr>
+          <tr><th scope="row">Dashboard</th><td class="no" data-label="Individual">—</td><td class="yes" data-label="Gestão">✓</td><td class="yes" data-label="Empresas">✓</td></tr>
+          <tr><th scope="row">Implantação assistida</th><td class="no" data-label="Individual">—</td><td class="no" data-label="Gestão">—</td><td class="yes" data-label="Empresas">✓</td></tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
