@@ -12,6 +12,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,800;0,900;1,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="celular-frota-ia-hero.png" fetchpriority="high">
+<link rel="preload" as="image" href="bg-highway-2.jpg">
 <style>
   :root {
     /* Frota IA — paleta industrial/tecnológica: verde de ação + azul/ciano de dados */
@@ -124,7 +126,7 @@
     background-image:
       linear-gradient(100deg, rgba(10,10,11,0.94) 0%, rgba(10,10,11,0.68) 32%, rgba(10,10,11,0.22) 58%, rgba(10,10,11,0.1) 100%),
       linear-gradient(0deg, rgba(10,10,11,0.5), transparent 40%),
-      url("bg-highway-2.png");
+      url("bg-highway-2.jpg");
     background-size: cover;
     background-position: right center;
   }
@@ -139,7 +141,7 @@
   .hero-ctas { margin-top: 2.2rem; display: flex; flex-wrap: wrap; gap: 0.9rem; align-items: center; }
   .hero-micro { margin-top: 1.1rem; font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.04em; color: var(--text-soft); }
 
-  /* ---------- Hero phone — protagonista, painel como apoio secundário ---------- */
+  /* ---------- Hero phone — colagem de conversas reais do WhatsApp + logo ---------- */
   .hero-phone-stage { position: relative; display: flex; justify-content: center; padding-inline: 24px; }
   .hero-phone-stage::before {
     content: ""; position: absolute; inset: -8% -4%; z-index: -1; pointer-events: none;
@@ -147,59 +149,11 @@
   }
   .hero-phone-wrap { position: relative; display: inline-block; line-height: 0; }
   .hero-phone-img {
-    height: clamp(540px, 46vw, 600px); width: auto; max-width: 100%; object-fit: contain; display: block;
-    -webkit-mask-image: radial-gradient(ellipse 62% 58% at 50% 48%, black 58%, transparent 100%);
-    mask-image: radial-gradient(ellipse 62% 58% at 50% 48%, black 58%, transparent 100%);
+    width: min(92%, 460px); height: auto; max-width: 100%; object-fit: contain; display: block;
   }
-  .hero-phone-screen {
-    position: absolute; left: 21%; right: 21%; top: 7%; bottom: 12%;
-    border-radius: 20px; overflow: hidden; background: rgba(11,13,13,0.94);
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05), 0 24px 44px -22px rgba(0,0,0,0.75);
-    display: flex; flex-direction: column; font-family: var(--body);
-  }
-  .hps-head {
-    display: flex; align-items: center; gap: 0.4rem; padding: 0.55rem 0.6rem;
-    border-bottom: 1px solid rgba(255,255,255,0.08); flex-shrink: 0;
-  }
-  .hps-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 6px var(--accent); }
-  .hps-head span { font-size: 0.6rem; font-weight: 700; color: var(--text-soft); letter-spacing: 0.02em; }
-  .hps-body { flex: 1; position: relative; padding: 0.7rem 0.6rem; }
-  .hps-story {
-    position: absolute; inset: 0.7rem 0.6rem; display: flex; flex-direction: column; justify-content: center; gap: 0.5rem;
-    opacity: 0; animation: heroStoryCycle 9s ease-in-out infinite;
-  }
-  .hps-story.story-b { animation-delay: -4.5s; }
-  .hps-msg {
-    align-self: flex-end; max-width: 90%; background: var(--accent); color: var(--frota-black);
-    font-weight: 600; font-size: 0.66rem; line-height: 1.4; padding: 0.5rem 0.65rem; border-radius: 11px 11px 2px 11px;
-  }
-  .hps-reply {
-    align-self: flex-start; max-width: 94%; background: rgba(255,255,255,0.05); border: 1px solid rgba(15,163,207,0.4);
-    color: var(--frota-white); font-size: 0.62rem; line-height: 1.55; padding: 0.55rem 0.7rem; border-radius: 2px 11px 11px 11px;
-  }
-  .hps-reply b { color: var(--frota-cyan); font-weight: 700; }
-  .hps-result { align-self: flex-start; font-size: 0.7rem; font-weight: 800; color: var(--accent); margin-top: 0.1rem; }
-  @keyframes heroStoryCycle {
-    0% { opacity: 0; transform: translateY(5px); }
-    5% { opacity: 1; transform: translateY(0); }
-    45% { opacity: 1; transform: translateY(0); }
-    50% { opacity: 0; transform: translateY(-5px); }
-    100% { opacity: 0; transform: translateY(-5px); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .hps-story { animation: none; opacity: 0; }
-    .hps-story.story-a { opacity: 1; }
-  }
-  @media (max-width: 480px) {
-    .hps-msg, .hps-reply { font-size: 0.72rem; }
-    .hps-result { font-size: 0.78rem; }
-  }
-
-  @keyframes floatB { 0%, 100% { transform: translate3d(0,-4px,0); } 50% { transform: translate3d(5px,10px,0); } }
-  @media (prefers-reduced-motion: reduce) { .hero-panel-peek { animation: none; } }
 
   @media (max-width: 900px) {
-    .hero-phone-img { height: 460px; }
+    .hero-phone-img { width: min(55vw, 420px); }
     .hero-phone-stage { padding-inline: 16px; }
     /* Abaixo de 900px o hero-grid empilha (texto + celular), a seção fica bem mais alta e o
        background-size:cover passa a dar um zoom extremo na imagem panorâmica, cortando o
@@ -209,11 +163,11 @@
     .hero-bg::before { background-position: 78% center; }
   }
   @media (max-width: 480px) {
-    .hero-phone-img { height: auto; width: min(78vw, 340px); }
+    .hero-phone-img { width: min(80vw, 360px); }
     .hero-phone-stage { padding-inline: 0; flex-direction: column; align-items: center; gap: 0.9rem; }
   }
 
-  /* No mobile o peek sobreposto ao celular vira um card próprio abaixo dele — mantém "celular → painel" na ordem visual */
+  /* No mobile, um card próprio abaixo da imagem resume o "painel" — mantém "celular → painel" na ordem visual */
   .hero-panel-mobile { display: none; }
   @media (max-width: 480px) {
     .hero-panel-mobile {
@@ -221,53 +175,11 @@
       border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: 0.75rem 0.9rem; text-align: left; line-height: 1.3;
     }
   }
-
-  /* ---------- Hero panel peek — imagem única e discreta do painel, sem disputar atenção com o WhatsApp ---------- */
-  .hero-panel-peek {
-    position: absolute; left: -6px; bottom: 5%; width: 172px; z-index: 3;
-    background: var(--card); border: 1px solid rgba(15,163,207,0.35); border-radius: 14px; padding: 0.65rem 0.75rem;
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04), 0 18px 40px -14px rgba(0,0,0,0.7); transform: rotate(-3deg);
-    animation: floatB 5.5s ease-in-out infinite;
-    line-height: 1.3;
-  }
   .hero-panel-peek-bar { display: flex; align-items: center; gap: 4px; margin-bottom: 0.5rem; }
   .hero-panel-peek-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--frota-cyan); box-shadow: 0 0 6px var(--frota-cyan); }
   .hero-panel-peek-bar span:last-child { font-family: var(--mono); font-size: 0.5rem; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.04em; }
-  .hero-panel-peek-body { position: relative; min-height: 38px; }
-  .hero-panel-peek-story {
-    position: absolute; inset: 0; display: flex; flex-direction: column; gap: 2px;
-    opacity: 0; animation: heroStoryCycle 9s ease-in-out infinite;
-  }
-  .hero-panel-peek-story.story-b { animation-delay: -4.5s; }
   .hero-panel-peek-kpi { display: block; font-family: var(--heading); font-weight: 800; font-size: 1rem; color: var(--frota-cyan); line-height: 1.1; }
   .hero-panel-peek-label { font-family: var(--mono); font-size: 0.55rem; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.03em; }
-  @media (prefers-reduced-motion: reduce) {
-    .hero-panel-peek-story { animation: none; opacity: 0; }
-    .hero-panel-peek-story.story-a { opacity: 1; }
-  }
-  @media (max-width: 900px) { .hero-panel-peek { width: 130px; padding: 0.55rem 0.65rem; } .hero-panel-peek-kpi { font-size: 0.85rem; } }
-  @media (max-width: 480px) { .hero-panel-peek { display: none; } }
-
-  /* ---------- Conector WhatsApp → Painel (o dado atravessa os canais) ---------- */
-  .hero-connector { position: absolute; left: 46px; bottom: 16%; width: 2px; height: 64px; z-index: 2; pointer-events: none; }
-  .hero-connector::before {
-    content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, var(--frota-cyan), transparent);
-    opacity: 0.4;
-  }
-  .hero-connector::after {
-    content: ""; position: absolute; left: 50%; top: 0; width: 6px; height: 6px; margin-left: -3px; border-radius: 50%;
-    background: var(--frota-cyan); box-shadow: 0 0 10px var(--frota-cyan);
-    animation: connectorPulse 3s ease-in-out infinite;
-  }
-  @keyframes connectorPulse {
-    0% { top: 0%; opacity: 0; }
-    12% { opacity: 1; }
-    85% { opacity: 1; }
-    100% { top: 100%; opacity: 0; }
-  }
-  @media (prefers-reduced-motion: reduce) { .hero-connector::after { animation: none; opacity: 0; } }
-  @media (max-width: 900px) { .hero-connector { left: 34px; height: 50px; } }
-  @media (max-width: 480px) { .hero-connector { display: none; } }
 
   /* ---------- Seção genérica de cabeçalho (reaproveitada por várias seções) ---------- */
   .funcoes-head { text-align: center; max-width: 46rem; margin: 0 auto; }
@@ -450,38 +362,7 @@
       </div>
       <div class="hero-phone-stage">
         <div class="hero-phone-wrap">
-          <img class="hero-phone-img" src="celular-frota-ia-hero.png" alt="Celular exibindo uma conversa real do Frota IA no WhatsApp" width="1024" height="1536" fetchpriority="high" decoding="async">
-          <div class="hero-phone-screen">
-            <div class="hps-head"><span class="hps-dot"></span><span>FROTA IA · ONLINE</span></div>
-            <div class="hps-body">
-              <div class="hps-story story-a">
-                <div class="hps-msg">🎤 "Recebi um frete de Curitiba pra SP por R$4.800, compensa?"</div>
-                <div class="hps-reply">📎 CT-e recebido<br>Distância: <b>408 km</b> · Custo est.: <b>R$3.200</b><br>Margem: <b>18%</b></div>
-                <div class="hps-result">✅ FRETE VIÁVEL</div>
-              </div>
-              <div class="hps-story story-b">
-                <div class="hps-msg">📎 [foto do CRLV]</div>
-                <div class="hps-reply">CRLV lido · Vencimento <b>15/09/2026</b><br>Documento registrado no painel</div>
-                <div class="hps-result">⏰ ALERTA PROGRAMADO</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="hero-connector" aria-hidden="true"></div>
-
-          <div class="hero-panel-peek" aria-hidden="true">
-            <div class="hero-panel-peek-bar"><span class="hero-panel-peek-dot"></span><span>PAINEL FROTA IA</span></div>
-            <div class="hero-panel-peek-body">
-              <div class="hero-panel-peek-story story-a">
-                <span class="hero-panel-peek-kpi">18% margem</span>
-                <span class="hero-panel-peek-label">Análise de frete salva</span>
-              </div>
-              <div class="hero-panel-peek-story story-b">
-                <span class="hero-panel-peek-kpi">CRLV · 15/09</span>
-                <span class="hero-panel-peek-label">Alerta programado</span>
-              </div>
-            </div>
-          </div>
+          <img class="hero-phone-img" src="celular-frota-ia-hero.png" alt="Três celulares mostrando conversas reais do Frota IA no WhatsApp: cálculo de rota, análise de frete e comparação de custo de pneus" width="940" height="940" fetchpriority="high" decoding="async">
         </div>
 
         <div class="hero-panel-mobile" aria-hidden="true">
@@ -526,14 +407,14 @@
       <h2>Pergunte. <em>O Frota IA resolve.</em></h2>
     </div>
     <div class="situations-grid">
-      <div class="situation-card"><img src="card-frete.png" alt=""><p>"Esse frete compensa?"</p></div>
-      <div class="situation-card"><img src="card-combustivel.png" alt=""><p>"Quanto vou gastar nessa viagem?"</p></div>
-      <div class="situation-card"><img src="card-calculadora.png" alt=""><p>"Quanto custa deixar meu caminhão parado?"</p></div>
-      <div class="situation-card"><img src="card-pneus.png" alt=""><p>"Vale recapar ou comprar pneu novo?"</p></div>
-      <div class="situation-card"><img src="card-manutencao.png" alt=""><p>"Quando tenho manutenção?"</p></div>
-      <div class="situation-card"><img src="card-documento.png" alt=""><p>"Quando esse documento vence?"</p></div>
-      <div class="situation-card"><img src="card-rota.png" alt=""><p>"Tem carga voltando pra Curitiba?"</p></div>
-      <div class="situation-card"><img src="card-calculadora.png" alt=""><p>"Qual valor do meu CPK?"</p></div>
+      <div class="situation-card"><img src="card-frete.png" alt="" width="300" height="321" decoding="async"><p>"Esse frete compensa?"</p></div>
+      <div class="situation-card"><img src="card-combustivel.png" alt="" width="300" height="321" decoding="async"><p>"Quanto vou gastar nessa viagem?"</p></div>
+      <div class="situation-card"><img src="card-calculadora.png" alt="" width="300" height="321" decoding="async"><p>"Quanto custa deixar meu caminhão parado?"</p></div>
+      <div class="situation-card"><img src="card-pneus.png" alt="" width="300" height="321" decoding="async"><p>"Vale recapar ou comprar pneu novo?"</p></div>
+      <div class="situation-card"><img src="card-manutencao.png" alt="" width="300" height="321" decoding="async"><p>"Quando tenho manutenção?"</p></div>
+      <div class="situation-card"><img src="card-documento.png" alt="" width="300" height="321" decoding="async"><p>"Quando esse documento vence?"</p></div>
+      <div class="situation-card"><img src="card-rota.png" alt="" width="300" height="321" decoding="async"><p>"Tem carga voltando pra Curitiba?"</p></div>
+      <div class="situation-card"><img src="card-calculadora.png" alt="" width="300" height="321" decoding="async"><p>"Qual valor do meu CPK?"</p></div>
     </div>
     <p class="situations-more">Também ajuda com jornada, despesas, alertas, checklist e muito mais.</p>
   </section>
@@ -545,7 +426,7 @@
     </div>
     <div style="margin-top:2.6rem;">
       <div class="browser-mock">
-        <img class="painel-screenshot" src="painel-dashboard.png" alt="Painel Frota IA mostrando dashboard com veículos, alertas urgentes, checklists e o assistente Pergunte ao Frota IA">
+        <img class="painel-screenshot" src="painel-dashboard.jpg" alt="Painel Frota IA mostrando dashboard com veículos, alertas urgentes, checklists e o assistente Pergunte ao Frota IA" width="1672" height="941" decoding="async">
       </div>
     </div>
     <p class="panel-note">Para quem administra mais de um veículo, o painel mostra a operação sem depender de planilha, papel ou memória.</p>
@@ -559,25 +440,25 @@
       </div>
       <div class="proactive-grid">
         <div class="proactive-card">
-          <img src="card-documento.png" alt="">
+          <img src="card-documento.png" alt="" width="300" height="321" decoding="async">
           <h4>Documentos e manutenção</h4>
           <p>Acompanha vencimentos e avisa quando algo precisa de atenção.</p>
           <div class="proactive-chip">CRLV vence em 3 dias</div>
         </div>
         <div class="proactive-card">
-          <img src="card-calendario.png" alt="">
+          <img src="card-calendario.png" alt="" width="300" height="321" decoding="async">
           <h4>Checklist</h4>
           <p>O motorista responde pelo WhatsApp e o gestor acompanha pelo painel.</p>
           <div class="proactive-chip">06:00 enviado → 06:04 respondido: OK</div>
         </div>
         <div class="proactive-card">
-          <img src="card-noticias.png" alt="">
+          <img src="card-noticias.png" alt="" width="300" height="300" decoding="async">
           <h4>Notícias do transporte</h4>
           <p>Receba um resumo das principais informações do setor direto no WhatsApp.</p>
           <div class="proactive-chip">Resumo de hoje: 4 notícias do setor</div>
         </div>
         <div class="proactive-card">
-          <img src="card-rota.png" alt="">
+          <img src="card-rota.png" alt="" width="300" height="321" decoding="async">
           <h4>Radar de Fretes</h4>
           <p>Avisa automaticamente quando aparece uma carga compatível com o seu caminhão e a sua rota.</p>
           <div class="proactive-chip">⚡ Goiânia → Curitiba, compatível com o seu veículo</div>
@@ -619,7 +500,7 @@
         <p>Construído por especialista com mais de 17 anos de experiência no transporte, incluindo mais de 14 anos em gestão de frotas, combustível, manutenção, pneus e gestão de pessoas. O Frota IA reúne esse conhecimento com inteligência artificial, ferramentas próprias e fontes oficiais.</p>
       </div>
       <div class="quem-photo">
-        <img src="frota-ia-phone-cards.png" alt="Frota IA no celular, com ferramentas de rotas, pneus, manutenção, combustível, documentos e alertas ao redor">
+        <img src="frota-ia-phone-cards.png" alt="Frota IA no celular, com ferramentas de rotas, pneus, manutenção, combustível, documentos e alertas ao redor" width="900" height="956" decoding="async">
       </div>
     </div>
   </section>
