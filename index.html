@@ -265,9 +265,9 @@
   }
   .planos-trial h3 { font-size: 1.15rem; color: var(--accent); }
   .planos-trial p { color: var(--text-soft); margin-top: 0.6rem; font-size: 0.96rem; }
-  .planos-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 2.4rem; max-width: 72rem; margin-inline: auto; align-items: start; }
-  @media (min-width: 760px) { .planos-grid { grid-template-columns: repeat(3, 1fr); } }
-  @media (min-width: 900px) { .planos-grid { grid-template-columns: 1fr 1.15fr 1fr; } }
+  .planos-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 2.4rem; max-width: 84rem; margin-inline: auto; align-items: start; }
+  @media (min-width: 640px) { .planos-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1100px) { .planos-grid { grid-template-columns: 1fr 1.1fr 1fr 1fr; } }
   .plano-card { border-radius: 20px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 8px 30px -14px rgba(0,0,0,0.6); display: flex; flex-direction: column; transition: transform 0.2s ease, box-shadow 0.2s ease; }
   .plano-card:not(.plano-card--featured):hover { transform: translateY(-4px); }
   .plano-card--featured { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 24px 50px -18px rgba(10,239,18,0.35); transform: scale(1.03); }
@@ -281,6 +281,8 @@
   .plano-card--featured .plano-ribbon, .plano-card--featured .plano-ribbon em { color: var(--frota-black); }
   .plano-body { background: linear-gradient(160deg, var(--card-soft), var(--card)); padding: 1.8rem 1.6rem; text-align: center; flex: 1; display: flex; flex-direction: column; }
   .plano-body .btn { margin-top: auto; }
+  /* 4 cards ficam mais estreitos que os 3 originais — o texto dos CTAs (ex. "Falar sobre o plano Empresas") não cabe com o .btn padrão (nowrap, padding 2rem). Só aqui: permite quebrar linha e reduz padding/fonte, sem afetar os outros botões da página. */
+  .plano-body .btn { white-space: normal; text-align: center; padding: 0.85rem 1.1rem; font-size: 0.78rem; line-height: 1.25; }
   .plano-eyebrow { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-soft); }
   .plano-nome { font-size: clamp(1.4rem, 5.5vw, 1.7rem); font-style: italic; margin-top: 0.2rem; color: var(--accent); }
   .plano-subtitle { color: var(--text-soft); font-size: 0.92rem; margin-top: 0.5rem; }
@@ -354,7 +356,7 @@
         <p class="eyebrow">Frota IA · WhatsApp + Painel</p>
         <h1>A IA do transporte <em>direto no seu WhatsApp.</em></h1>
         <p class="hero-sub">Pergunte sobre fretes, custos, pneus, manutenção, documentos, rotas e sua operação. Por texto, áudio ou foto.</p>
-        <p class="hero-panel-line">E no plano Gestão, tudo que importa fica organizado no <strong>painel Frota IA</strong>.</p>
+        <p class="hero-panel-line">E nos planos Essencial e Pro, tudo que importa fica organizado no <strong>painel Frota IA</strong>.</p>
         <div class="hero-ctas">
           <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+testar+o+Frota+IA+gr%C3%A1tis+por+7+dias" target="_blank" rel="noopener">Testar grátis por 7 dias</a>
         </div>
@@ -521,8 +523,8 @@
         <div class="plano-body">
           <p class="plano-eyebrow">Plano</p>
           <div class="plano-nome">Frota IA Individual</div>
-          <p class="plano-price"><span class="num">R$79,90</span><span class="per">/mês</span></p>
-          <p class="plano-price-cap">Sem fidelidade. Cancele quando quiser.</p>
+          <p class="plano-price"><span class="num">R$89,90</span><span class="per">/mês</span></p>
+          <p class="plano-price-cap">ou R$899,00/ano no Pix (12x R$74,92 no cartão)</p>
           <ul class="plano-list">
             <li>Frota IA pelo WhatsApp</li>
             <li>1 usuário + 1 veículo</li>
@@ -531,30 +533,47 @@
             <li>Alertas, documentos e lembretes</li>
             <li>Suporte humano no WhatsApp</li>
           </ul>
-          <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+assinar+o+Frota+IA+Individual+de+R%2479%2C90+por+m%C3%AAs." target="_blank" rel="noopener" style="width:100%; justify-content:center;">Começar com o Frota IA</a>
+          <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+assinar+o+Frota+IA+Individual+por+R%2489%2C90%2Fm%C3%AAs." target="_blank" rel="noopener" style="width:100%; justify-content:center;">Começar com o Frota IA</a>
         </div>
       </div>
 
       <div class="plano-card plano-card--featured">
-        <div class="plano-ribbon">Gestão <em>mais completo</em></div>
+        <div class="plano-ribbon">Essencial <em>mais escolhido</em></div>
         <div class="plano-body">
           <p class="plano-eyebrow">Plano</p>
-          <div class="plano-nome">Frota IA Gestão</div>
-          <p class="plano-subtitle">WhatsApp + Painel de Gestão para até 10 veículos.</p>
-          <p class="plano-price-label">Plano anual</p>
-          <p class="plano-price"><span class="per">12x de</span> <span class="num">R$69,90</span></p>
-          <p class="plano-price-cap">Total de R$838,80</p>
-          <p class="plano-price-cap">ou R$799 à vista no Pix</p>
+          <div class="plano-nome">Frota IA Essencial</div>
+          <p class="plano-subtitle">WhatsApp + Painel de Gestão para até 3 veículos.</p>
+          <p class="plano-price"><span class="num">R$149,90</span><span class="per">/mês</span></p>
+          <p class="plano-price-cap">ou R$1.499,00/ano no Pix (12x R$124,92 no cartão)</p>
           <ul class="plano-list">
             <li>Tudo do Frota IA Individual</li>
             <li>WhatsApp + Painel Web</li>
-            <li>Até 10 veículos</li>
+            <li>Até 3 veículos</li>
             <li>Motoristas, despesas e manutenção</li>
             <li>Checklists, alertas e relatórios</li>
             <li>Dashboard + Google Agenda</li>
             <li>Suporte humano no WhatsApp</li>
           </ul>
-          <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+contratar+o+Frota+IA+Gest%C3%A3o+anual." target="_blank" rel="noopener" style="width:100%; justify-content:center;">Escolher Frota IA Gestão</a>
+          <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+contratar+o+Frota+IA+Essencial." target="_blank" rel="noopener" style="width:100%; justify-content:center;">Escolher Frota IA Essencial</a>
+        </div>
+      </div>
+
+      <div class="plano-card">
+        <div class="plano-ribbon">Pro</div>
+        <div class="plano-body">
+          <p class="plano-eyebrow">Plano</p>
+          <div class="plano-nome">Frota IA Pro</div>
+          <p class="plano-subtitle">WhatsApp + Painel de Gestão para até 10 veículos.</p>
+          <p class="plano-price"><span class="num">R$249,90</span><span class="per">/mês</span></p>
+          <p class="plano-price-cap">ou R$2.499,00/ano no Pix (12x R$208,25 no cartão)</p>
+          <ul class="plano-list">
+            <li>Tudo do Frota IA Essencial</li>
+            <li>Até 10 veículos</li>
+            <li>Checklists, alertas e relatórios</li>
+            <li>Dashboard + Google Agenda</li>
+            <li>Suporte humano no WhatsApp</li>
+          </ul>
+          <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+contratar+o+Frota+IA+Pro." target="_blank" rel="noopener" style="width:100%; justify-content:center;">Escolher Frota IA Pro</a>
         </div>
       </div>
 
@@ -566,7 +585,7 @@
           <p class="plano-subtitle">Para empresas com mais de 10 veículos.</p>
           <p class="plano-price plano-price--text">Preço personalizado</p>
           <ul class="plano-list">
-            <li>Tudo do Frota IA Gestão</li>
+            <li>Tudo do Frota IA Pro</li>
             <li>Para frotas acima de 10 veículos</li>
             <li>Implantação assistida</li>
             <li>Configuração inicial da operação</li>
@@ -607,7 +626,7 @@
       </details>
       <details class="faq-item">
         <summary>Tem fidelidade?</summary>
-        <p>No Individual e no Gestão Mensal, você pode cancelar a renovação quando quiser. No Gestão Anual, o acesso é contratado por 12 meses.</p>
+        <p>Nos planos mensais (Individual, Essencial ou Pro), você pode cancelar a renovação quando quiser. Nos planos anuais, o acesso é contratado por 12 meses.</p>
       </details>
     </div>
   </section>
