@@ -265,9 +265,23 @@
   }
   .planos-trial h3 { font-size: 1.15rem; color: var(--accent); }
   .planos-trial p { color: var(--text-soft); margin-top: 0.6rem; font-size: 0.96rem; }
-  .planos-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 2.4rem; max-width: 84rem; margin-inline: auto; align-items: start; }
+  .planos-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 2.4rem; max-width: 64rem; margin-inline: auto; align-items: start; }
   @media (min-width: 640px) { .planos-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1100px) { .planos-grid { grid-template-columns: 1fr 1.1fr 1fr 1fr; } }
+  @media (min-width: 1000px) { .planos-grid { grid-template-columns: 1fr 1.1fr 1fr; } }
+
+  /* ---------- Card compacto de Empresas (fora do grid dos 3 planos padrão) ---------- */
+  .planos-empresas {
+    max-width: 64rem; margin: 1.8rem auto 0; background: var(--card); border: 1px solid var(--line);
+    border-radius: 16px; padding: 1.6rem 2rem; display: flex; align-items: center; justify-content: space-between;
+    gap: 1.5rem; flex-wrap: wrap;
+  }
+  .planos-empresas-text h3 { font-size: 1.08rem; color: var(--text); text-transform: none; }
+  .planos-empresas-text p { color: var(--text-soft); font-size: 0.9rem; margin-top: 0.35rem; max-width: 34rem; }
+  .planos-empresas .btn { flex-shrink: 0; }
+  @media (max-width: 640px) {
+    .planos-empresas { flex-direction: column; text-align: center; padding: 1.4rem 1.6rem; }
+    .planos-empresas .btn { width: 100%; justify-content: center; }
+  }
   .plano-card { border-radius: 20px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 8px 30px -14px rgba(0,0,0,0.6); display: flex; flex-direction: column; transition: transform 0.2s ease, box-shadow 0.2s ease; }
   .plano-card:not(.plano-card--featured):hover { transform: translateY(-4px); }
   .plano-card--featured { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 24px 50px -18px rgba(10,239,18,0.35); transform: scale(1.03); }
@@ -515,7 +529,7 @@
     </div>
     <div class="planos-trial">
       <h3>Teste grátis</h3>
-      <p>Acesso completo e imediato a todas as funções. Use diretamente pelo WhatsApp, sem precisar baixar aplicativo.</p>
+      <p>Teste real, sem compromisso — veja o Frota IA calculando com os seus próprios dados. Direto pelo WhatsApp, sem precisar baixar aplicativo.</p>
     </div>
     <div class="planos-grid">
       <div class="plano-card">
@@ -576,25 +590,14 @@
           <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+contratar+o+Frota+IA+Pro." target="_blank" rel="noopener" style="width:100%; justify-content:center;">Escolher Frota IA Pro</a>
         </div>
       </div>
+    </div>
 
-      <div class="plano-card">
-        <div class="plano-ribbon">Empresas</div>
-        <div class="plano-body">
-          <p class="plano-eyebrow">Plano</p>
-          <div class="plano-nome">Frota IA Empresas</div>
-          <p class="plano-subtitle">Para empresas com mais de 10 veículos.</p>
-          <p class="plano-price plano-price--text">Preço personalizado</p>
-          <ul class="plano-list">
-            <li>Tudo do Frota IA Pro</li>
-            <li>Para frotas acima de 10 veículos</li>
-            <li>Implantação assistida</li>
-            <li>Configuração inicial da operação</li>
-            <li>Suporte humano no WhatsApp</li>
-            <li>Atendimento comercial direto</li>
-          </ul>
-          <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+conhecer+o+Frota+IA+Empresas+para+uma+frota+com+mais+de+10+ve%C3%ADculos." target="_blank" rel="noopener" style="width:100%; justify-content:center;">Falar sobre o plano Empresas</a>
-        </div>
+    <div class="planos-empresas">
+      <div class="planos-empresas-text">
+        <h3>Tem mais de 10 veículos?</h3>
+        <p>Fale direto comigo. Preço personalizado, implantação assistida e atendimento comercial dedicado pra frotas grandes.</p>
       </div>
+      <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+conhecer+o+Frota+IA+Empresas+para+uma+frota+com+mais+de+10+ve%C3%ADculos." target="_blank" rel="noopener">Falar sobre o plano Empresas</a>
     </div>
   </section>
 
