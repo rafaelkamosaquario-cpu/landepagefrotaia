@@ -1,656 +1,97 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Frota IA | A IA do transporte direto no seu WhatsApp</title>
-<meta name="description" content="Pergunte sobre fretes, custos, pneus, manutenção, documentos e rotas pelo WhatsApp. Tudo fica organizado no painel Frota IA.">
-<meta property="og:title" content="Frota IA | A IA do transporte direto no seu WhatsApp">
-<meta property="og:description" content="Pergunte sobre fretes, custos, pneus, manutenção, documentos e rotas pelo WhatsApp. Tudo fica organizado no painel Frota IA.">
-<meta property="og:type" content="website">
-<link rel="icon" href="frota-ia-logo-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,800;0,900;1,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="celular-frota-ia-hero.png" fetchpriority="high">
-<link rel="preload" as="image" href="bg-highway-2.jpg">
-<style>
-  :root {
-    /* Frota IA — paleta industrial/tecnológica: verde de ação + azul/ciano de dados */
-    --frota-green: #0AEF12;
-    --frota-green-hover: #09CF10;
-    --frota-cyan: #0FA3CF;
-    --frota-blue-data: #095DA1;
-    --frota-blue-support: #0FA3CF;
-    --frota-bg: #0B0D0D;
-    --frota-bg-card: #0B1C29;
-    --frota-bg-texture: #122736;
-    --frota-white: #E6E7E7;
-    --frota-black: #020303;
-
-    --void: var(--frota-bg);
-    --void-deep: #050708;
-    --card: var(--frota-bg-card);
-    --card-soft: var(--frota-bg-texture);
-    --accent: var(--frota-green);
-    --accent-deep: var(--frota-green-hover);
-    --accent-glow: rgba(10, 239, 18, 0.45);
-    --moss: var(--frota-green);
-    --line: rgba(15, 163, 207, 0.18);
-    --text: var(--frota-white);
-    --text-soft: #A4A9AC;
-    --paper: #F1F1EE;
-    --paper-text: #14171E;
-    --paper-text-soft: #4B5262;
-    --gold: #E8B84B;
-
-    --shadow-card: 0 16px 36px -20px rgba(0,0,0,0.55);
-    --radius-card: 16px;
-
-    --heading: "Montserrat", "Bahnschrift", "Arial Narrow", Arial, sans-serif;
-    --display: "Bahnschrift", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
-    --body: "Inter", -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-    --mono: ui-monospace, "SF Mono", "Cascadia Code", Consolas, "Roboto Mono", monospace;
-  }
-
-  * { box-sizing: border-box; }
-  html { overflow-x: hidden; }
-  body {
-    margin: 0; color: var(--text); max-width: 100%; overflow-x: hidden;
-    font-family: var(--body); font-size: 1.0625rem; line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-    background: var(--void);
-  }
-  main section[id] { scroll-margin-top: 5.5rem; }
-  @media (prefers-reduced-motion: reduce) { * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; } }
-  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
-  a { color: inherit; }
-  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-
-  h1, h2, h3, h4 { font-family: var(--heading); font-weight: 800; text-transform: uppercase; letter-spacing: 0.005em; text-wrap: balance; margin: 0; color: var(--text); }
-
-  .eyebrow { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.13em; text-transform: uppercase; color: var(--accent); }
-
-  .wrap { max-width: 74rem; margin: 0 auto; padding-inline: clamp(1.25rem, 4vw, 3rem); }
-  .wrap-narrow { max-width: 44rem; margin: 0 auto; padding-inline: clamp(1.25rem, 4vw, 3rem); }
-  .divider { border: none; border-top: 1px solid var(--line); margin: 0; }
-  section { padding-block: clamp(2.75rem, 5.5vw, 4.5rem); }
-
-  .plate { background: rgba(5,5,6,0.82); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 10; }
-  .plate-bar { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding-block: 1rem; }
-  .brand { display: flex; align-items: center; gap: 0.7rem; line-height: 1.05; }
-  .brand-text { display: flex; flex-direction: column; }
-  .brand-name { position: relative; display: inline-block; font-family: var(--heading); text-transform: uppercase; font-weight: 900; font-size: 1.32rem; letter-spacing: -0.01em; padding-bottom: 0.3rem; }
-  .brand-name::after {
-    content: ""; position: absolute; left: 1px; right: 1px; bottom: 0; height: 2px;
-    background: linear-gradient(90deg, transparent, var(--accent) 45%, var(--accent) 55%, transparent);
-    box-shadow: 0 0 6px 1px var(--accent-glow);
-    border-radius: 999px;
-  }
-  .brand-ia { color: var(--accent); }
-  .brand-tag { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em; color: var(--text-soft); margin-top: 0.2rem; text-transform: uppercase; }
-  .nav-links { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; font-family: var(--display); font-stretch: condensed; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.06em; }
-  .nav-links a { text-decoration: none; opacity: 0.85; padding: 0.25rem 0; border-bottom: 2px solid transparent; }
-  .nav-links a:hover { opacity: 1; border-color: var(--accent); }
-  @media (max-width: 760px) { .nav-links { display: none; } }
-  @media (max-width: 600px) {
-    .plate-bar { padding-block: 0.7rem; gap: 0.75rem; }
-    .brand-name { font-size: 1.05rem; }
-    .brand-tag { font-size: 0.52rem; letter-spacing: 0.1em; }
-    .plate-bar .btn { padding: 0.65rem 1.1rem; font-size: 0.72rem; }
-  }
-
-  .btn {
-    display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--heading); font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.04em; font-size: 0.85rem; padding: 0.9rem 2rem;
-    border-radius: 999px; text-decoration: none; border: 1.5px solid transparent; cursor: pointer;
-    transition: transform 0.15s ease, box-shadow 0.15s ease; white-space: nowrap; flex-shrink: 0;
-  }
-  .btn-accent {
-    background: var(--accent);
-    color: var(--frota-black); font-weight: 700;
-    border: 1px solid rgba(10,239,18,0.35);
-    box-shadow: 0 0 20px rgba(10,239,18,0.35), 0 10px 24px -10px rgba(0,0,0,0.7);
-  }
-  .btn-accent:hover {
-    transform: translateY(-1px);
-    background: var(--accent-deep);
-    box-shadow: 0 0 28px 2px var(--accent-glow), 0 12px 26px -10px rgba(0,0,0,0.8);
-  }
-
-  /* ---------- Hero — stylized night-highway backdrop ---------- */
-  .hero { position: relative; padding-block: clamp(3.5rem, 9vw, 6rem); overflow: hidden; }
-  .hero-bg { position: absolute; inset: 0; z-index: -1; }
-  .hero-bg::before {
-    content: ""; position: absolute; inset: 0;
-    background-image:
-      linear-gradient(100deg, rgba(10,10,11,0.94) 0%, rgba(10,10,11,0.68) 32%, rgba(10,10,11,0.22) 58%, rgba(10,10,11,0.1) 100%),
-      linear-gradient(0deg, rgba(10,10,11,0.5), transparent 40%),
-      url("bg-highway-2.jpg");
-    background-size: cover;
-    background-position: right center;
-  }
-  .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
-  @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } }
-  .hero h1 { font-size: clamp(2.1rem, 4.2vw, 3.3rem); line-height: 1.1; }
-  .hero h1 em { font-style: normal; color: var(--accent); }
-  .hero-sub { margin-top: 1.4rem; max-width: 33rem; color: var(--text-soft); font-size: 1.1rem; }
-  .hero-sub strong { color: var(--text); }
-  .hero-panel-line { margin-top: 0.9rem; max-width: 33rem; color: var(--frota-cyan); font-size: 0.92rem; font-weight: 600; }
-  .hero-panel-line strong { color: var(--text); }
-  .hero-ctas { margin-top: 2.2rem; display: flex; flex-wrap: wrap; gap: 0.9rem; align-items: center; }
-  .hero-micro { margin-top: 1.1rem; font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.04em; color: var(--text-soft); }
-
-  /* ---------- Hero phone — colagem de conversas reais do WhatsApp + logo ---------- */
-  .hero-phone-stage { position: relative; display: flex; justify-content: center; padding-inline: 24px; }
-  .hero-phone-stage::before {
-    content: ""; position: absolute; inset: -8% -4%; z-index: -1; pointer-events: none;
-    background: radial-gradient(ellipse 55% 55% at 55% 45%, rgba(15,163,207,0.12), transparent 70%);
-  }
-  .hero-phone-wrap { position: relative; display: inline-block; line-height: 0; }
-  .hero-phone-img {
-    width: min(92%, 460px); height: auto; max-width: 100%; object-fit: contain; display: block;
-  }
-
-  @media (max-width: 900px) {
-    .hero-phone-img { width: min(55vw, 420px); }
-    .hero-phone-stage { padding-inline: 16px; }
-    /* Abaixo de 900px o hero-grid empilha (texto + celular), a seção fica bem mais alta e o
-       background-size:cover passa a dar um zoom extremo na imagem panorâmica, cortando o
-       caminhão fora do quadro. Limitar a altura do banner de fundo a uma faixa com proporção
-       próxima à da imagem original evita esse zoom e mantém o caminhão visível. */
-    .hero-bg { top: 0; right: 0; left: 0; bottom: auto; height: min(72vw, 460px); }
-    .hero-bg::before { background-position: 78% center; }
-  }
-  @media (max-width: 480px) {
-    .hero-phone-img { width: min(80vw, 360px); }
-    .hero-phone-stage { padding-inline: 0; flex-direction: column; align-items: center; gap: 0.9rem; }
-  }
-
-  /* No mobile, um card próprio abaixo da imagem resume o "painel" — mantém "celular → painel" na ordem visual */
-  .hero-panel-mobile { display: none; }
-  @media (max-width: 480px) {
-    .hero-panel-mobile {
-      display: block; width: 100%; max-width: 260px; background: var(--card); border: 1px solid rgba(15,163,207,0.35);
-      border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: 0.75rem 0.9rem; text-align: left; line-height: 1.3;
-    }
-  }
-  .hero-panel-peek-bar { display: flex; align-items: center; gap: 4px; margin-bottom: 0.5rem; }
-  .hero-panel-peek-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--frota-cyan); box-shadow: 0 0 6px var(--frota-cyan); }
-  .hero-panel-peek-bar span:last-child { font-family: var(--mono); font-size: 0.5rem; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.04em; }
-  .hero-panel-peek-kpi { display: block; font-family: var(--heading); font-weight: 800; font-size: 1rem; color: var(--frota-cyan); line-height: 1.1; }
-  .hero-panel-peek-label { font-family: var(--mono); font-size: 0.55rem; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.03em; }
-
-  /* ---------- Seção genérica de cabeçalho (reaproveitada por várias seções) ---------- */
-  .funcoes-head { text-align: center; max-width: 46rem; margin: 0 auto; }
-  .funcoes-head h2 { font-size: clamp(1.9rem, 3.6vw, 2.7rem); margin-top: 0.6rem; }
-  .funcoes-head h2 em { font-style: normal; color: var(--accent); }
-  .funcoes-head p { color: var(--text-soft); margin-top: 1rem; font-size: 1.05rem; }
-
-  /* ---------- Como funciona — fluxo 3 passos ---------- */
-  .flow-label { text-align: center; font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--frota-cyan); margin-top: 0.9rem; }
-  .flow-grid { display: flex; align-items: flex-start; justify-content: center; gap: 1rem; margin-top: 2.75rem; flex-wrap: wrap; }
-  .flow-step { display: flex; flex-direction: column; align-items: center; text-align: center; width: 210px; gap: 0.7rem; }
-  .flow-num { width: 44px; height: 44px; border-radius: 50%; background: var(--void-deep); border: 1px solid var(--accent); color: var(--accent); font-family: var(--heading); font-weight: 800; font-size: 1.05rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .flow-step h3 { font-size: 1rem; }
-  .flow-step p { color: var(--text-soft); font-size: 0.88rem; margin: 0; }
-  .flow-arrow { color: var(--accent); font-size: 1.4rem; align-self: center; margin-top: 14px; flex-shrink: 0; }
-  @media (max-width: 760px) { .flow-grid { flex-direction: column; margin-top: 2rem; gap: 1.4rem; } .flow-arrow { transform: rotate(90deg); margin-block: 0.2rem; } .flow-step { width: 100%; } }
-
-  /* ---------- O que você pode resolver ---------- */
-  .situations-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; margin-top: 2.75rem; }
-  @media (max-width: 900px) { .situations-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 600px) { .situations-grid { grid-template-columns: 1fr; gap: 1rem; } }
-  .situation-card { background: var(--card); border: 1px solid var(--line); border-radius: 20px; box-shadow: var(--shadow-card); padding: 2rem 1.6rem; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1rem; }
-  .situation-card img { width: 72px; height: 72px; object-fit: contain; flex-shrink: 0; }
-  .situation-card p { margin: 0; font-weight: 700; font-size: 1.08rem; line-height: 1.35; }
-  @media (max-width: 600px) {
-    .situation-card { padding: 1.3rem 1.3rem; gap: 0.7rem; }
-    .situation-card img { width: 52px; height: 52px; }
-    .situation-card p { font-size: 0.98rem; line-height: 1.3; }
-  }
-  .situations-more { text-align: center; color: var(--text-soft); margin-top: 2rem; font-size: 0.92rem; }
-
-  /* ---------- Painel mockup (usado na seção Painel) ---------- */
-  .browser-mock {
-    position: relative; border-radius: 16px; overflow: hidden; border: 1px solid rgba(15,163,207,0.3); background: var(--card);
-    box-shadow: 0 0 0 1px rgba(15,163,207,0.06), 0 34px 70px -28px rgba(0,0,0,0.75); max-width: 62rem; margin-inline: auto;
-  }
-  .painel-screenshot { display: block; width: 100%; height: auto; object-fit: contain; }
-  .panel-note { text-align: center; color: var(--text-soft); max-width: 38rem; margin: 1.6rem auto 0; font-size: 0.96rem; }
-
-  /* ---------- Trabalha antes de você pedir ---------- */
-  .proactive-section { background: var(--card-soft); }
-  .proactive-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.4rem; margin-top: 2.75rem; }
-  .proactive-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: 1.8rem; }
-  .proactive-card img { width: 48px; height: 48px; object-fit: contain; margin-bottom: 0.9rem; }
-  .proactive-card h4 { font-size: 1.05rem; }
-  .proactive-card p { color: var(--text-soft); margin-top: 0.6rem; font-size: 0.92rem; }
-  @media (max-width: 600px) {
-    .proactive-grid { gap: 1rem; }
-    .proactive-card { padding: 1.3rem 1.4rem; }
-    .proactive-card img { width: 38px; height: 38px; margin-bottom: 0.6rem; }
-  }
-  .proactive-chip { margin-top: 1rem; background: rgba(10,239,18,0.08); border-left: 2px solid var(--accent); border-radius: 0 8px 8px 0; padding: 0.5rem 0.7rem; font-family: var(--mono); font-size: 0.7rem; color: var(--text); animation: chipPulse 3.4s ease-in-out infinite; }
-  @keyframes chipPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(10,239,18,0); } 50% { box-shadow: 0 0 0 5px rgba(10,239,18,0.06); } }
-  @media (prefers-reduced-motion: reduce) { .proactive-chip { animation: none; } }
-
-  /* ---------- Fontes oficiais ---------- */
-  .sources-section { padding-block: clamp(2rem, 3.5vw, 2.75rem); }
-  .sources-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.7rem; margin-top: 1.4rem; }
-  .sources-row span { border: 1px solid var(--line); border-radius: 999px; padding: 0.45rem 1rem; font-family: var(--mono); font-size: 0.7rem; color: var(--text-soft); letter-spacing: 0.02em; }
-  .sources-row-sub { margin-top: 0.8rem; }
-  .sources-row-sub span { border-color: transparent; background: rgba(15,163,207,0.06); font-size: 0.66rem; }
-
-  /* ---------- Quem somos — light band (Autoridade) ---------- */
-  .quem-somos { background: var(--paper); color: var(--paper-text); }
-  .quem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
-  @media (max-width: 860px) { .quem-grid { grid-template-columns: 1fr; } }
-  .quem-somos .eyebrow { color: var(--accent-deep); }
-  .quem-somos h2 { color: var(--paper-text); font-size: clamp(1.9rem, 3.6vw, 2.7rem); margin-top: 0.6rem; }
-  .quem-somos h2 em { font-style: normal; color: var(--accent-deep); }
-  .quem-somos p { color: var(--paper-text-soft); margin-top: 1.1rem; font-size: 1.02rem; }
-  .quem-somos p strong { color: var(--paper-text); }
-  .quem-photo { display: flex; align-items: center; justify-content: center; padding: 0.75rem; }
-  .quem-photo img { width: clamp(260px, 34vw, 460px); max-width: 100%; height: auto; object-fit: contain; display: block; }
-
-  /* ---------- Pricing ---------- */
-  .planos-head { text-align: center; }
-  .planos-head h2 { font-size: clamp(1.9rem, 3.6vw, 2.7rem); }
-  .planos-head h2 em { font-style: italic; color: var(--accent); }
-  .planos-trial {
-    max-width: 42rem; margin: 2rem auto 0; text-align: center;
-    background: rgba(10,239,18,0.06); border: 1px solid var(--line); border-radius: 16px;
-    padding: 1.5rem 2rem;
-  }
-  .planos-trial h3 { font-size: 1.15rem; color: var(--accent); }
-  .planos-trial p { color: var(--text-soft); margin-top: 0.6rem; font-size: 0.96rem; }
-  .planos-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 2.4rem; max-width: 64rem; margin-inline: auto; align-items: start; }
-  @media (min-width: 640px) { .planos-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1000px) { .planos-grid { grid-template-columns: 1fr 1.1fr 1fr; } }
-
-  /* ---------- Card compacto de Empresas (fora do grid dos 3 planos padrão) ---------- */
-  .planos-empresas {
-    max-width: 64rem; margin: 1.8rem auto 0; background: var(--card); border: 1px solid var(--line);
-    border-radius: 16px; padding: 1.6rem 2rem; display: flex; align-items: center; justify-content: space-between;
-    gap: 1.5rem; flex-wrap: wrap;
-  }
-  .planos-empresas-text h3 { font-size: 1.08rem; color: var(--text); text-transform: none; }
-  .planos-empresas-text p { color: var(--text-soft); font-size: 0.9rem; margin-top: 0.35rem; max-width: 34rem; }
-  .planos-empresas .btn { flex-shrink: 0; }
-  @media (max-width: 640px) {
-    .planos-empresas { flex-direction: column; text-align: center; padding: 1.4rem 1.6rem; }
-    .planos-empresas .btn { width: 100%; justify-content: center; }
-  }
-  .plano-card { border-radius: 20px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 8px 30px -14px rgba(0,0,0,0.6); display: flex; flex-direction: column; transition: transform 0.2s ease, box-shadow 0.2s ease; }
-  .plano-card:not(.plano-card--featured):hover { transform: translateY(-4px); }
-  .plano-card--featured { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 24px 50px -18px rgba(10,239,18,0.35); transform: scale(1.03); }
-  @media (max-width: 760px) { .plano-card--featured { transform: none; } }
-  .plano-ribbon {
-    background: var(--void-deep); color: var(--text); font-family: var(--display); font-weight: 700; text-transform: uppercase;
-    font-size: 0.85rem; letter-spacing: 0.03em; padding: 0.9rem 1.5rem; text-align: center;
-  }
-  .plano-ribbon em { font-style: normal; color: var(--accent); }
-  .plano-card--featured .plano-ribbon { background: var(--accent); }
-  .plano-card--featured .plano-ribbon, .plano-card--featured .plano-ribbon em { color: var(--frota-black); }
-  .plano-body { background: linear-gradient(160deg, var(--card-soft), var(--card)); padding: 1.8rem 1.6rem; text-align: center; flex: 1; display: flex; flex-direction: column; }
-  .plano-body .btn { margin-top: auto; }
-  /* 4 cards ficam mais estreitos que os 3 originais — o texto dos CTAs (ex. "Falar sobre o plano Empresas") não cabe com o .btn padrão (nowrap, padding 2rem). Só aqui: permite quebrar linha e reduz padding/fonte, sem afetar os outros botões da página. */
-  .plano-body .btn { white-space: normal; text-align: center; padding: 0.85rem 1.1rem; font-size: 0.78rem; line-height: 1.25; }
-  .plano-eyebrow { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-soft); }
-  .plano-nome { font-size: clamp(1.4rem, 5.5vw, 1.7rem); font-style: italic; margin-top: 0.2rem; color: var(--accent); }
-  .plano-subtitle { color: var(--text-soft); font-size: 0.92rem; margin-top: 0.5rem; }
-  .plano-list { list-style: none; margin: 1.3rem 0; padding: 1.2rem 1.3rem; background: rgba(10,239,18,0.06); border-radius: 12px; text-align: left; display: flex; flex-direction: column; gap: 0.55rem; font-size: 0.92rem; }
-  .plano-list li { display: flex; gap: 0.5rem; }
-  .plano-list li::before { content: "✓"; color: var(--accent); flex-shrink: 0; }
-  .plano-price-cap { color: var(--text-soft); font-size: 0.95rem; margin: 0.25rem 0; }
-  .plano-price-label { font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--frota-cyan); margin: 0.4rem 0 0; }
-  .plano-price { font-family: var(--mono); font-variant-numeric: tabular-nums; margin: 0.4rem 0 0.3rem; display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 0.3em; }
-  .plano-price .num { font-size: clamp(2.15rem, 9vw, 3.3rem); font-weight: 800; color: var(--accent); }
-  .plano-price .per { font-size: 1rem; color: var(--text-soft); }
-  .plano-price--text { font-family: var(--heading); font-size: 1.6rem; font-weight: 800; color: var(--accent); text-transform: uppercase; margin: 0.6rem 0 1.6rem; }
-  @media (max-width: 480px) {
-    .plano-body { padding: 1.5rem 1.3rem; }
-    .plano-list { padding: 1rem 1.1rem; gap: 0.45rem; margin: 1.1rem 0; }
-  }
-
-  /* ---------- FAQ ---------- */
-  .faq-list { max-width: 44rem; margin: 2.75rem auto 0; display: flex; flex-direction: column; gap: 0.7rem; }
-  .faq-item { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 1rem 1.2rem; }
-  .faq-item summary { cursor: pointer; font-family: var(--heading); font-weight: 700; font-size: 0.92rem; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
-  .faq-item summary::-webkit-details-marker { display: none; }
-  .faq-item summary::after { content: "+"; color: var(--accent); font-size: 1.2rem; flex-shrink: 0; transition: transform 0.15s ease; }
-  .faq-item[open] summary::after { transform: rotate(45deg); }
-  .faq-item p { color: var(--text-soft); margin-top: 0.8rem; font-size: 0.9rem; }
-
-  /* ---------- CTA final ---------- */
-  .cta-final-section { background: linear-gradient(160deg, var(--card-soft), var(--void-deep)); border-top: 1px solid var(--line); text-align: center; }
-  .cta-final-section h2 { font-size: clamp(1.9rem, 3.6vw, 2.7rem); }
-  .cta-final-section h2 em { font-style: normal; color: var(--accent); }
-  .cta-final-sub { color: var(--text-soft); margin: 1.2rem auto 2rem; max-width: 34rem; font-size: 1.02rem; }
-  .cta-final-section .btn { margin-inline: auto; }
-
-  /* ---------- Footer ---------- */
-  footer.plate { position: static; backdrop-filter: none; background: var(--void-deep); text-align: center; padding-block: 3rem 2rem; padding-bottom: calc(2rem + env(safe-area-inset-bottom, 0px)); }
-  .footer-logo { font-family: var(--heading); font-weight: 900; text-transform: uppercase; letter-spacing: -0.01em; font-size: 1.4rem; }
-  .footer-logo span { color: var(--accent); }
-  .footer-tag { max-width: 34rem; margin: 1.2rem auto 0; color: var(--text-soft); font-size: 0.95rem; }
-  .footer-copy { margin-top: 1.6rem; color: var(--text-soft); font-family: var(--mono); font-size: 0.75rem; }
-  .footer-legal { margin-top: 0.5rem; font-family: var(--mono); font-size: 0.72rem; color: rgba(153,155,158,0.6); }
-  .footer-legal a { text-decoration: none; }
-  .footer-legal a:hover { text-decoration: underline; color: var(--text-soft); }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frota IA | Seu caminhão e sua frota organizados pelo WhatsApp</title>
+  <meta name="description" content="Saiba se o frete compensa e organize sua operação pelo WhatsApp. Envie texto, áudio, foto ou documento. Painel web nos planos Essencial e Pro.">
+  <meta property="og:title" content="Frota IA | Seu caminhão e sua frota organizados pelo WhatsApp">
+  <meta property="og:description" content="Analise fretes, estime custos e organize sua rotina. Do seu caminhão à sua frota, direto pelo WhatsApp.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="frota-ia-logo-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/hero-truck.webp">
+  <link rel="stylesheet" href="landing-light.css">
 </head>
 <body>
-
-<header class="plate">
-  <div class="wrap plate-bar">
-    <div class="brand">
-      <div class="brand-text">
-        <span class="brand-name">Frota <span class="brand-ia">IA</span></span>
-        <span class="brand-tag">Uma solução RodoCore</span>
-      </div>
-    </div>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="#resolve">Recursos</a></li>
-        <li><a href="#planos">Planos</a></li>
-        <li><a href="#faq">Dúvidas</a></li>
-      </ul>
-    </nav>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<header class="site-header">
+  <div class="wrap header-row">
+    <div class="brand"><img src="assets/brand.webp" width="62" height="62" alt=""><div><span class="brand-name">FROTA <span>IA</span></span><small>Uma solução RodoCore</small></div></div>
+    <nav aria-label="Navegação principal"><a href="#como-funciona">Como funciona</a><a href="#resolve">Recursos</a><a href="#planos">Planos</a><a href="#faq">Dúvidas</a></nav>
     <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+testar+o+Frota+IA+gr%C3%A1tis" target="_blank" rel="noopener">Teste grátis</a>
   </div>
 </header>
-
-<main>
-  <section class="hero">
-    <div class="hero-bg"></div>
+<main id="conteudo">
+  <section class="hero" aria-labelledby="hero-title">
     <div class="wrap hero-grid">
-      <div>
-        <p class="eyebrow">Frota IA · WhatsApp + Painel</p>
-        <h1>A IA do transporte <em>direto no seu WhatsApp.</em></h1>
-        <p class="hero-sub">Pergunte sobre fretes, custos, pneus, manutenção, documentos, rotas e sua operação. Por texto, áudio ou foto.</p>
-        <p class="hero-panel-line">E nos planos Essencial e Pro, tudo que importa fica organizado no <strong>painel Frota IA</strong>.</p>
-        <div class="hero-ctas">
-          <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+testar+o+Frota+IA+gr%C3%A1tis" target="_blank" rel="noopener">Teste grátis</a>
-        </div>
-        <p class="hero-micro">7 dias grátis &nbsp;•&nbsp; Sem cartão &nbsp;•&nbsp; Sem instalar aplicativo</p>
+      <div class="hero-copy">
+        <p class="eyebrow">Para quem dirige e para quem gerencia.</p>
+        <h1 id="hero-title">Saiba se o frete compensa e organize sua operação <em>pelo WhatsApp.</em></h1>
+        <p class="hero-sub">Do seu caminhão à sua frota: custos, documentos e manutenção organizados.</p>
+        <p class="hero-formats">Envie texto, áudio, foto ou documento.</p>
+        <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+testar+o+Frota+IA+gr%C3%A1tis" target="_blank" rel="noopener">Teste grátis</a>
+        <p class="micro">Demonstração de frete, rota e custo.</p>
       </div>
-      <div class="hero-phone-stage">
-        <div class="hero-phone-wrap">
-          <img class="hero-phone-img" src="celular-frota-ia-hero.png" alt="Três celulares mostrando conversas reais do Frota IA no WhatsApp: cálculo de rota, análise de frete e comparação de custo de pneus" width="940" height="940" fetchpriority="high" decoding="async">
-        </div>
-
-        <div class="hero-panel-mobile" aria-hidden="true">
-          <div class="hero-panel-peek-bar"><span class="hero-panel-peek-dot"></span><span>PAINEL FROTA IA</span></div>
-          <span class="hero-panel-peek-kpi">18% margem</span>
-          <span class="hero-panel-peek-label">Análise de frete salva no histórico</span>
-        </div>
+      <figure class="hero-phone"><img src="assets/hero-phone.webp" alt="Conversa ilustrativa: cliente envia um áudio sobre um frete e o Frota IA pede origem, destino e valor para organizar os custos." width="800" height="1000" fetchpriority="high"><figcaption>Conversa ilustrativa</figcaption></figure>
+    </div>
+  </section>
+  <section class="steps-section" id="como-funciona" aria-label="Como funciona">
+    <ol class="wrap steps">
+      <li><img class="icon" src="assets/icons/whatsapp-logo.svg" alt="" width="40" height="40"><div><h2>Teste na prática</h2><p>Converse com o Frota IA e analise um frete.</p></div></li>
+      <li><img class="icon" src="assets/icons/file-text.svg" alt="" width="40" height="40"><div><h2>Escolha seu plano</h2><p>Defina o plano ideal para sua operação.</p></div></li>
+      <li><img class="icon" src="assets/icons/gear.svg" alt="" width="40" height="40"><div><h2>Configure sua operação</h2><p>Comece a organizar veículos, documentos e rotas.</p></div></li>
+    </ol>
+  </section>
+  <section class="tinted" id="resolve">
+    <div class="wrap features-layout">
+      <div class="section-intro"><h2>Menos digitação.<br>Mais controle na rotina.</h2><p>Use o WhatsApp do seu jeito e tenha as informações que importam, quando você precisa.</p></div>
+      <div class="features-grid">
+        <article class="feature"><img class="icon" src="assets/icons/microphone.svg" alt="" width="44" height="44"><div><h3>Mande um áudio</h3><p>Explique o que precisa, sem parar para digitar.</p></div></article>
+        <article class="feature"><img class="icon" src="assets/icons/file-text.svg" alt="" width="44" height="44"><div><h3>Envie uma foto ou PDF</h3><p>O Frota IA lê as informações para ajudar na sua rotina.</p></div></article>
+        <article class="feature"><img class="icon" src="assets/icons/broadcast.svg" alt="" width="44" height="44"><div><h3>Radar de Fretes</h3><p>Encontre oportunidades compatíveis nos grupos autorizados do WhatsApp.</p><small>Depende da configuração e autorização dos grupos. Não garante contratação de fretes.</small></div></article>
+        <article class="feature"><img class="icon" src="assets/icons/newspaper.svg" alt="" width="44" height="44"><div><h3>Notícias do transporte</h3><p>Ative um resumo do setor no seu WhatsApp.</p></div></article>
       </div>
     </div>
   </section>
-
-  <section class="wrap" id="como-funciona">
-    <div class="funcoes-head">
-      <p class="eyebrow">Como funciona</p>
-      <h2>Simples assim.</h2>
-    </div>
-    <p class="flow-label">WhatsApp → Frota IA → Painel</p>
-    <div class="flow-grid">
-      <div class="flow-step">
-        <span class="flow-num">1</span>
-        <h3>Você chama no WhatsApp</h3>
-        <p>Mande texto, áudio, foto ou documento.</p>
+  <section class="sources-section" id="fontes" aria-labelledby="sources-title">
+    <div class="wrap sources"><h2 id="sources-title">Informação com fonte.<br>Mais confiança para decidir.</h2><div><ul><li>ANTT</li><li>ANP</li><li>DNIT</li><li>Fabricantes e entidades do setor</li></ul><p>Fontes de consulta. Sem vínculo institucional.</p></div></div>
+  </section>
+  <section class="panel-section" id="painel">
+    <div class="wrap panel-layout">
+      <div class="section-intro"><p class="eyebrow">Sua operação também na tela.</p><h2>Painel no computador e no celular, incluído no Essencial e Pro.</h2><p>Organize seus veículos, documentos, manutenções, despesas e muito mais.</p>
+        <ul class="panel-benefits"><li><img class="icon" src="assets/icons/truck.svg" alt="">Veículos e motoristas</li><li><img class="icon" src="assets/icons/files.svg" alt="">Documentos e vencimentos</li><li><img class="icon" src="assets/icons/wrench.svg" alt="">Manutenções</li><li><img class="icon" src="assets/icons/coins.svg" alt="">Despesas e custos</li><li><img class="icon" src="assets/icons/chart-bar.svg" alt="">Relatórios da operação</li></ul>
       </div>
-      <span class="flow-arrow" aria-hidden="true">→</span>
-      <div class="flow-step">
-        <span class="flow-num">2</span>
-        <h3>O Frota IA resolve</h3>
-        <p>Calcula, analisa, pesquisa, registra ou orienta.</p>
-      </div>
-      <span class="flow-arrow" aria-hidden="true">→</span>
-      <div class="flow-step">
-        <span class="flow-num">3</span>
-        <h3>Sua operação fica organizada</h3>
-        <p>Veículos, documentos, manutenção, custos e históricos ficam disponíveis no painel.</p>
-      </div>
+      <figure class="panel-figure"><img src="assets/panel-devices.webp" alt="Ilustração do painel claro Frota IA no computador e no celular, com resumo Frota IA informa e acesso ao assistente Pergunte ao Frota IA." width="1400" height="950" loading="lazy" decoding="async"><figcaption>Telas ilustrativas · Dados demonstrativos</figcaption></figure>
     </div>
   </section>
-
-  <section class="wrap" id="resolve">
-    <div class="funcoes-head">
-      <p class="eyebrow">O que você pode resolver</p>
-      <h2>Pergunte. <em>O Frota IA resolve.</em></h2>
-    </div>
-    <div class="situations-grid">
-      <div class="situation-card"><img src="card-frete.png" alt="" width="300" height="321" decoding="async"><p>"Esse frete compensa?"</p></div>
-      <div class="situation-card"><img src="card-combustivel.png" alt="" width="300" height="321" decoding="async"><p>"Quanto vou gastar nessa viagem?"</p></div>
-      <div class="situation-card"><img src="card-calculadora.png" alt="" width="300" height="321" decoding="async"><p>"Quanto custa deixar meu caminhão parado?"</p></div>
-      <div class="situation-card"><img src="card-pneus.png" alt="" width="300" height="321" decoding="async"><p>"Vale recapar ou comprar pneu novo?"</p></div>
-      <div class="situation-card"><img src="card-manutencao.png" alt="" width="300" height="321" decoding="async"><p>"Quando tenho manutenção?"</p></div>
-      <div class="situation-card"><img src="card-documento.png" alt="" width="300" height="321" decoding="async"><p>"Quando esse documento vence?"</p></div>
-      <div class="situation-card"><img src="card-rota.png" alt="" width="300" height="321" decoding="async"><p>"Tem carga voltando pra Curitiba?"</p></div>
-      <div class="situation-card"><img src="card-calculadora.png" alt="" width="300" height="321" decoding="async"><p>"Qual valor do meu CPK?"</p></div>
-    </div>
-    <p class="situations-more">Também ajuda com jornada, despesas, alertas, checklist e muito mais.</p>
-  </section>
-
-  <section class="wrap" id="painel">
-    <div class="funcoes-head">
-      <p class="eyebrow">Painel</p>
-      <h2>Falou no WhatsApp. <em>Ficou organizado no painel.</em></h2>
-    </div>
-    <div style="margin-top:2.6rem;">
-      <div class="browser-mock">
-        <img class="painel-screenshot" src="painel-dashboard.jpg" alt="Painel Frota IA mostrando dashboard com veículos, alertas urgentes, checklists e o assistente Pergunte ao Frota IA" width="1672" height="941" decoding="async">
-      </div>
-    </div>
-    <p class="panel-note">Para quem administra mais de um veículo, o painel mostra a operação sem depender de planilha, papel ou memória.</p>
-  </section>
-
-  <section class="proactive-section">
+  <section class="tinted plans-section" id="planos">
     <div class="wrap">
-      <div class="funcoes-head">
-        <p class="eyebrow">Ele também acompanha</p>
-        <h2>O Frota IA não espera <em>você lembrar de tudo</em></h2>
-      </div>
-      <div class="proactive-grid">
-        <div class="proactive-card">
-          <img src="card-documento.png" alt="" width="300" height="321" decoding="async">
-          <h4>Documentos e manutenção</h4>
-          <p>Acompanha vencimentos e avisa quando algo precisa de atenção.</p>
-          <div class="proactive-chip">CRLV vence em 3 dias</div>
-        </div>
-        <div class="proactive-card">
-          <img src="card-calendario.png" alt="" width="300" height="321" decoding="async">
-          <h4>Checklist</h4>
-          <p>O motorista responde pelo WhatsApp e o gestor acompanha pelo painel.</p>
-          <div class="proactive-chip">06:00 enviado → 06:04 respondido: OK</div>
-        </div>
-        <div class="proactive-card">
-          <img src="card-noticias.png" alt="" width="300" height="300" decoding="async">
-          <h4>Notícias do transporte</h4>
-          <p>Receba um resumo das principais informações do setor direto no WhatsApp.</p>
-          <div class="proactive-chip">Resumo de hoje: 4 notícias do setor</div>
-        </div>
-        <div class="proactive-card">
-          <img src="card-rota.png" alt="" width="300" height="321" decoding="async">
-          <h4>Radar de Fretes</h4>
-          <p>Avisa automaticamente quando aparece uma carga compatível com o seu caminhão e a sua rota.</p>
-          <div class="proactive-chip">⚡ Goiânia → Curitiba, compatível com o seu veículo</div>
+      <div class="plans-layout">
+        <div class="section-intro"><p class="eyebrow">Planos para o seu momento</p><h2>Simples e transparente.</h2><p>Escolha o plano ideal para sua operação e tenha mais controle no seu dia a dia.</p></div>
+        <div class="plans-grid">
+          <article class="plan"><h3>Individual</h3><p class="price">R$ 89,90<span>/mês</span></p><ul><li>1 usuário + 1 veículo</li><li>Atendimento pelo WhatsApp</li><li>Sem painel web</li></ul><details class="plan-details"><summary>O que está incluído</summary><p>Fretes, custos, rotas e manutenção. Radar de Fretes, alertas, documentos e lembretes. Suporte humano no WhatsApp.</p><p>ou R$899,00/ano no Pix (12x R$74,92 no cartão)</p></details><a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+assinar+o+Frota+IA+Individual+por+R%2489%2C90%2Fm%C3%AAs." target="_blank" rel="noopener">Começar com o Frota IA</a></article>
+          <article class="plan"><h3>Essencial</h3><p class="price">R$ 149,90<span>/mês</span></p><ul><li>Até 3 veículos</li><li>WhatsApp + painel web</li><li>Suporte humano no WhatsApp</li></ul><details class="plan-details"><summary>O que está incluído</summary><p>Tudo do Individual. Motoristas, despesas, manutenção, checklists, alertas e relatórios. Dashboard + Google Agenda.</p><p>ou R$1.499,00/ano no Pix (12x R$124,92 no cartão)</p></details><a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+contratar+o+Frota+IA+Essencial." target="_blank" rel="noopener">Escolher Frota IA Essencial</a></article>
+          <article class="plan"><h3>Pro</h3><p class="price">R$ 249,90<span>/mês</span></p><ul><li>Até 10 veículos</li><li>WhatsApp + painel web</li><li>Suporte humano no WhatsApp</li></ul><details class="plan-details"><summary>O que está incluído</summary><p>Tudo do Essencial para até 10 veículos. Checklists, alertas e relatórios. Dashboard + Google Agenda.</p><p>ou R$2.499,00/ano no Pix (12x R$208,25 no cartão)</p></details><a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+contratar+o+Frota+IA+Pro." target="_blank" rel="noopener">Escolher Frota IA Pro</a></article>
         </div>
       </div>
+      <p class="demo-note">Demonstração de frete, rota e custo antes de assinar.</p>
+      <div class="enterprise"><div><h3>Tem mais de 10 veículos?</h3><p>Preço personalizado, implantação assistida e atendimento comercial dedicado.</p></div><a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+conhecer+o+Frota+IA+Empresas+para+uma+frota+com+mais+de+10+ve%C3%ADculos." target="_blank" rel="noopener">Falar sobre o plano Empresas</a></div>
     </div>
   </section>
-
-  <section class="sources-section" id="fontes">
-    <div class="wrap">
-      <div class="funcoes-head">
-        <p class="eyebrow">Fontes</p>
-        <h2>Informação de transporte <em>precisa ter fonte</em></h2>
-        <p>Quando precisa buscar informação atual, o Frota IA pesquisa fontes oficiais e especializadas do setor.</p>
-      </div>
-      <div class="sources-row">
-        <span>ANTT</span>
-        <span>ANP</span>
-        <span>DNIT / DER</span>
-        <span>Legislação</span>
-        <span>Fabricantes</span>
-        <span>Notícias do setor</span>
-      </div>
-      <div class="sources-row sources-row-sub">
-        <span>Piso mínimo ANTT</span>
-        <span>Preço de combustível</span>
-        <span>Legislação</span>
-        <span>Informações rodoviárias</span>
-        <span>Atualizações do transporte</span>
-      </div>
-    </div>
-  </section>
-
-  <section class="quem-somos" id="diferente">
-    <div class="wrap quem-grid">
-      <div>
-        <p class="eyebrow">Autoridade</p>
-        <h2>Desenvolvido e validado com <em>experiência real</em> em transporte.</h2>
-        <p>Construído por especialista com mais de 17 anos de experiência no transporte, incluindo mais de 14 anos em gestão de frotas, combustível, manutenção, pneus e gestão de pessoas. O Frota IA reúne esse conhecimento com inteligência artificial, ferramentas próprias e fontes oficiais.</p>
-      </div>
-      <div class="quem-photo">
-        <img src="frota-ia-phone-cards.png" alt="Frota IA no celular, com ferramentas de rotas, pneus, manutenção, combustível, documentos e alertas ao redor" width="900" height="956" decoding="async">
-      </div>
-    </div>
-  </section>
-
-  <section class="wrap" id="planos">
-    <div class="planos-head">
-      <p class="eyebrow">Planos</p>
-      <h2>Escolha o <em>Frota IA ideal</em> para sua operação</h2>
-      <p>De um único veículo a uma frota completa, escolha o plano que acompanha o tamanho da sua operação.</p>
-    </div>
-    <div class="planos-trial">
-      <h3>Teste grátis</h3>
-      <p>Teste real, sem compromisso — veja o Frota IA calculando com os seus próprios dados. Direto pelo WhatsApp, sem precisar baixar aplicativo.</p>
-    </div>
-    <div class="planos-grid">
-      <div class="plano-card">
-        <div class="plano-ribbon">Individual</div>
-        <div class="plano-body">
-          <p class="plano-eyebrow">Plano</p>
-          <div class="plano-nome">Frota IA Individual</div>
-          <p class="plano-price"><span class="num">R$89,90</span><span class="per">/mês</span></p>
-          <p class="plano-price-cap">ou R$899,00/ano no Pix (12x R$74,92 no cartão)</p>
-          <ul class="plano-list">
-            <li>Frota IA pelo WhatsApp</li>
-            <li>1 usuário + 1 veículo</li>
-            <li>Fretes, custos, rotas e manutenção</li>
-            <li>Radar de Fretes</li>
-            <li>Alertas, documentos e lembretes</li>
-            <li>Suporte humano no WhatsApp</li>
-          </ul>
-          <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+assinar+o+Frota+IA+Individual+por+R%2489%2C90%2Fm%C3%AAs." target="_blank" rel="noopener" style="width:100%; justify-content:center;">Começar com o Frota IA</a>
-        </div>
-      </div>
-
-      <div class="plano-card plano-card--featured">
-        <div class="plano-ribbon">Essencial <em>mais escolhido</em></div>
-        <div class="plano-body">
-          <p class="plano-eyebrow">Plano</p>
-          <div class="plano-nome">Frota IA Essencial</div>
-          <p class="plano-subtitle">WhatsApp + Painel de Gestão para até 3 veículos.</p>
-          <p class="plano-price"><span class="num">R$149,90</span><span class="per">/mês</span></p>
-          <p class="plano-price-cap">ou R$1.499,00/ano no Pix (12x R$124,92 no cartão)</p>
-          <ul class="plano-list">
-            <li>Tudo do Frota IA Individual</li>
-            <li>WhatsApp + Painel Web</li>
-            <li>Até 3 veículos</li>
-            <li>Motoristas, despesas e manutenção</li>
-            <li>Checklists, alertas e relatórios</li>
-            <li>Dashboard + Google Agenda</li>
-            <li>Suporte humano no WhatsApp</li>
-          </ul>
-          <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+contratar+o+Frota+IA+Essencial." target="_blank" rel="noopener" style="width:100%; justify-content:center;">Escolher Frota IA Essencial</a>
-        </div>
-      </div>
-
-      <div class="plano-card">
-        <div class="plano-ribbon">Pro</div>
-        <div class="plano-body">
-          <p class="plano-eyebrow">Plano</p>
-          <div class="plano-nome">Frota IA Pro</div>
-          <p class="plano-subtitle">WhatsApp + Painel de Gestão para até 10 veículos.</p>
-          <p class="plano-price"><span class="num">R$249,90</span><span class="per">/mês</span></p>
-          <p class="plano-price-cap">ou R$2.499,00/ano no Pix (12x R$208,25 no cartão)</p>
-          <ul class="plano-list">
-            <li>Tudo do Frota IA Essencial</li>
-            <li>Até 10 veículos</li>
-            <li>Checklists, alertas e relatórios</li>
-            <li>Dashboard + Google Agenda</li>
-            <li>Suporte humano no WhatsApp</li>
-          </ul>
-          <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+contratar+o+Frota+IA+Pro." target="_blank" rel="noopener" style="width:100%; justify-content:center;">Escolher Frota IA Pro</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="planos-empresas">
-      <div class="planos-empresas-text">
-        <h3>Tem mais de 10 veículos?</h3>
-        <p>Fale direto comigo. Preço personalizado, implantação assistida e atendimento comercial dedicado pra frotas grandes.</p>
-      </div>
-      <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+conhecer+o+Frota+IA+Empresas+para+uma+frota+com+mais+de+10+ve%C3%ADculos." target="_blank" rel="noopener">Falar sobre o plano Empresas</a>
-    </div>
-  </section>
-
-  <section class="wrap" id="faq">
-    <div class="funcoes-head">
-      <p class="eyebrow">Dúvidas</p>
-      <h2>Perguntas <em>frequentes</em></h2>
-    </div>
-    <div class="faq-list">
-      <details class="faq-item">
-        <summary>O Frota IA funciona só no WhatsApp?</summary>
-        <p>Não. O WhatsApp é o canal principal. Tudo que você registra também fica organizado no painel.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Preciso baixar aplicativo?</summary>
-        <p>Não. Você começa direto pelo WhatsApp, sem instalar nada.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Serve para motorista autônomo ou só para empresas?</summary>
-        <p>Serve para os dois: motorista autônomo e empresas com mais de um veículo.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Ele lê documentos por foto?</summary>
-        <p>Sim, dentro dos tipos suportados — CRLV, CNH, tacógrafo e outros.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Ele calcula se um frete compensa?</summary>
-        <p>Sim. Ele analisa receita, custo e margem antes de você aceitar.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Tem fidelidade?</summary>
-        <p>Nos planos mensais (Individual, Essencial ou Pro), você pode cancelar a renovação quando quiser. Nos planos anuais, o acesso é contratado por 12 meses.</p>
-      </details>
-    </div>
-  </section>
-
-  <section class="cta-final-section">
-    <div class="wrap">
-      <h2>Quer testar? <em>É só chamar no WhatsApp.</em></h2>
-      <p class="cta-final-sub">7 dias grátis · sem cartão · sem instalar aplicativo</p>
-      <a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+testar+o+Frota+IA+gr%C3%A1tis" target="_blank" rel="noopener">Teste grátis</a>
-    </div>
-  </section>
+  <section id="faq"><div class="wrap faq-layout"><div class="section-intro"><p class="eyebrow">Dúvidas frequentes</p><h2>Tire suas dúvidas.</h2></div><div class="faq-list">
+    <details><summary>Preciso baixar aplicativo?</summary><p>Não. Você começa direto pelo WhatsApp, sem instalar nada.</p></details>
+    <details><summary>O teste libera toda a gestão?</summary><p>A demonstração permite conhecer frete, rota e custo antes de assinar. As ferramentas de gestão são disponibilizadas conforme o plano contratado.</p></details>
+    <details><summary>O Frota IA funciona só no WhatsApp?</summary><p>O WhatsApp é o canal principal. Nos planos Essencial e Pro, você também acompanha a operação pelo painel web, no computador e no celular. O Individual não inclui o painel.</p></details>
+    <details><summary>Serve para motorista autônomo ou só para empresas?</summary><p>Serve para os dois: motorista autônomo e empresas com mais de um veículo.</p></details>
+    <details><summary>Ele lê documentos por foto?</summary><p>Sim, dentro dos tipos suportados — CRLV, CNH, tacógrafo e outros.</p></details>
+    <details><summary>Ele calcula se um frete compensa?</summary><p>Sim. Ele analisa receita, custo e margem antes de você aceitar, com base nas informações fornecidas.</p></details>
+    <details><summary>Tem fidelidade?</summary><p>Nos planos mensais (Individual, Essencial ou Pro), você pode cancelar a renovação quando quiser. Nos planos anuais, o acesso é contratado por 12 meses.</p></details>
+  </div></div></section>
+  <section class="final-cta"><div class="wrap"><h2>Veja como o Frota IA pode ajudar na sua próxima viagem.</h2><a class="btn btn-accent" href="https://wa.me/5541997454382?text=Quero+testar+o+Frota+IA+gr%C3%A1tis" target="_blank" rel="noopener">Teste grátis</a><p class="micro">Demonstração de frete, rota e custo.</p></div></section>
 </main>
-
-<footer class="plate">
-  <div class="wrap">
-    <div class="footer-logo">Frota <span>IA</span></div>
-    <p class="footer-tag">Uma ferramenta criada com base na realidade da estrada, com a linguagem, as dúvidas e os desafios de quem roda de madrugada, enfrenta o trânsito, a correria e precisa de resposta rápida e certa.</p>
-    <p class="footer-copy">© Todos os direitos reservados — Frota IA 2026 · uma solução RodoCore</p>
-    <p class="footer-legal"><a href="termos-e-privacidade.html#termos">Termos de Uso</a> · <a href="termos-e-privacidade.html#privacidade">Política de Privacidade</a></p>
-  </div>
-</footer>
-
+<footer><div class="wrap footer-row"><div class="brand"><img src="assets/brand.webp" alt="" width="54" height="54" loading="lazy"><div><span class="brand-name">FROTA <span>IA</span></span><small>Uma solução RodoCore</small></div></div><p>Uma ferramenta criada com base na realidade da estrada.</p><div class="legal"><a href="termos-e-privacidade.html#termos">Termos de Uso</a><a href="termos-e-privacidade.html#privacidade">Política de Privacidade</a></div></div><p class="copyright">© Todos os direitos reservados — Frota IA 2026 · uma solução RodoCore</p></footer>
 </body>
 </html>

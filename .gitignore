@@ -1,2 +1,7 @@
 # Registro interno de histórico do projeto — nunca publicar (o repo é servido publicamente via GitHub Pages)
 HISTORICO-PROJETO.md
+# Local QA artifacts are not public site content.
+design-qa.md
+scripts/
+# Source renders are retained locally; the page ships optimized WebP assets.
+assets/*.png
