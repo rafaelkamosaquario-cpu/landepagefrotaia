@@ -16,6 +16,6 @@
       a.href = `https://wa.me/5541997295836?text=${encodeURIComponent(`Olá, Rafael! Vim pela landing page do Frota IA. Quero contratar o plano ${name}, ${period}, para ${vehicles} veículo(s), por R$ ${price}. Quero pagar por Pix com seu atendimento. Meu WhatsApp de uso no Frota IA é: `)}`;
       a.target = '_blank'; a.rel = 'noopener noreferrer'; a.style.cssText = 'display:block;padding:12px;border:1px solid currentColor;border-radius:10px;text-align:center'; box.append(a);
     }
-    const note = document.createElement('small'); note.textContent = 'RodaCore: (41) 99729-5836. Pix enviado pelo atendimento. Liberação após conferência do recebimento, sem renovação automática.'; box.append(note); card.append(box);
+    const note = document.createElement('small'); note.textContent = 'RodoCore: (41) 99729-5836. Pix enviado pelo atendimento. Liberação após conferência do recebimento, sem renovação automática.'; box.append(note); card.append(box);
   }
 })();
